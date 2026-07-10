@@ -1,4 +1,6 @@
 ```javascript
+console.log("VOLUNTA LOGIN SCRIPT ACTIVE");
+
 // VOLUNTA LOGIN SYSTEM UPDATE
 // role selection + student verification + account upgrades
 
