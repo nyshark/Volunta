@@ -1,338 +1,370 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>VOLUNTA</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
 
-    <!--space bg anim-->
-    <div id="starCanvas"></div>
 
-    <!--cloud anim-->
-    <div id="cloudCanvas"></div>
+<div id="starCanvas"></div>
 
-    <!--nav bar-->
-    <nav class="navbar">
-        <a href="index.html" class="navbar-brand">VOLUNTA</a>
+<div id="cloudCanvas"></div>
 
-        <div class="navbar-action-wrap">
-            <button id="themeToggleBtn" class="filter-btn theme-toggle-override">
-                ⏾
-            </button>
 
-            <span class="mood-status">
-                get back to grinding bro
-            </span>
-        </div>
-    </nav>
 
+<nav class="navbar">
 
-    <main class="main-container">
+    <a href="index.html" class="navbar-brand">
+        VOLUNTA
+    </a>
 
-        <!--branding-->
-        <div class="main-text-side">
 
-            <h1 id="mainBrandTitle" class="main-title">
-                ₊✮.VOLUNTA.✮₊
-            </h1>
+    <div class="navbar-action-wrap">
 
-        </div>
+        <button id="themeToggleBtn"
+                class="filter-btn theme-toggle-override">
+            ⏾
+        </button>
 
 
+        <span class="mood-status">
+            get back to grinding bro
+        </span>
 
-        <div class="contact-form-wrap login-box-dims">
+    </div>
 
+</nav>
 
-            <!-- ===========================
-                 ROLE SELECT SCREEN
-            ============================ -->
 
-            <section id="roleSelection" class="role-selection">
 
-                <div class="form-header-align">
 
-                    <h2 class="panel-heading form-title-override">
-                        are you a...
-                    </h2>
 
-                    <span class="eyebrow panel-eyebrow-override">
-                        choose your path
-                    </span>
+<main class="main-container">
 
-                </div>
 
+<div class="main-text-side">
 
+    <h1 id="mainBrandTitle" class="main-title">
+        ₊✮.VOLUNTA.✮₊
+    </h1>
 
-                <div class="role-card-container">
+</div>
 
 
-                    <button id="studentRoleBtn" class="role-card">
 
-                        <span class="role-icon">
-                            🎓
-                        </span>
 
-                        <span class="role-title">
-                            Student
-                        </span>
 
+<div class="contact-form-wrap login-box-dims">
 
-                        <span class="role-badge beta-badge">
-                            BETA
-                        </span>
 
-                    </button>
 
+<section id="roleSelection">
 
 
-                    <button id="organizerRoleBtn" class="role-card disabled-role">
+<div class="form-header-align">
 
-                        <span class="role-icon">
-                            🛠
-                        </span>
+<h2 class="panel-heading form-title-override">
+    are you a...
+</h2>
 
-                        <span class="role-title">
-                            Service Organizer
-                        </span>
+<span class="eyebrow">
+    choose your path
+</span>
 
+</div>
 
-                        <span class="role-badge unfinished-badge">
-                            NOT STARTED
-                        </span>
 
-                    </button>
 
 
-                </div>
 
+<div class="role-card-container">
 
-            </section>
 
+<button id="studentRoleBtn"
+        class="role-card">
 
 
+<span class="role-icon">
+    🎓
+</span>
 
-            <!-- ===========================
-                 AUTH SCREEN
-            ============================ -->
 
-            <section id="authSection" class="auth-hidden">
+<span class="role-title">
+    Student
+</span>
 
 
-                <div class="tab-select-container">
+<span class="role-badge beta-badge">
+    BETA
+</span>
 
-                    <button id="tabLogin" class="filter-btn active">
-                        log In
-                    </button>
 
+</button>
 
-                    <button id="tabRegister" class="filter-btn">
-                        sign Up
-                    </button>
 
-                </div>
 
 
 
+<button id="organizerRoleBtn"
+        class="role-card disabled-role">
 
-                <div class="form-header-align">
 
-                    <h2 id="formHeading" class="panel-heading form-title-override">
-                        glad you're here!
-                    </h2>
+<span class="role-icon">
+    🛠
+</span>
 
 
-                    <span id="formSub" class="eyebrow panel-eyebrow-override">
-                        what's up?
-                    </span>
+<span class="role-title">
+    Service Organizer
+</span>
 
 
-                </div>
+<span class="role-badge unfinished-badge">
+    NOT STARTED
+</span>
 
 
+</button>
 
 
 
-                <!--notifications-->
+</div>
 
-                <div id="authNoticeBanner"
-                     class="contact-form-wrap auth-notice-banner-layout">
 
+</section>
 
-                    <h4 id="authNoticeTitle"
-                        class="panel-heading auth-notice-heading-layout">
-                    </h4>
 
 
-                    <p id="authNoticeDesc"
-                       class="auth-notice-desc-layout">
-                    </p>
 
 
-                </div>
 
 
 
 
+<section id="authSection" class="auth-hidden">
 
-                <form id="authForm">
 
 
-                    <div class="form-group-email">
+<div class="tab-select-container">
 
-                        <label for="email">
-                            email address
-                        </label>
 
+<button id="tabLogin"
+        class="filter-btn active">
 
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            class="contact-input input-width-full"
-                            placeholder="fish@school.edu"
-                            autocomplete="off"
-                            required
-                        >
+    log In
 
-                    </div>
+</button>
 
 
+<button id="tabRegister"
+        class="filter-btn">
 
+    sign Up
 
+</button>
 
-                    <div class="form-group-password">
 
-                        <label for="password">
-                            password
-                        </label>
+</div>
 
 
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            class="contact-input input-width-full"
-                            placeholder="𓆝 𓆟 𓆞 𓆝 𓆟"
-                            required
-                        >
 
-                    </div>
 
 
 
+<div class="form-header-align">
 
 
-                    <!-- only appears during signup -->
+<h2 id="formHeading"
+    class="panel-heading form-title-override">
 
-                    <div id="schoolGroup" class="signup-extra-field hidden-field">
+    welcome back :)
 
+</h2>
 
-                        <label for="school">
-                            school
-                        </label>
 
+<span id="formSub"
+      class="eyebrow">
 
-                        <select
-                            id="school"
-                            class="contact-input input-width-full"
-                        >
+    hi again!
 
-                            <option value="">
-                                select your school...
-                            </option>
+</span>
 
-                            <option value="Rocklin High School">
-                                Rocklin High School
-                            </option>
 
-                            <option value="Whitney High School">
-                                Whitney High School
-                            </option>
+</div>
 
-                            <option value="Victory High School">
-                                Victory High School
-                            </option>
 
-                            <option value="Granite Oaks Middle School">
-                                Granite Oaks Middle School
-                            </option>
 
-                            <option value="Spring View Middle School">
-                                Spring View Middle School
-                            </option>
 
-                            <option value="Rocklin Independent Charter Academy">
-                                Rocklin Independent Charter Academy
-                            </option>
 
 
-                        </select>
 
+<div id="authNoticeBanner"
+     class="contact-form-wrap auth-notice-banner-layout">
 
-                    </div>
 
+<h4 id="authNoticeTitle"
+    class="panel-heading auth-notice-heading-layout">
+</h4>
 
 
+<p id="authNoticeDesc"
+   class="auth-notice-desc-layout">
+</p>
 
 
-                    <div id="codeGroup" class="signup-extra-field hidden-field">
+</div>
 
 
-                        <label for="schoolCode">
-                            school registration code
-                        </label>
 
 
-                        <input
-                            type="text"
-                            id="schoolCode"
-                            class="contact-input input-width-full"
-                            placeholder="optional for now"
-                        >
 
 
-                    </div>
 
+<form id="authForm">
 
 
+<div class="form-group-email">
 
+<label for="email">
+email address
+</label>
 
 
-                    <button type="submit"
-                            id="submitBtn"
-                            class="btn-send">
+<input id="email"
+       type="email"
+       class="contact-input input-width-full"
+       placeholder="fish@school.edu"
+       required>
 
-                        Log In
+</div>
 
-                    </button>
 
 
 
-                </form>
 
 
-            </section>
+<div class="form-group-password">
 
+<label for="password">
+password
+</label>
 
 
-        </div>
+<input id="password"
+       type="password"
+       class="contact-input input-width-full"
+       placeholder="𓆝 𓆟 𓆞"
+       required>
 
 
-    </main>
+</div>
 
 
 
 
 
-    <script src="stars.js"></script>
 
-    <script src="login.js"></script>
+
+<div id="schoolGroup"
+     class="signup-extra-field hidden-field">
+
+
+<label for="school">
+school
+</label>
+
+
+<select id="school"
+        class="contact-input input-width-full">
+
+
+<option value="">
+choose school...
+</option>
+
+
+<option>
+Rocklin High School
+</option>
+
+
+<option>
+Whitney High School
+</option>
+
+
+<option>
+Victory High School
+</option>
+
+
+<option>
+Granite Oaks Middle School
+</option>
+
+
+<option>
+Spring View Middle School
+</option>
+
+
+<option>
+Rocklin Independent Charter Academy
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+<button id="submitBtn"
+        class="btn-send"
+        type="submit">
+
+log in
+
+</button>
+
+
+</form>
+
+
+
+</section>
+
+
+
+
+
+</div>
+
+
+</main>
+
+
+
+
+
+
+<script src="stars.js" defer></script>
+
+<script src="login.js?v=4" defer></script>
+
 
 
 </body>
