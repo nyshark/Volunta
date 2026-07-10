@@ -1386,27 +1386,22 @@ width: 90%;
 
 }
 .role-card {
-
+  
 opacity: 0;
-
 transform: translateY(-120px);
-
 animation: roleDropIn 0.8s cubic-bezier(.22,1,.36,1) forwards;
-
 }
 
 /* student falls first */
 .role-card:nth-child(1) {
 
 animation-delay: 0.25s;
-
 }
 
 /* organizer follows after */
 .role-card:nth-child(2) {
 
 animation-delay: 0.55s;
-
 }
 
 @keyframes roleDropIn {
@@ -1414,35 +1409,26 @@ animation-delay: 0.55s;
 0% {
 
     opacity: 0;
-
     transform:
     translateY(-120px);
-
 }
-
 
 65% {
 
     opacity: 1;
-
     transform:
     translateY(12px);
-
 }
-
 
 85% {
 
     transform:
     translateY(-5px);
-
 }
-
 
 100% {
 
     opacity: 1;
-
     transform:
     translateY(0);
 
@@ -1454,231 +1440,281 @@ animation-delay: 0.55s;
    VOLUNTA WELCOME INTRO EXPERIENCE
 =================================== */
 
-
 .welcome-screen {
 
     position: fixed;
-
     inset: 0;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     background: var(--bg);
-
     z-index: 200;
-
     transition:
         opacity .8s ease,
         transform .8s ease;
-
 }
-
-
 
 .welcome-content {
 
     text-align: center;
-
 }
-
-
 
 .welcome-title {
 
     font-family: var(--font-display);
-
     font-size: 3.5rem;
-
     color: white;
-
     margin-bottom: 1.5rem;
-
 }
-
-
 
 .welcome-gif-placeholder img {
-
+  
     width: 60px;
-
     height: 60px;
-
     margin-bottom: 1.5rem;
-
     animation:
         floatGift 3s ease-in-out infinite;
-
 }
 
-
-
 @keyframes floatGift {
-
 
     0%,100% {
 
         transform: translateY(0);
-
     }
-
 
     50% {
-
+      
         transform: translateY(-10px);
-
     }
 
-
 }
-
-
 
 .hidden-screen {
 
     opacity: 0;
-
     pointer-events: none;
-
 }
-
-
 
 .fade-out {
 
     opacity: 0;
-
     transform: translateY(-25px);
-
     pointer-events: none;
-
 }
 
-
-
-
-
-
-
 /* ROLE CARDS */
-
 
 .role-card-container {
 
     display:flex;
-
     justify-content:center;
-
     gap:3rem;
-
 }
-
-
 
 .role-card {
 
     width:260px;
-
     height:260px;
-
     background:var(--surface);
-
     border:1px solid var(--border);
-
     border-radius:12px;
-
     cursor:pointer;
-
     color:var(--text);
-
     opacity:0;
-
 }
 
-
-
 .role-card:nth-child(1) {
-
-
+  
     animation:
         fallIn .8s ease forwards;
 
-
 }
 
-
-
 .role-card:nth-child(2) {
-
 
     animation:
         fallIn .8s ease .25s forwards;
 
-
 }
 
-
-
-
-
 @keyframes fallIn {
-
 
 from {
 
     opacity:0;
-
     transform:translateY(-120px);
-
 }
-
 
 to {
 
     opacity:1;
-
     transform:translateY(0);
-
 }
 
-
 }
-
-
-
-
-
 
 /* GIF / IMAGE SIZE */
 
 .role-placeholder-img {
 
     width:60px;
-
     height:60px;
-
 }
 
-
-
-
-
-
 /* SELECT PLACEHOLDER COLOR */
-
 
 #school {
 
     color:var(--muted);
-
 }
-
 
 #school option {
 
     color:var(--text);
+}
 
+/* ==========================================
+   VOLUNTA WELCOME SCREEN FINAL FIX
+========================================== */
+
+.welcome-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--bg);
+
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease;
+}
+
+.welcome-screen.fade-out {
+
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+/* intro text */
+
+.welcome-content {
+
+    text-align:center;
+    animation:
+        welcomeAppear .8s ease forwards;
+}
+
+.welcome-title {
+
+    font-family:var(--font-display);
+    font-size:3rem;
+    color:white;
+    margin-bottom:1rem;
+}
+
+.welcome-subtitle {
+
+    color:var(--muted);
+    letter-spacing:.1em;
+}
+
+/* gif placeholder */
+
+.welcome-gif-placeholder img {
+
+    width:60px;
+    height:60px;
+    object-fit:contain;
+    margin:1rem auto;
+    display:block;
+}
+
+/* hide role buttons initially */
+
+.role-card {
+
+    opacity:0;
+    transform:translateY(-100px);
+}
+
+/* after intro begins */
+
+.role-card-container.show-cards .role-card:nth-child(1){
+
+    animation:
+    roleDrop .8s cubic-bezier(.22,1,.36,1)
+    forwards;
+}
+
+.role-card-container.show-cards .role-card:nth-child(2){
+
+    animation:
+    roleDrop .8s cubic-bezier(.22,1,.36,1)
+    .25s forwards;
+}
+
+@keyframes roleDrop {
+
+0%{
+
+opacity:0;
+transform:translateY(-120px);
+}
+
+70%{
+  
+opacity:1;
+transform:translateY(15px);
+}
+
+100%{
+  
+opacity:1;
+transform:translateY(0);
+}
+  
+}
+
+/* horizontal cards */
+
+.role-card-container {
+    flex-direction:row;
+    justify-content:center;
+    gap:3rem;
+}
+
+/* smaller twinkles */
+
+.role-placeholder-img {
+    width:60px;
+    height:60px;
+}
+
+/* school dropdown placeholder */
+
+#school {
+    color:var(--muted);
+}
+
+#school option {
+    color:var(--text);
+}
+
+/* mobile */
+@media(max-width:700px){
+.role-card-container{
+
+    flex-direction:column;
+
+    align-items:center;
+}
 }
