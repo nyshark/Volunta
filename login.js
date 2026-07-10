@@ -272,11 +272,11 @@ setTimeout(function () {
             <div class="maintenance-content">
 
                 <h3>
-                    sorry!! 
+                    APOLOGIES!! 
                 </h3>
 
                 <p>
-                    under maintenance at the moment ✦
+                    CURRENTLY UNDER MAINTENANCE AT THE MOMENT 
                 </p>
 
                 <img 
