@@ -1,25 +1,20 @@
-```html
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <html lang="en"> <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VOLUNTA</title>
 
-    <title>VOLUNTA</title>
-
-    <link rel="stylesheet" href="style.css">
-</head>
-
-
-<body>
-
-
+<link rel="stylesheet" href="style.css">
+</head> <body>
+<!-- space background -->
 <div id="starCanvas"></div>
 
+<!-- cloud animation -->
 <div id="cloudCanvas"></div>
 
 
+
+<!-- navbar -->
 
 <nav class="navbar">
 
@@ -30,8 +25,9 @@
 
     <div class="navbar-action-wrap">
 
-        <button id="themeToggleBtn"
-                class="filter-btn theme-toggle-override">
+        <button 
+            id="themeToggleBtn" 
+            class="filter-btn theme-toggle-override">
             ⏾
         </button>
 
@@ -51,307 +47,380 @@
 <main class="main-container">
 
 
-<div class="main-text-side">
 
-    <h1 id="mainBrandTitle" class="main-title">
-        ₊✮.VOLUNTA.✮₊
-    </h1>
+    <!-- branding -->
 
-</div>
+    <div class="main-text-side">
 
+        <h1 id="mainBrandTitle" class="main-title">
+            ₊✮.VOLUNTA.✮₊
+        </h1>
 
+    </div>
 
 
 
-<div class="contact-form-wrap login-box-dims">
 
 
+    <!-- LOGIN AREA -->
 
-<section id="roleSelection">
+    <div class="contact-form-wrap login-box-dims">
 
 
-<div class="form-header-align">
 
-<h2 class="panel-heading form-title-override">
-    Are you a...
-</h2>
+        <!-- ROLE SELECTION FIRST -->
 
-<span class="eyebrow">
-    choose your path
-</span>
+        <div id="roleSelection" class="role-selection">
 
-</div>
 
+            <div class="form-header-align">
 
+                <h2 class="panel-heading form-title-override">
+                    are you a...
+                </h2>
 
+                <span class="eyebrow panel-eyebrow-override">
+                    choose your path
+                </span>
 
+            </div>
 
-<div class="role-card-container">
 
 
-<button id="studentRoleBtn"
-        class="role-card">
+            <div class="role-card-container">
 
 
-<span class="role-icon">
-    🎓
-</span>
 
+                <!-- STUDENT -->
 
-<span class="role-title">
-    Student
-</span>
+                <button 
+                    id="studentRoleBtn"
+                    class="role-card">
 
 
-<span class="role-badge beta-badge">
-    BETA
-</span>
+                    <img 
+                        src="twinkle.png"
+                        class="role-placeholder-img"
+                        alt="Student placeholder"
+                    >
 
 
-</button>
+                    <div class="role-card-text">
 
+                        <h3>
+                            student
+                        </h3>
 
 
+                        <span class="role-tag beta-tag">
+                            BETA
+                        </span>
 
 
-<button id="organizerRoleBtn"
-        class="role-card disabled-role">
+                    </div>
 
 
-<span class="role-icon">
-    🛠
-</span>
+                </button>
 
 
-<span class="role-title">
-    Service Organizer
-</span>
 
 
-<span class="role-badge unfinished-badge">
-    NOT STARTED
-</span>
 
+                <!-- ORGANIZER -->
 
-</button>
+                <button 
+                    id="organizerRoleBtn"
+                    class="role-card">
 
 
+                    <img 
+                        src="twinkle.png"
+                        class="role-placeholder-img"
+                        alt="Organizer placeholder"
+                    >
 
-</div>
 
+                    <div class="role-card-text">
 
-</section>
+                        <h3>
+                            service organizer
+                        </h3>
 
 
+                        <span class="role-tag not-started-tag">
+                            NOT STARTED
+                        </span>
 
 
+                    </div>
 
 
+                </button>
 
 
 
-<section id="authSection" class="auth-hidden">
+            </div>
 
 
+        </div>
 
-<div class="tab-select-container">
 
 
-<button id="tabLogin"
-        class="filter-btn active">
 
-    log In
 
-</button>
 
 
-<button id="tabRegister"
-        class="filter-btn">
 
-    sign Up
 
-</button>
+        <!-- AUTH FORM HIDDEN UNTIL ROLE SELECTED -->
 
 
-</div>
+        <div id="authSection" class="auth-hidden">
 
 
 
+            <div class="tab-select-container">
 
 
+                <button 
+                    id="tabLogin" 
+                    class="filter-btn active">
 
-<div class="form-header-align">
+                    log In
 
+                </button>
 
-<h2 id="formHeading"
-    class="panel-heading form-title-override">
 
-    welcome back :)
 
-</h2>
+                <button 
+                    id="tabRegister" 
+                    class="filter-btn">
 
+                    sign Up
 
-<span id="formSub"
-      class="eyebrow">
+                </button>
 
-    hi again!
 
-</span>
+            </div>
 
 
-</div>
 
 
 
+            <div class="form-header-align">
 
 
+                <h2 
+                    id="formHeading"
+                    class="panel-heading form-title-override">
 
+                    glad you're here!
 
-<div id="authNoticeBanner"
-     class="contact-form-wrap auth-notice-banner-layout">
+                </h2>
 
 
-<h4 id="authNoticeTitle"
-    class="panel-heading auth-notice-heading-layout">
-</h4>
 
+                <span 
+                    id="formSub"
+                    class="eyebrow panel-eyebrow-override">
 
-<p id="authNoticeDesc"
-   class="auth-notice-desc-layout">
-</p>
+                    what's up?
 
+                </span>
 
-</div>
 
+            </div>
 
 
 
 
 
 
-<form id="authForm">
 
+            <!-- SCHOOL MESSAGE -->
 
-<div class="form-group-email">
+            <div 
+                id="authNoticeBanner"
+                class="contact-form-wrap auth-notice-banner-layout">
 
-<label for="email">
-email address
-</label>
 
+                <h4 
+                    id="authNoticeTitle"
+                    class="panel-heading auth-notice-heading-layout">
+                </h4>
 
-<input id="email"
-       type="email"
-       class="contact-input input-width-full"
-       placeholder="fish@school.edu"
-       required>
 
-</div>
+                <p 
+                    id="authNoticeDesc"
+                    class="auth-notice-desc-layout">
+                </p>
 
 
+            </div>
 
 
 
 
-<div class="form-group-password">
 
-<label for="password">
-password
-</label>
 
 
-<input id="password"
-       type="password"
-       class="contact-input input-width-full"
-       placeholder="𓆝 𓆟 𓆞"
-       required>
 
 
-</div>
+            <form id="authForm">
 
 
 
 
 
+                <div id="schoolGroup" class="hidden-field">
 
 
-<div id="schoolGroup"
-     class="signup-extra-field hidden-field">
+                    <label for="school">
+                        school
+                    </label>
 
 
-<label for="school">
-school
-</label>
+                    <select 
+                        id="school"
+                        class="contact-input input-width-full">
 
 
-<select id="school"
-        class="contact-input input-width-full">
+                        <option value="">
+                            select your school
+                        </option>
 
 
-<option value="">
-choose school...
-</option>
+                        <option>
+                            Rocklin High School
+                        </option>
 
 
-<option>
-Rocklin High School
-</option>
+                        <option>
+                            Whitney High School
+                        </option>
 
 
-<option>
-Whitney High School
-</option>
+                        <option>
+                            Victory High School
+                        </option>
 
 
-<option>
-Victory High School
-</option>
+                        <option>
+                            Granite Oaks Middle School
+                        </option>
 
 
-<option>
-Granite Oaks Middle School
-</option>
+                        <option>
+                            Spring View Middle School
+                        </option>
 
 
-<option>
-Spring View Middle School
-</option>
+                        <option>
+                            Rocklin Independent Charter Academy
+                        </option>
 
 
-<option>
-Rocklin Independent Charter Academy
-</option>
+                    </select>
 
 
-</select>
+                </div>
 
 
-</div>
 
 
 
 
 
 
-<button id="submitBtn"
-        class="btn-send"
-        type="submit">
 
-log in
+                <div class="form-group-email">
 
-</button>
 
+                    <label for="email">
+                        email address
+                    </label>
 
-</form>
 
+                    <input
 
+                        type="email"
 
-</section>
+                        id="email"
 
+                        class="contact-input input-width-full"
 
+                        placeholder="student@school.edu"
 
+                        required
 
+                    >
 
-</div>
+
+                </div>
+
+
+
+
+
+
+
+
+
+                <div class="form-group-password">
+
+
+                    <label for="password">
+                        password
+                    </label>
+
+
+                    <input
+
+                        type="password"
+
+                        id="password"
+
+                        class="contact-input input-width-full"
+
+                        placeholder="𓆝 𓆟 𓆞 𓆝"
+
+                        required
+
+                    >
+
+
+                </div>
+
+
+
+
+
+
+
+                <button 
+                    type="submit"
+                    id="submitBtn"
+                    class="btn-send">
+
+
+                    Log In
+
+
+                </button>
+
+
+
+
+            </form>
+
+
+
+        </div>
+
+
+
+    </div>
+
 
 
 </main>
@@ -360,14 +429,7 @@ log in
 
 
 
+<script src="stars.js"></script>
 
-<script src="stars.js" defer></script>
-
-<script src="login.js?v=4" defer></script>
-
-
-
-</body>
-
-</html>
-```
+<script src="login.js?v=4"></script>
+</body> </html>
