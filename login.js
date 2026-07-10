@@ -266,7 +266,7 @@ setTimeout(function () {
         maintenanceBanner.className =
             "maintenance-popup";
 
-
+// PLACEHOLDER IMG //
         maintenanceBanner.innerHTML = `
 
             <div class="maintenance-content">
@@ -276,10 +276,10 @@ setTimeout(function () {
                 </h3>
 
                 <p>
-                    CURRENTLY UNDER MAINTENANCE AT THE MOMENT 
+                    This feature is currently unavailable at the moment
                 </p>
-
-                <img 
+            
+                <img  
                     src="twinkle.png"
                     alt="maintenance sparkle">
 
