@@ -1,743 +1,414 @@
 ```javascript
-console.log("VOLUNTA LOGIN SCRIPT ACTIVE");
-
-// VOLUNTA LOGIN SYSTEM UPDATE
-// role selection + student verification + account upgrades
-
-
 document.addEventListener("DOMContentLoaded", function () {
 
 
-    // ==============================
-    // ELEMENTS
-    // ==============================
+const studentRoleBtn =
+document.getElementById("studentRoleBtn");
 
 
-    const roleSelection = document.querySelector("#roleSelection");
-    const studentRoleBtn = document.querySelector("#studentRoleBtn");
-    const organizerRoleBtn = document.querySelector("#organizerRoleBtn");
+const organizerRoleBtn =
+document.getElementById("organizerRoleBtn");
 
-    const authSection = document.querySelector("#authSection");
 
+const roleSelection =
+document.getElementById("roleSelection");
 
-    const tabLogin = document.querySelector("#tabLogin");
-    const tabRegister = document.querySelector("#tabRegister");
 
+const authSection =
+document.getElementById("authSection");
 
-    const formHeading = document.querySelector("#formHeading");
-    const formSub = document.querySelector("#formSub");
 
 
-    const submitBtn = document.querySelector("#submitBtn");
-    const authForm = document.querySelector("#authForm");
+const tabLogin =
+document.getElementById("tabLogin");
 
 
-    const authNoticeBanner = document.querySelector("#authNoticeBanner");
-    const authNoticeTitle = document.querySelector("#authNoticeTitle");
-    const authNoticeDesc = document.querySelector("#authNoticeDesc");
+const tabRegister =
+document.getElementById("tabRegister");
 
 
-    const schoolGroup = document.querySelector("#schoolGroup");
-    const schoolSelect = document.querySelector("#school");
 
+const authForm =
+document.getElementById("authForm");
 
-    const codeGroup = document.querySelector("#codeGroup");
-    const schoolCode = document.querySelector("#schoolCode");
 
 
-    const mainBrandTitle = document.querySelector("#mainBrandTitle");
-    const themeToggleBtn = document.querySelector("#themeToggleBtn");
+const submitBtn =
+document.getElementById("submitBtn");
 
 
 
-    // ==============================
-    // APP STATE
-    // ==============================
+const formHeading =
+document.getElementById("formHeading");
 
 
-    let isLoginMode = true;
+const formSub =
+document.getElementById("formSub");
 
-    let selectedRole = null;
 
 
-    // change this to true later when schools get official codes
-    const REQUIRE_SCHOOL_CODE = false;
+const email =
+document.getElementById("email");
 
 
+const password =
+document.getElementById("password");
 
-    // ==============================
-    // SCHOOL DATABASE
-    // ==============================
 
 
-    const approvedSchools = [
+const schoolGroup =
+document.getElementById("schoolGroup");
 
-        "Rocklin High School",
-        "Whitney High School",
-        "Victory High School",
-        "Granite Oaks Middle School",
-        "Spring View Middle School",
-        "Rocklin Independent Charter Academy"
 
-    ];
+const school =
+document.getElementById("school");
 
 
 
+const banner =
+document.getElementById("authNoticeBanner");
 
-    // ==============================
-    // BRAND TITLE
-    // ==============================
 
+const bannerTitle =
+document.getElementById("authNoticeTitle");
 
-    function updateBrandTitleText() {
 
+const bannerDesc =
+document.getElementById("authNoticeDesc");
 
-        if (!mainBrandTitle) return;
 
 
-        setTimeout(function () {
+let loginMode = true;
 
 
-            const isDay =
-                document.body.classList.contains("day-mode");
 
+const approvedSchools = [
+"Rocklin High School",
+"Whitney High School",
+"Victory High School",
+"Granite Oaks Middle School",
+"Spring View Middle School",
+"Rocklin Independent Charter Academy"
+];
 
-            if (isDay) {
 
-                mainBrandTitle.textContent =
-                    " ⋆⋅☀︎VOLUNTA☀︎⋅⋆ ";
 
-            } else {
 
-                mainBrandTitle.textContent =
-                    " ₊✮.VOLUNTA.✮₊ ";
 
-            }
+function showBanner(title,text){
 
+if(!banner)return;
 
-        }, 20);
+bannerTitle.textContent = title;
 
-    }
+bannerDesc.textContent = text;
 
+banner.classList.add("auth-banner-show");
 
-    updateBrandTitleText();
+}
 
 
 
-    if (themeToggleBtn) {
 
-        themeToggleBtn.addEventListener(
-            "click",
-            updateBrandTitleText
-        );
 
-    }
+function hideBanner(){
 
+if(banner){
 
+banner.classList.remove(
+"auth-banner-show"
+);
 
+}
 
+}
 
-    // ==============================
-    // NOTIFICATION SYSTEM
-    // ==============================
 
 
-    function triggerBanner(title, description) {
 
 
-        if (!authNoticeBanner) return;
+studentRoleBtn.onclick=function(){
 
 
-        authNoticeTitle.textContent = title;
+roleSelection.style.display="none";
 
-        authNoticeDesc.textContent = description;
 
+authSection.classList.remove(
+"auth-hidden"
+);
 
-        authNoticeBanner.classList.add(
-            "auth-banner-show"
-        );
 
-    }
+authSection.classList.add(
+"auth-visible"
+);
 
 
+};
 
 
 
-    function clearBanner() {
 
 
-        if (authNoticeBanner) {
+organizerRoleBtn.onclick=function(){
 
-            authNoticeBanner.classList.remove(
-                "auth-banner-show"
-            );
+showBanner(
+"Coming Soon!",
+"Organizer accounts are not available yet ✩"
+);
 
-        }
+};
 
-    }
 
 
 
 
 
-    // ==============================
-    // ROLE SELECTION
-    // ==============================
 
 
-    studentRoleBtn.addEventListener(
-        "click",
-        function () {
+tabLogin.onclick=function(){
 
+loginMode=true;
 
-            selectedRole = "student";
 
+tabLogin.classList.add("active");
 
-            roleSelection.classList.add(
-                "role-hide"
-            );
+tabRegister.classList.remove("active");
 
 
-            setTimeout(function () {
+submitBtn.textContent="log in";
 
 
-                roleSelection.style.display = "none";
+formHeading.textContent="welcome back :)";
 
+formSub.textContent="hi again!";
 
-                authSection.classList.remove(
-                    "auth-hidden"
-                );
 
+schoolGroup.classList.add(
+"hidden-field"
+);
 
-                authSection.classList.add(
-                    "auth-visible"
-                );
 
+hideBanner();
 
-            }, 400);
 
+};
 
-        }
-    );
 
 
 
 
 
 
-    organizerRoleBtn.addEventListener(
-        "click",
-        function () {
+tabRegister.onclick=function(){
 
+loginMode=false;
 
-            triggerBanner(
-                "Coming Soon!",
-                "Service Organizer accounts are currently being developed ✩"
-            );
 
+tabRegister.classList.add("active");
 
-        }
-    );
+tabLogin.classList.remove("active");
 
 
+submitBtn.textContent="sign up";
 
 
+formHeading.textContent="welcome!";
 
+formSub.textContent="hello!";
 
 
+schoolGroup.classList.remove(
+"hidden-field"
+);
 
-    // ==============================
-    // LOGIN / REGISTER SWITCH
-    // ==============================
 
+};
 
-    tabLogin.addEventListener(
-        "click",
-        function () {
 
 
-            isLoginMode = true;
 
 
-            tabLogin.classList.add("active");
 
-            tabRegister.classList.remove("active");
 
 
-            formHeading.textContent =
-                "welcome back :)";
 
+function createID(){
 
-            formSub.textContent =
-                "hi again!";
+return "VT-" +
+Math.floor(
+10000 + Math.random()*90000
+);
 
+}
 
-            submitBtn.textContent =
-                "log in";
 
 
-            hideSignupFields();
 
-            clearBanner();
 
 
-        }
-    );
 
 
 
+authForm.addEventListener(
+"submit",
+function(e){
 
 
+e.preventDefault();
 
 
-    tabRegister.addEventListener(
-        "click",
-        function () {
 
+let users =
+JSON.parse(
+localStorage.getItem("voluntaUsers")
+)
+|| [];
 
-            isLoginMode = false;
 
 
-            tabRegister.classList.add("active");
 
-            tabLogin.classList.remove("active");
 
+if(loginMode){
 
 
-            formHeading.textContent =
-                "welcome!";
+let user =
+users.find(
+u=>u.email===email.value.toLowerCase()
+);
 
 
-            formSub.textContent =
-                "hello!";
 
+if(!user){
 
+showBanner(
+"Not Found",
+"Account does not exist."
+);
 
-            submitBtn.textContent =
-                "sign up";
+return;
 
+}
 
 
-            showSignupFields();
 
+if(user.password!==password.value){
 
-            clearBanner();
 
+showBanner(
+"Incorrect Password",
+"Try again."
+);
 
-        }
-    );
 
+return;
 
 
+}
 
 
 
 
+localStorage.setItem(
+"voluntaCurrentUser",
+JSON.stringify(user)
+);
 
-    function showSignupFields(){
 
+window.location.href="dashboard.html";
 
-        if (!schoolGroup) return;
 
 
-        schoolGroup.classList.remove(
-            "hidden-field"
-        );
+return;
 
 
-        if (REQUIRE_SCHOOL_CODE) {
 
-            codeGroup.classList.remove(
-                "hidden-field"
-            );
+}
 
-        }
 
 
-    }
 
 
 
+if(!approvedSchools.includes(
+school.value
+)){
 
 
+showBanner(
+"School Required",
+"Please select a Rocklin school."
+);
 
-    function hideSignupFields(){
 
+return;
 
-        if (!schoolGroup) return;
 
+}
 
-        schoolGroup.classList.add(
-            "hidden-field"
-        );
 
 
-        codeGroup.classList.add(
-            "hidden-field"
-        );
 
 
-    }
 
+let newUser={
 
 
+studentId:createID(),
 
+email:
+email.value.toLowerCase(),
 
+password:
+password.value,
 
 
+school:
+school.value,
 
 
+verified:true,
 
-    // ==============================
-    // STUDENT ID GENERATOR
-    // ==============================
 
+accountType:"student",
 
-    function generateStudentID(){
 
+hours:0,
 
-        const random =
-            Math.floor(
-                10000 +
-                Math.random() * 90000
-            );
 
+goal:50,
 
-        return "VT-" + random;
 
+activities:[]
 
-    }
+};
 
 
 
 
 
+users.push(newUser);
 
 
+localStorage.setItem(
+"voluntaUsers",
+JSON.stringify(users)
+);
 
 
-    // ==============================
-    // ACCOUNT HANDLER
-    // ==============================
 
+localStorage.setItem(
+"voluntaCurrentUser",
+JSON.stringify(newUser)
+);
 
-    authForm.addEventListener(
-        "submit",
-        function(event){
 
 
-            event.preventDefault();
+window.location.href="dashboard.html";
 
 
 
-            const email =
-                document.querySelector("#email")
-                .value
-                .trim()
-                .toLowerCase();
+});
 
-
-
-            const password =
-                document.querySelector("#password")
-                .value;
-
-
-
-            if (!email || !password){
-
-
-                triggerBanner(
-                    "Missing Information",
-                    "please fill out everything :)"
-                );
-
-
-                return;
-
-            }
-
-
-
-
-
-            const users =
-                JSON.parse(
-                    localStorage.getItem(
-                        "voluntaUsers"
-                    )
-                ) || [];
-
-
-
-
-
-
-            // ======================
-            // LOGIN
-            // ======================
-
-
-            if(isLoginMode){
-
-
-
-                const foundUser =
-                    users.find(
-                        user =>
-                        user.email === email
-                    );
-
-
-
-                if(!foundUser){
-
-
-                    triggerBanner(
-                        "Account Not Found",
-                        "try signing up first!"
-                    );
-
-
-                    return;
-
-                }
-
-
-
-
-                if(foundUser.password !== password){
-
-
-                    triggerBanner(
-                        "Incorrect Password",
-                        "try again!"
-                    );
-
-
-                    return;
-
-                }
-
-
-
-
-
-                localStorage.setItem(
-                    "voluntaCurrentUser",
-                    JSON.stringify(foundUser)
-                );
-
-
-
-                triggerBanner(
-                    "Access Granted!",
-                    "logging you in ✩"
-                );
-
-
-
-                setTimeout(
-                    function(){
-
-                        window.location.href =
-                            "dashboard.html";
-
-                    },
-                    800
-                );
-
-
-
-
-                return;
-
-            }
-
-
-
-
-
-
-
-
-
-            // ======================
-            // REGISTER
-            // ======================
-
-
-
-
-            const exists =
-                users.some(
-                    user =>
-                    user.email === email
-                );
-
-
-
-
-            if(exists){
-
-
-                triggerBanner(
-                    "Email Taken",
-                    "try logging in instead!"
-                );
-
-
-                return;
-
-            }
-
-
-
-
-
-
-            if(!schoolSelect.value){
-
-
-                triggerBanner(
-                    "School Required",
-                    "please select your school."
-                );
-
-
-                return;
-
-            }
-
-
-
-
-
-            if(
-                !approvedSchools.includes(
-                    schoolSelect.value
-                )
-            ){
-
-
-                triggerBanner(
-                    "School Not Approved",
-                    "registration is currently limited to Rocklin schools."
-                );
-
-
-                return;
-
-            }
-
-
-
-
-
-
-
-
-            const newUser = {
-
-
-                studentId:
-                    generateStudentID(),
-
-
-                email:
-                    email,
-
-
-                password:
-                    password,
-
-
-                accountType:
-                    selectedRole || "student",
-
-
-                school:
-                    schoolSelect.value,
-
-
-                verified:
-                    true,
-
-
-                joinDate:
-                    new Date()
-                    .toISOString()
-                    .split("T")[0],
-
-
-                hours:
-                    0,
-
-
-                goal:
-                    50,
-
-
-                badges:
-                    [],
-
-
-                activities:
-                    []
-
-
-            };
-
-
-
-
-
-
-
-
-            users.push(newUser);
-
-
-
-            localStorage.setItem(
-                "voluntaUsers",
-                JSON.stringify(users)
-            );
-
-
-
-            localStorage.setItem(
-                "voluntaCurrentUser",
-                JSON.stringify(newUser)
-            );
-
-
-
-
-
-            triggerBanner(
-                "Registration Successful!",
-                "welcome to VOLUNTA ✩"
-            );
-
-
-
-
-            setTimeout(
-                function(){
-
-                    window.location.href =
-                        "dashboard.html";
-
-                },
-                1200
-            );
-
-
-
-
-        }
-    );
 
 
 });
