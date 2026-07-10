@@ -1,421 +1,175 @@
 <!DOCTYPE html> <html lang="en"> <head>
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>VOLUNTA</title>
 
 <link rel="stylesheet" href="style.css">
-</head> <body>
-<!-- space background -->
-<div id="starCanvas"></div>
-
-<!-- cloud animation -->
-<div id="cloudCanvas"></div>
+</head> <body> <!-- BACKGROUND --> <div id="starCanvas"></div> <div id="cloudCanvas"></div> <!-- NAVBAR --> <nav class="navbar">
+<a href="index.html" class="navbar-brand">
+    VOLUNTA
+</a>
 
 
-
-<!-- navbar -->
-
-<nav class="navbar">
-
-    <a href="index.html" class="navbar-brand">
-        VOLUNTA
-    </a>
+<div class="navbar-action-wrap">
 
 
-    <div class="navbar-action-wrap">
+    <button 
+        id="themeToggleBtn"
+        class="filter-btn theme-toggle-override">
+
+        ⏾
+
+    </button>
+
+
+
+    <span class="mood-status">
+
+        get back to grinding bro
+
+    </span>
+
+
+
+</div>
+</nav> <main> <!-- ========================= WELCOME SCREEN ========================= --> <section id="roleSelection" class="welcome-screen">
+<div class="welcome-content">
+
+
+
+    <h1 class="welcome-title">
+
+        Hi, how's it going :)
+
+    </h1>
+
+
+
+
+    <!-- FUTURE CUSTOM GIF GOES HERE -->
+
+    <div class="welcome-gif-placeholder">
+
+
+        <img 
+            src="twinkle.png"
+            alt="welcome animation">
+
+
+    </div>
+
+
+
+
+    <p class="welcome-subtitle">
+
+        choose your path ✦
+
+    </p>
+
+
+
+
+
+
+
+    <div class="role-card-container">
+
+
+
+
+
+        <!-- STUDENT CARD -->
 
         <button 
-            id="themeToggleBtn" 
-            class="filter-btn theme-toggle-override">
-            ⏾
+            id="studentRoleBtn"
+            class="role-card">
+
+
+
+            <img
+
+                src="twinkle.png"
+
+                class="role-placeholder-img"
+
+                alt="student">
+
+
+
+
+            <h3>
+
+                student
+
+            </h3>
+
+
+
+
+            <span class="role-tag beta-tag">
+
+                BETA
+
+            </span>
+
+
+
+
         </button>
 
 
-        <span class="mood-status">
-            get back to grinding bro
-        </span>
 
-    </div>
 
-</nav>
 
 
 
+        <!-- ORGANIZER CARD -->
 
+        <button
 
-<main class="main-container">
+            id="organizerRoleBtn"
 
+            class="role-card">
 
 
-    <!-- branding -->
 
-    <div class="main-text-side">
+            <img
 
-        <h1 id="mainBrandTitle" class="main-title">
-            ₊✮.VOLUNTA.✮₊
-        </h1>
+                src="twinkle.png"
 
-    </div>
+                class="role-placeholder-img"
 
+                alt="service organizer">
 
 
 
 
-    <!-- LOGIN AREA -->
+            <h3>
 
-    <div class="contact-form-wrap login-box-dims">
+                service organizer
 
+            </h3>
 
 
-        <!-- ROLE SELECTION FIRST -->
 
-        <div id="roleSelection" class="role-selection">
 
 
-            <div class="form-header-align">
+            <span class="role-tag not-started-tag">
 
-                <h2 class="panel-heading form-title-override">
-                    are you a...
-                </h2>
+                NOT STARTED
 
-                <span class="eyebrow panel-eyebrow-override">
-                    choose your path
-                </span>
+            </span>
 
-            </div>
 
 
 
-            <div class="role-card-container">
 
+        </button>
 
 
-                <!-- STUDENT -->
-
-                <button 
-                    id="studentRoleBtn"
-                    class="role-card">
-
-
-                    <img 
-                        src="twinkle.png"
-                        class="role-placeholder-img"
-                        alt="Student placeholder"
-                    >
-
-
-                    <div class="role-card-text">
-
-                        <h3>
-                            student
-                        </h3>
-
-
-                        <span class="role-tag beta-tag">
-                            BETA
-                        </span>
-
-
-                    </div>
-
-
-                </button>
-
-
-
-
-
-                <!-- ORGANIZER -->
-
-                <button 
-                    id="organizerRoleBtn"
-                    class="role-card">
-
-
-                    <img 
-                        src="twinkle.png"
-                        class="role-placeholder-img"
-                        alt="Organizer placeholder"
-                    >
-
-
-                    <div class="role-card-text">
-
-                        <h3>
-                            service organizer
-                        </h3>
-
-
-                        <span class="role-tag not-started-tag">
-                            NOT STARTED
-                        </span>
-
-
-                    </div>
-
-
-                </button>
-
-
-
-            </div>
-
-
-        </div>
-
-
-
-
-
-
-
-
-
-        <!-- AUTH FORM HIDDEN UNTIL ROLE SELECTED -->
-
-
-        <div id="authSection" class="auth-hidden">
-
-
-
-            <div class="tab-select-container">
-
-
-                <button 
-                    id="tabLogin" 
-                    class="filter-btn active">
-
-                    log In
-
-                </button>
-
-
-
-                <button 
-                    id="tabRegister" 
-                    class="filter-btn">
-
-                    sign Up
-
-                </button>
-
-
-            </div>
-
-
-
-
-
-            <div class="form-header-align">
-
-
-                <h2 
-                    id="formHeading"
-                    class="panel-heading form-title-override">
-
-                    glad you're here!
-
-                </h2>
-
-
-
-                <span 
-                    id="formSub"
-                    class="eyebrow panel-eyebrow-override">
-
-                    what's up?
-
-                </span>
-
-
-            </div>
-
-
-
-
-
-
-
-            <!-- SCHOOL MESSAGE -->
-
-            <div 
-                id="authNoticeBanner"
-                class="contact-form-wrap auth-notice-banner-layout">
-
-
-                <h4 
-                    id="authNoticeTitle"
-                    class="panel-heading auth-notice-heading-layout">
-                </h4>
-
-
-                <p 
-                    id="authNoticeDesc"
-                    class="auth-notice-desc-layout">
-                </p>
-
-
-            </div>
-
-
-
-
-
-
-
-
-
-            <form id="authForm">
-
-
-
-
-
-                <div id="schoolGroup" class="hidden-field">
-
-
-                    <label for="school">
-                        school
-                    </label>
-
-
-                    <select 
-                        id="school"
-                        class="contact-input input-width-full">
-
-
-                        <option value="">
-                            Select your school
-                        </option>
-
-
-                        <option="Rocklin High School">
-                            Rocklin High School
-                        </option>
-
-
-                        <option="Whitney High School">
-                            Whitney High School
-                        </option>
-
-
-                        <option="Victory High School">
-                            Victory High School
-                        </option>
-
-
-                        <option="Granite Oaks Middle School">
-                            Granite Oaks Middle School
-                        </option>
-
-
-                        <option="Spring View Middle School">
-                            Spring View Middle School
-                        </option>
-
-
-                        <option="Rocklin Independent Charter Academy">
-                            Rocklin Independent Charter Academy
-                        </option>
-
-
-                    </select>
-
-
-                </div>
-
-
-
-
-
-
-
-
-
-                <div class="form-group-email">
-
-
-                    <label for="email">
-                        email address
-                    </label>
-
-
-                    <input
-
-                        type="email"
-
-                        id="email"
-
-                        class="contact-input input-width-full"
-
-                        placeholder="student@school.edu"
-
-                        required
-
-                    >
-
-
-                </div>
-
-
-
-
-
-
-
-
-
-                <div class="form-group-password">
-
-
-                    <label for="password">
-                        password
-                    </label>
-
-
-                    <input
-
-                        type="password"
-
-                        id="password"
-
-                        class="contact-input input-width-full"
-
-                        placeholder="𓆝 𓆟 𓆞 𓆝"
-
-                        required
-
-                    >
-
-
-                </div>
-
-
-
-
-
-
-
-                <button 
-                    type="submit"
-                    id="submitBtn"
-                    class="btn-send">
-
-
-                    Log In
-
-
-                </button>
-
-
-
-
-            </form>
-
-
-
-        </div>
 
 
 
@@ -423,13 +177,176 @@
 
 
 
-</main>
+</div>
+</section> <!-- ========================= LOGIN SECTION ========================= --> <section id="authSection" class="contact-form-wrap login-box-dims auth-hidden">
+<div class="tab-select-container">
+
+
+    <button
+
+        id="tabLogin"
+
+        class="filter-btn active">
+
+        log In
+
+
+    </button>
+
+
+
+
+    <button
+
+        id="tabRegister"
+
+        class="filter-btn">
+
+        sign Up
+
+
+    </button>
+
+
+
+</div>
 
 
 
 
 
-<script src="stars.js"></script>
 
-<script src="login.js?v=4"></script>
-</body> </html>
+
+<div class="form-header-align">
+
+
+    <h2
+
+        id="formHeading"
+
+        class="panel-heading form-title-override">
+
+        glad you're here!
+
+
+    </h2>
+
+
+
+
+    <span
+
+        id="formSub"
+
+        class="eyebrow panel-eyebrow-override">
+
+        what's up?
+
+
+    </span>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div
+
+    id="authNoticeBanner"
+
+    class="contact-form-wrap auth-notice-banner-layout">
+
+
+
+    <h4
+
+        id="authNoticeTitle"
+
+        class="panel-heading auth-notice-heading-layout">
+
+    </h4>
+
+
+
+    <p
+
+        id="authNoticeDesc"
+
+        class="auth-notice-desc-layout">
+
+    </p>
+
+
+
+</div>
+<form id="authForm"> <div id="schoolGroup" class="hidden-field"> <label for="school">
+school
+</label>
+
+<select
+
+id="school"
+
+class="contact-input input-width-full">
+<option value="">
+select your school
+</option> <option value="Rocklin High School">
+Rocklin High School
+</option> <option value="Whitney High School">
+Whitney High School
+</option> <option value="Victory High School">
+Victory High School
+</option> <option value="Granite Oaks Middle School">
+Granite Oaks Middle School
+</option> <option value="Spring View Middle School">
+Spring View Middle School
+</option> <option value="Rocklin Independent Charter Academy">
+Rocklin Independent Charter Academy
+</option> </select> </div> <div class="form-group-email"> <label for="email">
+email address
+</label>
+
+<input
+
+type="email"
+
+id="email"
+
+class="contact-input input-width-full"
+
+placeholder="student@school.edu"
+
+required>
+</div> <div class="form-group-password"> <label for="password">
+password
+</label>
+
+<input
+
+type="password"
+
+id="password"
+
+class="contact-input input-width-full"
+
+placeholder="𓆝 𓆟 𓆞 𓆝"
+
+required>
+</div>
+
+<button
+
+type="submit"
+
+id="submitBtn"
+
+class="btn-send">
+
+
+Log In
+</button> </form> </section> </main> <script src="stars.js"></script> <script src="login.js?v=5"></script> </body> </html>
