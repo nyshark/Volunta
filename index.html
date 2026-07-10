@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,87 +8,334 @@
 
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <!--space bg anim (with the help of Google Gemini)-->
+    <!--space bg anim-->
     <div id="starCanvas"></div>
 
-    <!--allows for cloud anim-->
+    <!--cloud anim-->
     <div id="cloudCanvas"></div>
 
     <!--nav bar-->
     <nav class="navbar">
         <a href="index.html" class="navbar-brand">VOLUNTA</a>
+
         <div class="navbar-action-wrap">
-            <button id="themeToggleBtn" class="filter-btn theme-toggle-override">⏾</button>
-            <span class="mood-status">get back to grinding bro</span>
+            <button id="themeToggleBtn" class="filter-btn theme-toggle-override">
+                ⏾
+            </button>
+
+            <span class="mood-status">
+                get back to grinding bro
+            </span>
         </div>
     </nav>
 
+
     <main class="main-container">
 
-        <!--branding text bs-->
+        <!--branding-->
         <div class="main-text-side">
-            <h1 id="mainBrandTitle" class="main-title">⋆✶ VOLUNTA ✶⋆</h1>
+
+            <h1 id="mainBrandTitle" class="main-title">
+                ₊✮.VOLUNTA.✮₊
+            </h1>
+
         </div>
+
+
 
         <div class="contact-form-wrap login-box-dims">
 
-            <!--change layout-->
-            <div class="tab-select-container">
-                <button id="tabLogin" class="filter-btn active">log In</button>
-                <button id="tabRegister" class="filter-btn">sign Up</button>
-            </div>
 
-            <div class="form-header-align">
-                <h2 id="formHeading" class="panel-heading form-title-override">glad you're here!</h2>
-                <span id="formSub" class="eyebrow panel-eyebrow-override">what's up?</span>
-            </div>
+            <!-- ===========================
+                 ROLE SELECT SCREEN
+            ============================ -->
 
-            <!--notification sttuff-->
-            <div id="authNoticeBanner" class="contact-form-wrap auth-notice-banner-layout">
-                <h4 id="authNoticeTitle" class="panel-heading auth-notice-heading-layout"></h4>
-                <p id="authNoticeDesc" class="auth-notice-desc-layout"></p>
-            </div>
+            <section id="roleSelection" class="role-selection">
 
-            <form id="authForm">
-                <div class="form-group-email">
-                    <label for="email">email address</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        class="contact-input input-width-full"
-                        placeholder="fish@school.edu"
-                        autocomplete="off"
-                        autofocus
-                        required
-                    >
+                <div class="form-header-align">
+
+                    <h2 class="panel-heading form-title-override">
+                        are you a...
+                    </h2>
+
+                    <span class="eyebrow panel-eyebrow-override">
+                        choose your path
+                    </span>
+
                 </div>
 
-                <div class="form-group-password">
-                    <label for="password">password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        class="contact-input input-width-full"
-                        placeholder="𓆝 𓆟 𓆞 𓆝 𓆟 "
-                        required
-                    >
+
+
+                <div class="role-card-container">
+
+
+                    <button id="studentRoleBtn" class="role-card">
+
+                        <span class="role-icon">
+                            🎓
+                        </span>
+
+                        <span class="role-title">
+                            Student
+                        </span>
+
+
+                        <span class="role-badge beta-badge">
+                            BETA
+                        </span>
+
+                    </button>
+
+
+
+                    <button id="organizerRoleBtn" class="role-card disabled-role">
+
+                        <span class="role-icon">
+                            🛠
+                        </span>
+
+                        <span class="role-title">
+                            Service Organizer
+                        </span>
+
+
+                        <span class="role-badge unfinished-badge">
+                            NOT STARTED
+                        </span>
+
+                    </button>
+
+
                 </div>
 
-                <button type="submit" id="submitBtn" class="btn-send">
-                    Log In
-                </button>
-            </form>
+
+            </section>
+
+
+
+
+            <!-- ===========================
+                 AUTH SCREEN
+            ============================ -->
+
+            <section id="authSection" class="auth-hidden">
+
+
+                <div class="tab-select-container">
+
+                    <button id="tabLogin" class="filter-btn active">
+                        log In
+                    </button>
+
+
+                    <button id="tabRegister" class="filter-btn">
+                        sign Up
+                    </button>
+
+                </div>
+
+
+
+
+                <div class="form-header-align">
+
+                    <h2 id="formHeading" class="panel-heading form-title-override">
+                        glad you're here!
+                    </h2>
+
+
+                    <span id="formSub" class="eyebrow panel-eyebrow-override">
+                        what's up?
+                    </span>
+
+
+                </div>
+
+
+
+
+
+                <!--notifications-->
+
+                <div id="authNoticeBanner"
+                     class="contact-form-wrap auth-notice-banner-layout">
+
+
+                    <h4 id="authNoticeTitle"
+                        class="panel-heading auth-notice-heading-layout">
+                    </h4>
+
+
+                    <p id="authNoticeDesc"
+                       class="auth-notice-desc-layout">
+                    </p>
+
+
+                </div>
+
+
+
+
+
+                <form id="authForm">
+
+
+                    <div class="form-group-email">
+
+                        <label for="email">
+                            email address
+                        </label>
+
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            class="contact-input input-width-full"
+                            placeholder="fish@school.edu"
+                            autocomplete="off"
+                            required
+                        >
+
+                    </div>
+
+
+
+
+
+                    <div class="form-group-password">
+
+                        <label for="password">
+                            password
+                        </label>
+
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            class="contact-input input-width-full"
+                            placeholder="𓆝 𓆟 𓆞 𓆝 𓆟"
+                            required
+                        >
+
+                    </div>
+
+
+
+
+
+                    <!-- only appears during signup -->
+
+                    <div id="schoolGroup" class="signup-extra-field hidden-field">
+
+
+                        <label for="school">
+                            school
+                        </label>
+
+
+                        <select
+                            id="school"
+                            class="contact-input input-width-full"
+                        >
+
+                            <option value="">
+                                select your school...
+                            </option>
+
+                            <option value="Rocklin High School">
+                                Rocklin High School
+                            </option>
+
+                            <option value="Whitney High School">
+                                Whitney High School
+                            </option>
+
+                            <option value="Victory High School">
+                                Victory High School
+                            </option>
+
+                            <option value="Granite Oaks Middle School">
+                                Granite Oaks Middle School
+                            </option>
+
+                            <option value="Spring View Middle School">
+                                Spring View Middle School
+                            </option>
+
+                            <option value="Rocklin Independent Charter Academy">
+                                Rocklin Independent Charter Academy
+                            </option>
+
+
+                        </select>
+
+
+                    </div>
+
+
+
+
+
+                    <div id="codeGroup" class="signup-extra-field hidden-field">
+
+
+                        <label for="schoolCode">
+                            school registration code
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="schoolCode"
+                            class="contact-input input-width-full"
+                            placeholder="optional for now"
+                        >
+
+
+                    </div>
+
+
+
+
+
+
+                    <button type="submit"
+                            id="submitBtn"
+                            class="btn-send">
+
+                        Log In
+
+                    </button>
+
+
+
+                </form>
+
+
+            </section>
+
+
+
         </div>
+
 
     </main>
 
-    <!--STAR BGGGG-->
+
+
+
+
     <script src="stars.js"></script>
+
     <script src="login.js"></script>
 
+
 </body>
+
 </html>
+```
