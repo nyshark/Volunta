@@ -1,0 +1,811 @@
+/* ALL FANCY ANIMATIONS INCLUDING THE SHOOTING STARS AND THE SUN RAY WERE ALL MADE WITH THE HELP OF GOOGLE GEMINI */
+/* I labeled as many sections as I could, but if I missed any, here is the general announcement */
+
+/*messing w colors and formats*/
+:root {
+  --bg: #09090f;
+  --surface: #10101c;
+  --border: #1e1e30;
+  --accent: #c8d8ff;
+  --accent2: #7b9fff;
+  --text: #d4deff;
+  --muted: #6a7499;
+  --font-display: 'Georgia', serif;
+  --font-body: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* bsae */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  overflow-x: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  /* twinkle twinkle little star */
+  /* 10 of them bc why not */
+  background-image:
+    url("twinkle.png"), url("twinkle.png"), url("twinkle.png"), url("twinkle.png"), url("twinkle.png"),
+    url("twinkle.png"), url("twinkle.png"), url("twinkle.png"), url("twinkle.png"), url("twinkle.png");
+
+  /* random pos*/
+  background-position:
+    8% 12%,  23% 45%, 85% 15%, 42% 78%, 67% 22%,
+    92% 64%, 15% 82%, 55% 38%, 73% 88%, 34% 5%;
+
+  background-repeat: no-repeat;
+
+  /* sizingss */
+  background-size:
+    22px auto, 18px auto, 26px auto, 20px auto, 24px auto,
+    19px auto, 28px auto, 21px auto, 23px auto, 25px auto;
+}
+
+/* space particlessesess */
+.star-div {
+  position: fixed;
+  background-color: #c8d8ff;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+  transition: width 0.5s ease, height 0.5s ease, background-color 0.5s ease, border-radius 0.5s ease;
+}
+
+/* sun glowy effet (with the help of Google Gemini) */
+.sun-element {
+  position: fixed;
+  top: 18%;
+  left: 8%;
+  width: 90px;
+  height: 90px;
+  background-color: #FCE76F;
+  border-radius: 50%;
+  box-shadow: 0 0 50px #FCCD6F, 0 0 100px rgba(255, 187, 46, 0.4);
+  z-index: 0;
+  pointer-events: none;
+  display: none;
+  transition: opacity 0.2s ease;
+}
+
+/* moon effect (highk copied the sun bc im lazy) */
+.moon-element {
+  position: fixed;
+  top: 18%;
+  left: 8%;
+  width: 90px;
+  height: 90px;
+  background-color: transparent;
+  background-image: url("moon.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  border-radius: 50%;
+  box-shadow: none;
+  z-index: 0;
+  pointer-events: none;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+/* shooting stars - with the help of Google Gemini (because I don't know how to animate :() */
+#shootingStarCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+/* clouds.webp file thing */
+#cloudCanvas {
+  position: fixed;
+  top: 0;
+  left: -5%;
+  width: 110%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  display: none; /* so its hidden at night lol */
+
+  background-image:
+    url("clouds.webp"), url("clouds.webp"), url("clouds.webp"), url("clouds.webp"), url("clouds.webp");
+  background-repeat: no-repeat;
+
+  background-position: 75% 15%, 85% 48%, 12% 55%, 60% 82%, 28% 88%;
+  background-size: 160px auto, 220px auto, 140px auto, 190px auto, 175px auto;
+
+  /* cloud animation (w help of Gemini (sigh)) */
+  animation: driftCloudsAnimation 10s ease-in-out infinite alternate;
+}
+
+@keyframes driftCloudsAnimation {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(20px); }
+}
+
+/* navbar */
+.navbar {
+  background: rgba(9, 9, 15, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+  position: relative;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+}
+.nav-link {
+  color: var(--muted);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+
+.nav-item.active .nav-link,
+.nav-link:hover {
+  color: var(--accent);
+}
+
+.mood-status {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* page layout */
+main {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 6rem 1rem 2rem 1rem;
+}
+
+.main-coords {
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.main-title {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: normal;
+  letter-spacing: -0.02em;
+  color: #fff;
+  line-height: 1.05;
+  margin-bottom: 0.75rem;
+}
+
+.main-tagline {
+  color: var(--muted);
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+}
+
+/* sectionss */
+.section-panel {
+  position: relative;
+  z-index: 1;
+  padding: 6rem 0;
+}
+
+.eyebrow {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin-bottom: 0.75rem;
+}
+
+.panel-heading {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: normal;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+/* filter butotns */
+.filter-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 0.4rem 1.1rem;
+  margin: 0 0.25rem 0.5rem;
+  border-radius: 2px;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  border-color: var(--accent2);
+  color: var(--accent);
+}
+
+/* contact form */
+.contact-form-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+label {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+
+.contact-input {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 2px;
+  padding: 0.65rem 0.9rem;
+  font-family: var(--font-body);
+}
+
+.contact-input:focus {
+  outline: none;
+  border-color: var(--accent2);
+  box-shadow: none;
+}
+
+.contact-input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.btn-send {
+  background: var(--accent2);
+  color: var(--bg);
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  border-radius: 2px;
+  width: 100%;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-send:hover {
+  opacity: 0.85;
+}
+
+/* ofoter */
+.site-footer {
+  position: relative;
+  z-index: 1;
+  padding: 2rem 1rem;
+  border-top: 1px solid var(--border);
+  width: 100%;
+}
+
+.footer-copy {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+/* custom little grid split */
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.main-text-side {
+  text-align: left;
+}
+
+.login-box-dims {
+  width: 100%;
+  max-width: 420px;
+  justify-self: center;
+}
+
+/* adjusting bc WHY was everything oddly lopsided?? ugh */
+@media (max-width: 991px) {
+  .main-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 2rem;
+  }
+  .main-text-side {
+    text-align: center;
+  }
+}
+
+/* night gradient thing */
+#progressBarFill {
+  background: linear-gradient(90deg, var(--accent2) 0%, var(--accent) 100%);
+}
+
+/* DAY MODEEE */
+body.day-mode {
+  --bg: #aed9f2;
+  --surface: #ffffff;
+  --border: #8ec5eb;
+  --accent: #C27C0A;
+  --accent2: #f59e0b;
+  --text: #072363;
+  --muted: #475569;
+  background: var(--bg);
+  background-image: none; /* no more stars */
+}
+
+body.day-mode #cloudCanvas {
+  display: block;
+}
+
+/* nav bar for day */
+body.day-mode .navbar {
+  background: rgba(224, 242, 254, 0.85);
+  border-bottom: 1px solid #ffffff;
+}
+
+body.day-mode .navbar-brand,
+body.day-mode .nav-link,
+body.day-mode .mood-status {
+  color: #16398A;
+}
+/* color ovverride */
+body.day-mode .main-title,
+body.day-mode .panel-heading,
+body.day-mode h2,
+body.day-mode h3 {
+  color: #133991;
+}
+
+body.day-mode .btn-send {
+  color: #ffffff;
+}
+
+/* stars becomung oval clouds layout shift rules */
+body.day-mode .star-div {
+  background-color: #ffffff;
+  border-radius: 20px;
+}
+
+/*sjfasdfjaskld im losing my mind*/
+.dashboard-container {
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.navbar-action-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.theme-toggle-override {
+  margin: 0;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8rem;
+  border-color: var(--accent2);
+  color: var(--accent);
+}
+
+.logout-nav-override {
+  text-decoration: none;
+}
+
+.achievement-banner-override {
+  width: 100%;
+  border-color: var(--accent2);
+  text-align: center;
+  padding: 1rem;
+  background: rgba(123, 159, 255, 0.05);
+  position: relative;
+}
+
+.achievement-heading-override {
+  font-size: 1.1rem;
+  margin-bottom: 0.15rem;
+  color: #fff;
+}
+
+.achievement-desc-override {
+  font-size: 0.85rem;
+  color: var(--muted);
+  padding-right: 1.5rem;
+}
+
+.stat-tracking-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  text-align: center;
+  padding: 1.5rem 2.5rem;
+}
+
+.stat-num-display {
+  font-size: 3rem;
+}
+
+.stat-num-progress {
+  font-size: 3rem;
+  color: var(--accent2);
+}
+
+.tab-button-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.panel-section-wrap {
+  width: 100%;
+}
+
+.panel-header-block {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.panel-title-override {
+  font-size: 1.8rem;
+  margin-bottom: 0.25rem;
+}
+
+.panel-eyebrow-override {
+  color: var(--muted);
+}
+
+.input-flex-container {
+  flex: 1;
+}
+
+.label-left-align {
+  text-align: left;
+}
+
+.input-width-full {
+  width: 100%;
+}
+
+.btn-send-goal {
+  width: auto;
+  padding: 0.75rem 2rem;
+  margin-top: 0;
+}
+
+.progress-bar-label {
+  margin-bottom: 0.75rem;
+  text-align: left;
+}
+
+.progress-bar-track {
+  width: 100%;
+  background-color: var(--border);
+  height: 24px;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar-fill-initial {
+  width: 0%;
+  height: 100%;
+  transition: width 0.4s ease-out;
+}
+
+.activities-logging-grid {
+  display: grid;
+  grid-template-columns: 2fr 95px 75px 75px 2fr 75px 1.2fr;
+  gap: 0.85rem;
+  align-items: flex-end;
+  margin-bottom: 2.5rem;
+}
+
+.label-centered {
+  text-align: center;
+}
+
+.date-picker-narrow {
+  width: 95px !important;
+  min-width: 95px !important;
+  max-width: 95px !important;
+  padding: 0.65rem 0.2rem !important;
+  font-size: 0.85rem !important;
+  text-align: center;
+}
+
+.time-contents-wrapper {
+  display: contents;
+}
+
+.time-sublabel {
+  font-size: 0.75rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.uniform-height {
+  height: 38px !important;
+  box-sizing: border-box !important;
+}
+
+.mini-time-box {
+  padding: 0.65rem 0.2rem !important;
+  font-size: 0.8rem !important;
+  text-align: center !important;
+  width: 75px !important;
+  min-width: 75px !important;
+  max-width: 75px !important;
+}
+
+.select-dropdown-width {
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  font-size: 0.8rem !important;
+  padding-left: 0.2rem !important;
+  padding-right: 1.2rem !important;
+  cursor: pointer;
+}
+
+.hours-input-centered {
+  width: 100%;
+  text-align: center;
+}
+
+.btn-send-ledger {
+  width: 100%;
+  margin-top: 0;
+  padding: 0.75rem 0;
+}
+
+.spreadsheet-section-heading {
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.ledger-list-track {
+  max-height: 250px;
+  overflow-y: auto;
+  padding: 0;
+}
+
+.footer-center {
+  text-align: center;
+}
+
+.compact-date-input::-webkit-calendar-picker-indicator {
+  display: none !important;
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.centered-select {
+  text-align: center !important;
+  text-align-last: center !important;
+}
+
+.form-header-align {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-title-override {
+  font-size: 1.8rem;
+  margin-bottom: 0.25rem;
+}
+
+.tab-select-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/*banner bs*/
+.auth-notice-banner-layout {
+  width: 100%;
+  border-color: var(--accent2);
+  text-align: center;
+  padding: 1rem;
+  background: rgba(123, 159, 255, 0.05);
+  position: relative;
+  margin-bottom: 1.5rem;
+  display: none;
+}
+
+.auth-banner-show {
+  display: block !important;
+}
+
+.auth-notice-heading-layout {
+  font-size: 1.1rem;
+  margin-bottom: 0.15rem;
+  color: #fff;
+}
+
+.auth-notice-desc-layout {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.form-group-email {
+  margin-bottom: 1.25rem;
+}
+
+.form-group-password {
+  margin-bottom: 1.75rem;
+}
+
+/*last minute changes bc everything hates me*/
+
+/*bc the sun DISAPPEARED so i had to add some random bs at the end*/
+body.day-mode .sun-element {
+  display: block;
+}
+
+body.day-mode .moon-element {
+  display: none;
+}
+
+body.day-mode .achievement-heading-override,
+body.day-mode .auth-notice-heading-layout {
+  color: #072363;
+}
+
+/*night notif border*/
+.auth-notice-banner-layout {
+  border: 2px solid #d4deff;
+  border-radius: 4px;
+}
+
+/*day notif border*/
+body.day-mode .auth-notice-banner-layout {
+  border: 2px solid #72aacf;
+  border-radius: 4px;
+}
+
+/*centers 'spreadsheet'*/
+.spreadsheet-section-heading {
+  text-align: center !important;
+}
+
+/*fixed day gradient*/
+body.day-mode #progressBarFill {
+  background: linear-gradient(90deg, var(--accent2) 0%, #ffce7a 100%);
+}
+
+/*stupid configurations for the stupid stars that i stupidly put in it*/
+.star-div {
+  width: 3px;
+  height: 3px;
+}
+
+.star-day-morph {
+  width: 66px !important;
+  height: 18px !important;
+}
+
+.click-sparkle-day {
+  width: 4px;
+  height: 4px;
+  background-color: #ffd166;
+}
+
+.click-sparkle-night {
+  width: 4px;
+  height: 4px;
+  background-color: #7b9fff;
+}
+
+.goal-form-flex-override {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+  margin-bottom: 2.5rem;
+}
+
+.ledger-section-hidden {
+  display: none;
+}
+
+.alert-dismiss-action {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.ledger-item-row-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+}
+
+.ledger-badge-style {
+  font-size: 0.75rem;
+  color: var(--accent2);
+  margin-left: 0.5rem;
+}
+
+.ledger-type-style {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-left: 1rem;
+}
+
+.ledger-right-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.ledger-delete-override {
+  margin: 0;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+}
+
+/*for the placeholders in theeeuhhh dashboard area*/
+.compact-date-input::placeholder,
+.mini-time-box::placeholder {
+  color: var(--muted) !important;
+  opacity: 1 !important;
+}
