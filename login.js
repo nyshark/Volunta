@@ -1,28 +1,46 @@
 document.addEventListener("DOMContentLoaded", function () {
 
 
-    // ===============================
-    // WELCOME INTRO SEQUENCE
-    // ===============================
+// ===============================
+// WELCOME INTRO SEQUENCE
+// ===============================
+
+const welcomeIntro = document.getElementById("welcomeIntro");
+const roleSelection = document.getElementById("roleSelection");
 
 
-    const welcomeIntro = document.getElementById("welcomeIntro");
-    const roleSelection = document.getElementById("roleSelection");
+setTimeout(function () {
 
 
-    setTimeout(function () {
+    if (welcomeIntro) {
 
-        if (welcomeIntro) {
-            welcomeIntro.classList.add("fade-out");
-        }
+        welcomeIntro.classList.add("fade-out");
 
-
-        if (roleSelection) {
-            roleSelection.classList.remove("hidden-screen");
-        }
+    }
 
 
-    }, 3000);
+
+    if (roleSelection) {
+
+
+        roleSelection.style.display = "flex";
+
+
+        setTimeout(function () {
+
+
+            roleSelection.classList.remove(
+                "hidden-screen"
+            );
+
+
+        }, 50);
+
+
+    }
+
+
+}, 3000);
 
 
 
