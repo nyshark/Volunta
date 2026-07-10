@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VOLUNTA</title>
 <link rel="stylesheet" href="style.css">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
 
@@ -145,40 +146,20 @@ LOGIN SECTION
     id="authSection" 
     class="contact-form-wrap login-box-dims auth-hidden">
     
-<div class="tab-select-container">
-    
-    <button
-        id="tabLogin"
-        class="filter-btn active">
-        log In
-
-    </button>
-
-    <button
-        id="tabRegister"
-        class="filter-btn">
-        sign Up
-
-    </button>
-
-</div>
-
 <div class="form-header-align">
-    
+
     <h2
         id="formHeading"
         class="panel-heading form-title-override">
-        glad you're here!
-
+        welcome back :)
     </h2>
 
     <span
         id="formSub"
         class="eyebrow panel-eyebrow-override">
-        what's up?
-        
+        sign in with your school Google account ✦
     </span>
-    
+
 </div>
 
 <div
@@ -197,98 +178,34 @@ LOGIN SECTION
     </p>
 </div>
 
-<form id="authForm">
+<div id="authForm">
 
-<div id="schoolGroup" class="hidden-field">
+<div class="google-login-wrap">
 
-<label for="school">
-school
+    <div
+        id="g_id_onload"
+        data-client_id="423428817974-s4oq7p4ehbkpn9dtrp1orosh8sbo9cnp.apps.googleusercontent.com"
+        data-callback="handleGoogleLogin">
+    </div>
 
-</label>
 
-<select
-    id="school"
-    class="contact-input input-width-full">
-    
-<option value="">
-select your school
+    <div
+        class="g_id_signin"
+        data-type="standard"
+        data-size="large"
+        data-theme="filled_blue"
+        data-text="continue_with"
+        data-shape="rectangular">
+    </div>
 
-</option>
 
-<option value="Rocklin High School">
-Rocklin High School
-
-</option>
-
-<option value="Whitney High School">
-Whitney High School
-
-</option>
-
-<option value="Victory High School">
-Victory High School
-
-</option>
-
-<option value="Granite Oaks Middle School">
-Granite Oaks Middle School
-
-</option>
-
-<option value="Spring View Middle School">
-Spring View Middle School
-
-</option>
-
-<option value="Rocklin Independent Charter Academy">
-Rocklin Independent Charter Academy
-    
-</option>
-    
-</select>
-
-</div>
-
-<div class="form-group-email">
-
-<label for="email">
-email address
-    
-</label>
-
-<input
-type="email"
-id="email"
-class="contact-input input-width-full"
-placeholder="student@school.edu"
-required>
+    <p class="google-login-note">
+        Only student connected with Rocklin accounts are accepted (SOON TO EXPAND)
+    </p>
 
 </div>
     
-<div class="form-group-password">
-
-<label for="password">
-password
-
-</label>
-<input
-
-type="password"
-id="password"
-class="contact-input input-width-full"
-placeholder="☆★☆★☆★☆★☆★"
-required>
 </div>
-
-<button
-type="submit"
-id="submitBtn"
-class="btn-send">
-Log In
-
-</button>
-
-</form>
 
 </section>
     
