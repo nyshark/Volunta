@@ -255,25 +255,64 @@ setTimeout(function () {
 
 
 
-    if (organizerRoleBtn) {
+  if (organizerRoleBtn) {
+
+    organizerRoleBtn.onclick = function () {
+
+        const maintenanceBanner =
+            document.createElement("div");
 
 
-        organizerRoleBtn.onclick = function () {
+        maintenanceBanner.className =
+            "maintenance-popup";
 
 
-            showBanner(
+        maintenanceBanner.innerHTML = `
 
-                "Coming Soon!",
+            <div class="maintenance-content">
 
-                "Organizer accounts are not available yet ✩"
+                <h3>
+                    sorry!! 
+                </h3>
 
+                <p>
+                    under maintenance at the moment ✦
+                </p>
+
+                <img 
+                    src="twinkle.png"
+                    alt="maintenance sparkle">
+
+            </div>
+
+        `;
+
+
+        document.body.appendChild(
+            maintenanceBanner
+        );
+
+
+        setTimeout(() => {
+
+            maintenanceBanner.classList.add(
+                "maintenance-hide"
             );
 
 
-        };
+            setTimeout(() => {
+
+                maintenanceBanner.remove();
+
+            }, 600);
 
 
-    }
+        }, 3500);
+
+
+    };
+
+}
 
 
 
