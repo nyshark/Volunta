@@ -1,411 +1,689 @@
 document.addEventListener("DOMContentLoaded", function () {
 
 
-const studentRoleBtn =
-document.getElementById("studentRoleBtn");
+    // ===============================
+    // WELCOME INTRO SEQUENCE
+    // ===============================
 
 
-const organizerRoleBtn =
-document.getElementById("organizerRoleBtn");
+    const welcomeIntro = document.getElementById("welcomeIntro");
+    const roleSelection = document.getElementById("roleSelection");
 
 
-const roleSelection =
-document.getElementById("roleSelection");
+    setTimeout(function () {
 
+        if (welcomeIntro) {
+            welcomeIntro.classList.add("fade-out");
+        }
 
-const authSection =
-document.getElementById("authSection");
 
+        if (roleSelection) {
+            roleSelection.classList.remove("hidden-screen");
+        }
 
 
-const tabLogin =
-document.getElementById("tabLogin");
+    }, 3000);
 
 
-const tabRegister =
-document.getElementById("tabRegister");
 
 
 
-const authForm =
-document.getElementById("authForm");
+    // ===============================
+    // ELEMENTS
+    // ===============================
 
 
+    const studentRoleBtn =
+        document.getElementById("studentRoleBtn");
 
-const submitBtn =
-document.getElementById("submitBtn");
 
+    const organizerRoleBtn =
+        document.getElementById("organizerRoleBtn");
 
 
-const formHeading =
-document.getElementById("formHeading");
+    const authSection =
+        document.getElementById("authSection");
 
 
-const formSub =
-document.getElementById("formSub");
 
+    const tabLogin =
+        document.getElementById("tabLogin");
 
 
-const email =
-document.getElementById("email");
+    const tabRegister =
+        document.getElementById("tabRegister");
 
 
-const password =
-document.getElementById("password");
 
+    const authForm =
+        document.getElementById("authForm");
 
 
-const schoolGroup =
-document.getElementById("schoolGroup");
 
+    const submitBtn =
+        document.getElementById("submitBtn");
 
-const school =
-document.getElementById("school");
 
 
+    const formHeading =
+        document.getElementById("formHeading");
 
-const banner =
-document.getElementById("authNoticeBanner");
 
+    const formSub =
+        document.getElementById("formSub");
 
-const bannerTitle =
-document.getElementById("authNoticeTitle");
 
 
-const bannerDesc =
-document.getElementById("authNoticeDesc");
+    const email =
+        document.getElementById("email");
 
 
+    const password =
+        document.getElementById("password");
 
-let loginMode = true;
 
 
+    const schoolGroup =
+        document.getElementById("schoolGroup");
 
-const approvedSchools = [
-"Rocklin High School",
-"Whitney High School",
-"Victory High School",
-"Granite Oaks Middle School",
-"Spring View Middle School",
-"Rocklin Independent Charter Academy"
-];
 
+    const school =
+        document.getElementById("school");
 
 
 
+    const banner =
+        document.getElementById("authNoticeBanner");
 
-function showBanner(title,text){
 
-if(!banner)return;
+    const bannerTitle =
+        document.getElementById("authNoticeTitle");
 
-bannerTitle.textContent = title;
 
-bannerDesc.textContent = text;
+    const bannerDesc =
+        document.getElementById("authNoticeDesc");
 
-banner.classList.add("auth-banner-show");
 
-}
 
 
 
+    let loginMode = true;
 
 
-function hideBanner(){
 
-if(banner){
 
-banner.classList.remove(
-"auth-banner-show"
-);
 
-}
+    // ===============================
+    // APPROVED SCHOOLS
+    // ===============================
 
-}
 
+    const approvedSchools = [
 
+        "Rocklin High School",
 
+        "Whitney High School",
 
+        "Victory High School",
 
-studentRoleBtn.onclick=function(){
+        "Granite Oaks Middle School",
 
+        "Spring View Middle School",
 
-roleSelection.style.display="none";
+        "Rocklin Independent Charter Academy"
 
+    ];
 
-authSection.classList.remove(
-"auth-hidden"
-);
 
 
-authSection.classList.add(
-"auth-visible"
-);
 
 
-};
 
+    // ===============================
+    // BANNERS
+    // ===============================
 
 
+    function showBanner(title, text) {
 
 
-organizerRoleBtn.onclick=function(){
+        if (!banner) return;
 
-showBanner(
-"Coming Soon!",
-"Organizer accounts are not available yet ✩"
-);
 
-};
+        bannerTitle.textContent = title;
 
+        bannerDesc.textContent = text;
 
 
+        banner.classList.add(
+            "auth-banner-show"
+        );
 
 
+    }
 
 
 
-tabLogin.onclick=function(){
 
-loginMode=true;
 
+    function hideBanner() {
 
-tabLogin.classList.add("active");
 
-tabRegister.classList.remove("active");
+        if (banner) {
 
+            banner.classList.remove(
+                "auth-banner-show"
+            );
 
-submitBtn.textContent="log in";
+        }
 
+    }
 
-formHeading.textContent="welcome back :)";
 
-formSub.textContent="hi again!";
 
 
-schoolGroup.classList.add(
-"hidden-field"
-);
 
 
-hideBanner();
+    // ===============================
+    // ROLE SELECTION
+    // ===============================
 
 
-};
+    if (studentRoleBtn) {
 
 
+        studentRoleBtn.onclick = function () {
 
 
+            roleSelection.classList.add(
+                "fade-out"
+            );
 
 
+            setTimeout(function () {
 
-tabRegister.onclick=function(){
 
-loginMode=false;
+                roleSelection.style.display = "none";
 
 
-tabRegister.classList.add("active");
+                if (authSection) {
 
-tabLogin.classList.remove("active");
 
+                    authSection.classList.remove(
+                        "auth-hidden"
+                    );
 
-submitBtn.textContent="sign up";
 
+                    authSection.classList.add(
+                        "auth-visible"
+                    );
 
-formHeading.textContent="welcome!";
 
-formSub.textContent="hello!";
+                }
 
 
-schoolGroup.classList.remove(
-"hidden-field"
-);
+            }, 700);
 
 
-};
 
+        };
 
 
+    }
 
 
 
 
 
 
-function createID(){
 
-return "VT-" +
-Math.floor(
-10000 + Math.random()*90000
-);
+    if (organizerRoleBtn) {
 
-}
 
+        organizerRoleBtn.onclick = function () {
 
 
+            showBanner(
 
+                "Coming Soon!",
 
+                "Organizer accounts are not available yet ✩"
 
+            );
 
 
+        };
 
-authForm.addEventListener(
-"submit",
-function(e){
 
+    }
 
-e.preventDefault();
 
 
 
-let users =
-JSON.parse(
-localStorage.getItem("voluntaUsers")
-)
-|| [];
 
 
 
 
 
-if(loginMode){
+    // ===============================
+    // LOGIN / REGISTER SWITCH
+    // ===============================
 
 
-let user =
-users.find(
-u=>u.email===email.value.toLowerCase()
-);
+    if (tabLogin) {
 
 
+        tabLogin.onclick = function () {
 
-if(!user){
 
-showBanner(
-"Not Found",
-"Account does not exist."
-);
+            loginMode = true;
 
-return;
 
-}
 
+            tabLogin.classList.add(
+                "active"
+            );
 
 
-if(user.password!==password.value){
+            tabRegister.classList.remove(
+                "active"
+            );
 
 
-showBanner(
-"Incorrect Password",
-"Try again."
-);
 
+            submitBtn.textContent =
+                "log in";
 
-return;
 
 
-}
+            formHeading.textContent =
+                "welcome back :)";
 
 
 
+            formSub.textContent =
+                "hi again!";
 
-localStorage.setItem(
-"voluntaCurrentUser",
-JSON.stringify(user)
-);
 
 
-window.location.href="dashboard.html";
+            if (schoolGroup) {
 
 
+                schoolGroup.classList.add(
+                    "hidden-field"
+                );
 
-return;
 
+            }
 
 
-}
 
+            hideBanner();
 
 
+        };
 
 
+    }
 
-if(!approvedSchools.includes(
-school.value
-)){
 
 
-showBanner(
-"School Required",
-"Please select a Rocklin school."
-);
 
 
-return;
 
 
-}
+    if (tabRegister) {
 
 
+        tabRegister.onclick = function () {
 
 
+            loginMode = false;
 
 
-let newUser={
 
+            tabRegister.classList.add(
+                "active"
+            );
 
-studentId:createID(),
 
-email:
-email.value.toLowerCase(),
+            tabLogin.classList.remove(
+                "active"
+            );
 
-password:
-password.value,
 
 
-school:
-school.value,
+            submitBtn.textContent =
+                "sign up";
 
 
-verified:true,
 
+            formHeading.textContent =
+                "welcome!";
 
-accountType:"student",
 
 
-hours:0,
+            formSub.textContent =
+                "hello!";
 
 
-goal:50,
 
+            if (schoolGroup) {
 
-activities:[]
 
-};
+                schoolGroup.classList.remove(
+                    "hidden-field"
+                );
 
 
+            }
 
 
 
-users.push(newUser);
+        };
 
 
-localStorage.setItem(
-"voluntaUsers",
-JSON.stringify(users)
-);
+    }
 
 
 
-localStorage.setItem(
-"voluntaCurrentUser",
-JSON.stringify(newUser)
-);
 
 
 
-window.location.href="dashboard.html";
 
 
+    // ===============================
+    // ID GENERATOR
+    // ===============================
 
-});
+
+    function createID() {
+
+
+        return "VT-" +
+        Math.floor(
+            10000 + Math.random() * 90000
+        );
+
+
+    }
+
+
+
+
+
+
+
+
+
+    // ===============================
+    // FORM SUBMISSION
+    // ===============================
+
+
+    authForm.addEventListener(
+        "submit",
+        function (event) {
+
+
+            event.preventDefault();
+
+
+
+            let users =
+                JSON.parse(
+                    localStorage.getItem(
+                        "voluntaUsers"
+                    )
+                )
+                || [];
+
+
+
+
+
+            const emailValue =
+                email.value
+                .trim()
+                .toLowerCase();
+
+
+
+
+
+            if (loginMode) {
+
+
+                let user =
+                    users.find(
+                        u =>
+                        u.email === emailValue
+                    );
+
+
+
+                if (!user) {
+
+
+                    showBanner(
+                        "Not Found",
+                        "Account does not exist."
+                    );
+
+
+                    return;
+
+
+                }
+
+
+
+
+
+                if (
+                    user.password !==
+                    password.value
+                ) {
+
+
+                    showBanner(
+                        "Incorrect Password",
+                        "Try again."
+                    );
+
+
+                    return;
+
+
+                }
+
+
+
+
+
+                localStorage.setItem(
+
+                    "voluntaCurrentUser",
+
+                    JSON.stringify(user)
+
+                );
+
+
+
+                window.location.href =
+                    "dashboard.html";
+
+
+
+                return;
+
+
+            }
+
+
+
+
+
+
+
+            // ===============================
+            // REGISTRATION
+            // ===============================
+
+
+
+            if (
+                !approvedSchools.includes(
+                    school.value
+                )
+            ) {
+
+
+
+                showBanner(
+                    "School Required",
+                    "Please select a Rocklin school."
+                );
+
+
+                return;
+
+
+            }
+
+
+
+
+
+
+
+            const alreadyExists =
+                users.some(
+                    u =>
+                    u.email === emailValue
+                );
+
+
+
+
+
+            if (alreadyExists) {
+
+
+                showBanner(
+                    "Email Taken",
+                    "This account already exists."
+                );
+
+
+                return;
+
+
+            }
+
+
+
+
+
+
+
+
+
+            const newUser = {
+
+
+                studentId:
+                    createID(),
+
+
+
+                email:
+                    emailValue,
+
+
+
+                password:
+                    password.value,
+
+
+
+                school:
+                    school.value,
+
+
+
+                verified:
+                    true,
+
+
+
+                accountType:
+                    "student",
+
+
+
+                hours:
+                    0,
+
+
+
+                goal:
+                    50,
+
+
+
+                activities:
+                    []
+
+
+
+            };
+
+
+
+
+
+
+
+            users.push(newUser);
+
+
+
+            localStorage.setItem(
+
+                "voluntaUsers",
+
+                JSON.stringify(users)
+
+            );
+
+
+
+
+
+            localStorage.setItem(
+
+                "voluntaCurrentUser",
+
+                JSON.stringify(newUser)
+
+            );
+
+
+
+
+
+            window.location.href =
+                "dashboard.html";
+
+
+
+
+
+        }
+
+    );
+
 
 });
