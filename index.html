@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOLUNTA</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!--space bg anim (with the help of Google Gemini)-->
+    <div id="starCanvas"></div>
+
+    <!--allows for cloud anim-->
+    <div id="cloudCanvas"></div>
+
+    <!--nav bar-->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">VOLUNTA</a>
+        <div class="navbar-action-wrap">
+            <button id="themeToggleBtn" class="filter-btn theme-toggle-override">⏾</button>
+            <span class="mood-status">get back to grinding bro</span>
+        </div>
+    </nav>
+
+    <main class="main-container">
+
+        <!--branding text bs-->
+        <div class="main-text-side">
+            <h1 id="mainBrandTitle" class="main-title">⋆✶ VOLUNTA ✶⋆</h1>
+        </div>
+
+        <div class="contact-form-wrap login-box-dims">
+
+            <!--change layout-->
+            <div class="tab-select-container">
+                <button id="tabLogin" class="filter-btn active">log In</button>
+                <button id="tabRegister" class="filter-btn">sign Up</button>
+            </div>
+
+            <div class="form-header-align">
+                <h2 id="formHeading" class="panel-heading form-title-override">glad you're here!</h2>
+                <span id="formSub" class="eyebrow panel-eyebrow-override">what's up?</span>
+            </div>
+
+            <!--notification sttuff-->
+            <div id="authNoticeBanner" class="contact-form-wrap auth-notice-banner-layout">
+                <h4 id="authNoticeTitle" class="panel-heading auth-notice-heading-layout"></h4>
+                <p id="authNoticeDesc" class="auth-notice-desc-layout"></p>
+            </div>
+
+            <form id="authForm">
+                <div class="form-group-email">
+                    <label for="email">email address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        class="contact-input input-width-full"
+                        placeholder="fish@school.edu"
+                        autocomplete="off"
+                        autofocus
+                        required
+                    >
+                </div>
+
+                <div class="form-group-password">
+                    <label for="password">password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="contact-input input-width-full"
+                        placeholder="𓆝 𓆟 𓆞 𓆝 𓆟 "
+                        required
+                    >
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn-send">
+                    Log In
+                </button>
+            </form>
+        </div>
+
+    </main>
+
+    <!--STAR BGGGG-->
+    <script src="stars.js"></script>
+    <script src="login.js"></script>
+
+</body>
+</html>
