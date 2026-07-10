@@ -1890,3 +1890,101 @@ LOGIN OPTION CARDS
         width: 90%;
     }
 }
+
+/* =========================
+LOGIN OPTION CARDS (FIXED)
+========================= */
+
+.login-options-container {
+
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 35px;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.login-option-card {
+
+    width: 420px;
+    min-height: 380px;
+    padding: 45px 40px;
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.10);
+    backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255,255,255,0.20);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.login-option-card h3 {
+
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+.login-option-card p {
+
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 300px;
+    margin-bottom: 30px;
+}
+
+/* GOOGLE CARD */
+
+.login-option-card:first-child {
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(130,170,255,0.18),
+        rgba(255,255,255,0.08)
+    );
+}
+
+/* BETA CARD */
+.beta-card {
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(255,220,150,0.18),
+        rgba(255,255,255,0.08)
+    );
+}
+
+.beta-card input {
+  
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 15px;
+}
+
+.beta-card button {
+
+    margin-top: 10px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+    .login-options-container {
+
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .login-option-card {
+
+        width: min(90%, 420px);
+    }
+}
