@@ -1988,3 +1988,10 @@ LOGIN OPTION CARDS (FIXED)
         width: min(90%, 420px);
     }
 }
+
+.profile-picture {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+}
