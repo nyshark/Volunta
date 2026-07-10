@@ -1718,3 +1718,110 @@ transform:translateY(0);
     align-items:center;
 }
 }
+
+/* ===================================
+   ORGANIZER MAINTENANCE POPUP
+=================================== */
+
+.maintenance-popup {
+
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform:
+        translate(-50%, -120%);
+    width: min(420px, 90%);
+    background: var(--surface);
+    border: 1px solid var(--accent2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    z-index: 999;
+    text-align: center;
+    box-shadow:
+        0 0 35px rgba(123,159,255,.35);
+    animation:
+        maintenanceDrop .6s cubic-bezier(.22,1,.36,1)
+        forwards;
+}
+
+.maintenance-content h3 {
+
+    font-family: var(--font-display);
+    color: white;
+    font-size: 1.7rem;
+    margin-bottom: .4rem;
+}
+
+.maintenance-content p {
+  
+    color: var(--muted);
+    margin-bottom: 1rem;
+}
+
+.maintenance-content img {
+
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    animation:
+        maintenanceFloat 2s ease-in-out infinite;
+}
+
+@keyframes maintenanceDrop {
+
+    0% {
+
+        transform:
+            translate(-50%, -120%);
+        opacity:0;
+    }
+
+    70% {
+
+        transform:
+            translate(-50%, 20px);
+        opacity:1;
+    }
+
+    100% {
+      
+        transform:
+            translate(-50%, 0);
+        opacity:1;
+      
+    }
+}
+
+@keyframes maintenanceFloat {
+  
+    0%,100% {
+        transform:translateY(0);
+    }
+
+    50% {   
+        transform:translateY(-8px);
+    }
+}
+
+.maintenance-hide {  
+    animation:
+        maintenanceLeave .6s ease forwards;
+}
+
+@keyframes maintenanceLeave {
+  
+    from {
+      
+        opacity:1;
+        transform:
+            translate(-50%,0);
+    }
+  
+    to {
+      
+        opacity:0;
+        transform:
+            translate(-50%,-120%);
+    }
+  
+}
