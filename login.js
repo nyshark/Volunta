@@ -1,179 +1,117 @@
 document.addEventListener("DOMContentLoaded", function () {
 
 
-// ===============================
-// WELCOME INTRO SEQUENCE
-// ===============================
-
-const welcomeIntro = document.getElementById("welcomeIntro");
-const roleSelection = document.getElementById("roleSelection");
+    // =================================
+    // WELCOME INTRO SEQUENCE
+    // =================================
 
 
-setTimeout(function () {
+    const welcomeIntro =
+        document.getElementById("welcomeIntro");
 
 
-    if (welcomeIntro) {
-
-        welcomeIntro.classList.add("fade-out");
-
-    }
+    const roleSelection =
+        document.getElementById("roleSelection");
 
 
 
-    if (roleSelection) {
+    setTimeout(function () {
 
 
-        roleSelection.style.display = "flex";
+        if (welcomeIntro) {
+
+            welcomeIntro.classList.add(
+                "fade-out"
+            );
+
+        }
 
 
-        setTimeout(function () {
 
+        if (roleSelection) {
+
+            roleSelection.style.display = "flex";
 
             roleSelection.classList.remove(
                 "hidden-screen"
             );
 
-
-        }, 50);
-
-
-    }
+        }
 
 
-}, 3000);
+    }, 3000);
 
 
 
 
 
-    // ===============================
+    // =================================
     // ELEMENTS
-    // ===============================
+    // =================================
 
 
     const studentRoleBtn =
-        document.getElementById("studentRoleBtn");
+        document.getElementById(
+            "studentRoleBtn"
+        );
 
 
     const organizerRoleBtn =
-        document.getElementById("organizerRoleBtn");
+        document.getElementById(
+            "organizerRoleBtn"
+        );
 
 
     const authSection =
-        document.getElementById("authSection");
+        document.getElementById(
+            "authSection"
+        );
 
 
+    const authNoticeBanner =
+        document.getElementById(
+            "authNoticeBanner"
+        );
 
-    const tabLogin =
-        document.getElementById("tabLogin");
 
+    const authNoticeTitle =
+        document.getElementById(
+            "authNoticeTitle"
+        );
 
-    const tabRegister =
-        document.getElementById("tabRegister");
 
+    const authNoticeDesc =
+        document.getElementById(
+            "authNoticeDesc"
+        );
 
 
-    const authForm =
-        document.getElementById("authForm");
 
 
 
-    const submitBtn =
-        document.getElementById("submitBtn");
 
+    // =================================
+    // BANNER FUNCTION
+    // =================================
 
 
-    const formHeading =
-        document.getElementById("formHeading");
+    function showBanner(title, message) {
 
 
-    const formSub =
-        document.getElementById("formSub");
+        if (!authNoticeBanner) {
+            return;
+        }
 
 
+        authNoticeTitle.textContent =
+            title;
 
-    const email =
-        document.getElementById("email");
 
+        authNoticeDesc.textContent =
+            message;
 
-    const password =
-        document.getElementById("password");
 
-
-
-    const schoolGroup =
-        document.getElementById("schoolGroup");
-
-
-    const school =
-        document.getElementById("school");
-
-
-
-    const banner =
-        document.getElementById("authNoticeBanner");
-
-
-    const bannerTitle =
-        document.getElementById("authNoticeTitle");
-
-
-    const bannerDesc =
-        document.getElementById("authNoticeDesc");
-
-
-
-
-
-    let loginMode = true;
-
-
-
-
-
-    // ===============================
-    // APPROVED SCHOOLS
-    // ===============================
-
-
-    const approvedSchools = [
-
-        "Rocklin High School",
-
-        "Whitney High School",
-
-        "Victory High School",
-
-        "Granite Oaks Middle School",
-
-        "Spring View Middle School",
-
-        "Rocklin Independent Charter Academy"
-
-    ];
-
-
-
-
-
-
-    // ===============================
-    // BANNERS
-    // ===============================
-
-
-    function showBanner(title, text) {
-
-
-        if (!banner) return;
-
-
-        bannerTitle.textContent = title;
-
-        bannerDesc.textContent = text;
-
-
-        banner.classList.add(
+        authNoticeBanner.classList.add(
             "auth-banner-show"
         );
 
@@ -184,27 +122,11 @@ setTimeout(function () {
 
 
 
-    function hideBanner() {
 
 
-        if (banner) {
-
-            banner.classList.remove(
-                "auth-banner-show"
-            );
-
-        }
-
-    }
-
-
-
-
-
-
-    // ===============================
+    // =================================
     // ROLE SELECTION
-    // ===============================
+    // =================================
 
 
     if (studentRoleBtn) {
@@ -218,10 +140,14 @@ setTimeout(function () {
             );
 
 
+
             setTimeout(function () {
 
 
-                roleSelection.style.display = "none";
+
+                roleSelection.style.display =
+                    "none";
+
 
 
                 if (authSection) {
@@ -240,6 +166,7 @@ setTimeout(function () {
                 }
 
 
+
             }, 700);
 
 
@@ -255,127 +182,19 @@ setTimeout(function () {
 
 
 
-  if (organizerRoleBtn) {
-
-    organizerRoleBtn.onclick = function () {
-
-        const maintenanceBanner =
-            document.createElement("div");
+    if (organizerRoleBtn) {
 
 
-        maintenanceBanner.className =
-            "maintenance-popup";
-
-// PLACEHOLDER IMG //
-        maintenanceBanner.innerHTML = `
-
-            <div class="maintenance-content">
-
-                <h3>
-                    APOLOGIES!! 
-                </h3>
-
-                <p>
-                    This feature is currently unavailable at the moment
-                </p>
-            
-                <img  
-                    src="twinkle.png"
-                    alt="maintenance sparkle">
-
-            </div>
-
-        `;
+        organizerRoleBtn.onclick = function () {
 
 
-        document.body.appendChild(
-            maintenanceBanner
-        );
+            showBanner(
 
+                "Sorry!!",
 
-        setTimeout(() => {
+                "Under maintenance at the moment ✦"
 
-            maintenanceBanner.classList.add(
-                "maintenance-hide"
             );
-
-
-            setTimeout(() => {
-
-                maintenanceBanner.remove();
-
-            }, 600);
-
-
-        }, 3500);
-
-
-    };
-
-}
-
-
-
-
-
-
-
-
-
-    // ===============================
-    // LOGIN / REGISTER SWITCH
-    // ===============================
-
-
-    if (tabLogin) {
-
-
-        tabLogin.onclick = function () {
-
-
-            loginMode = true;
-
-
-
-            tabLogin.classList.add(
-                "active"
-            );
-
-
-            tabRegister.classList.remove(
-                "active"
-            );
-
-
-
-            submitBtn.textContent =
-                "log in";
-
-
-
-            formHeading.textContent =
-                "welcome back :)";
-
-
-
-            formSub.textContent =
-                "hi again!";
-
-
-
-            if (schoolGroup) {
-
-
-                schoolGroup.classList.add(
-                    "hidden-field"
-                );
-
-
-            }
-
-
-
-            hideBanner();
 
 
         };
@@ -386,83 +205,216 @@ setTimeout(function () {
 
 
 
+});
 
 
 
-    if (tabRegister) {
-
-
-        tabRegister.onclick = function () {
-
-
-            loginMode = false;
 
 
 
-            tabRegister.classList.add(
-                "active"
-            );
+
+// =================================
+// GOOGLE LOGIN CALLBACK
+// =================================
 
 
-            tabLogin.classList.remove(
-                "active"
-            );
-
-
-
-            submitBtn.textContent =
-                "sign up";
+function handleGoogleLogin(response) {
 
 
 
-            formHeading.textContent =
-                "welcome!";
+    // Decode Google credential
+
+
+    const payload =
+        JSON.parse(
+
+            atob(
+
+                response.credential
+                    .split(".")[1]
+
+            )
+
+        );
 
 
 
-            formSub.textContent =
-                "hello!";
+
+
+    const email =
+        payload.email;
 
 
 
-            if (schoolGroup) {
+    const name =
+        payload.name;
 
 
-                schoolGroup.classList.remove(
-                    "hidden-field"
-                );
+
+    const picture =
+        payload.picture;
 
 
-            }
 
+
+
+
+
+    // =================================
+    // ROCKLIN ACCOUNT CHECK
+    // =================================
+
+
+    const domain =
+        email.split("@")[1];
+
+
+
+    if (
+        domain !== "rocklinusd.org"
+    ) {
+
+
+        alert(
+            "Please use your Rocklin student Google account."
+        );
+
+
+        return;
+
+
+    }
+
+
+
+
+
+
+
+    // =================================
+    // LOAD EXISTING USERS
+    // =================================
+
+
+    let users =
+        JSON.parse(
+
+            localStorage.getItem(
+                "voluntaUsers"
+            )
+
+        )
+        || [];
+
+
+
+
+
+
+
+    let currentUser =
+        users.find(
+
+            user =>
+            user.email === email
+
+        );
+
+
+
+
+
+
+
+
+    // =================================
+    // CREATE NEW PROFILE
+    // =================================
+
+
+    if (!currentUser) {
+
+
+        currentUser = {
+
+
+            studentId:
+
+                "VT-" +
+
+                Math.floor(
+
+                    10000 +
+
+                    Math.random() *
+
+                    90000
+
+                ),
+
+
+
+            name:
+                name,
+
+
+
+            email:
+                email,
+
+
+
+            picture:
+                picture,
+
+
+
+            verified:
+                true,
+
+
+
+            accountType:
+                "student",
+
+
+
+            hours:
+                0,
+
+
+
+            goal:
+                50,
+
+
+
+            activities:
+                []
 
 
         };
 
 
-    }
 
 
-
-
-
-
-
-
-    // ===============================
-    // ID GENERATOR
-    // ===============================
-
-
-    function createID() {
-
-
-        return "VT-" +
-        Math.floor(
-            10000 + Math.random() * 90000
+        users.push(
+            currentUser
         );
 
 
+
+
+        localStorage.setItem(
+
+            "voluntaUsers",
+
+            JSON.stringify(users)
+
+        );
+
+
+
     }
 
 
@@ -471,276 +423,32 @@ setTimeout(function () {
 
 
 
+    // =================================
+    // SAVE CURRENT USER
+    // =================================
 
 
-    // ===============================
-    // FORM SUBMISSION
-    // ===============================
+    localStorage.setItem(
 
+        "voluntaCurrentUser",
 
-    authForm.addEventListener(
-        "submit",
-        function (event) {
-
-
-            event.preventDefault();
-
-
-
-            let users =
-                JSON.parse(
-                    localStorage.getItem(
-                        "voluntaUsers"
-                    )
-                )
-                || [];
-
-
-
-
-
-            const emailValue =
-                email.value
-                .trim()
-                .toLowerCase();
-
-
-
-
-
-            if (loginMode) {
-
-
-                let user =
-                    users.find(
-                        u =>
-                        u.email === emailValue
-                    );
-
-
-
-                if (!user) {
-
-
-                    showBanner(
-                        "Not Found",
-                        "Account does not exist."
-                    );
-
-
-                    return;
-
-
-                }
-
-
-
-
-
-                if (
-                    user.password !==
-                    password.value
-                ) {
-
-
-                    showBanner(
-                        "Incorrect Password",
-                        "Try again."
-                    );
-
-
-                    return;
-
-
-                }
-
-
-
-
-
-                localStorage.setItem(
-
-                    "voluntaCurrentUser",
-
-                    JSON.stringify(user)
-
-                );
-
-
-
-                window.location.href =
-                    "dashboard.html";
-
-
-
-                return;
-
-
-            }
-
-
-
-
-
-
-
-            // ===============================
-            // REGISTRATION
-            // ===============================
-
-
-
-            if (
-                !approvedSchools.includes(
-                    school.value
-                )
-            ) {
-
-
-
-                showBanner(
-                    "School Required",
-                    "Please select a Rocklin school."
-                );
-
-
-                return;
-
-
-            }
-
-
-
-
-
-
-
-            const alreadyExists =
-                users.some(
-                    u =>
-                    u.email === emailValue
-                );
-
-
-
-
-
-            if (alreadyExists) {
-
-
-                showBanner(
-                    "Email Taken",
-                    "This account already exists."
-                );
-
-
-                return;
-
-
-            }
-
-
-
-
-
-
-
-
-
-            const newUser = {
-
-
-                studentId:
-                    createID(),
-
-
-
-                email:
-                    emailValue,
-
-
-
-                password:
-                    password.value,
-
-
-
-                school:
-                    school.value,
-
-
-
-                verified:
-                    true,
-
-
-
-                accountType:
-                    "student",
-
-
-
-                hours:
-                    0,
-
-
-
-                goal:
-                    50,
-
-
-
-                activities:
-                    []
-
-
-
-            };
-
-
-
-
-
-
-
-            users.push(newUser);
-
-
-
-            localStorage.setItem(
-
-                "voluntaUsers",
-
-                JSON.stringify(users)
-
-            );
-
-
-
-
-
-            localStorage.setItem(
-
-                "voluntaCurrentUser",
-
-                JSON.stringify(newUser)
-
-            );
-
-
-
-
-
-            window.location.href =
-                "dashboard.html";
-
-
-
-
-
-        }
+        JSON.stringify(currentUser)
 
     );
 
 
-});
+
+
+
+
+    // =================================
+    // GO TO DASHBOARD
+    // =================================
+
+
+    window.location.href =
+        "dashboard.html";
+
+
+
+}
