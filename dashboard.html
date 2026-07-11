@@ -1,287 +1,611 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Volunta - Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+Volunta - Dashboard
+</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
+
+
 <body>
-    <!-- BACKGROUND -->
-    <div id="starCanvas"></div>
-    <div id="cloudCanvas"></div>
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="navbar-left">
-            <button id="menuToggleBtn" class="filter-btn theme-toggle-override">
-                ☰
-            </button>
-            <a href="dashboard.html" class="navbar-brand">
-                VOLUNTA
-            </a>
-        </div>
-        <div class="navbar-action-wrap">
-            <button 
-                id="themeToggleBtn" 
-                class="filter-btn theme-toggle-override">
-                ⏾
-            </button>
-            <a href="index.html" class="nav-link logout-nav-override">
-                log out
-            </a>
-        </div>
-    </nav>
-    <!-- ACCOUNT DROP MENU -->
-    <div id="accountMenu" class="account-menu">
-        <button 
-            id="menuCloseBtn"
-            class="menu-close">
-            ✕
-        </button>
-        <h3>
-            Account
-        </h3>
-        <button>
-            Account Profile
-        </button>
-        <button id="detailsMenuBtn">
-            Account Details
-        </button>
-        <button>
-            About Volunta
-        </button>
-        <button>
-            Contact
-        </button>
-        <div id="accountDetailsBox">
-        </div>
-    </div>
-    <main class="main-container dashboard-container">
-        <!-- PROFILE -->
-        <section class="contact-form-wrap profile-card">
-            <img
-                id="userPicture"
-                class="profile-picture"
-                src="twinkle.png"
-                alt="profile picture"
-            >
-            <div class="profile-info">
-                <h1 id="userName">
-                    Welcome ✦
-                </h1>
-                <p id="userEmail">
-                    loading account...
-                </p>
-                <p id="studentID">
-                    Student ID: loading...
-                </p>
-            </div>
-        </section>
-        <!-- ACHIEVEMENT -->
-        <div 
-            id="achievementBanner" 
-            class="auth-notice-banner-layout">
-            <h4 
-                id="achievementTitle"
-                class="auth-notice-heading-layout">
-            </h4>
-            <p
-                id="achievementDesc"
-                class="auth-notice-desc-layout">
-            </p>
-        </div>
-        <!-- STATS -->
-        <div class="contact-form-wrap stat-tracking-grid">
-            <div>
-                <span 
-                    id="totalHours"
-                    class="stat-num-display">
-                    0.0
-                </span>
-                <span class="stat-desc">
-                    Total Hours Completed
-                </span>
-            </div>
-            <div>
-                <span 
-                    id="progressPercent"
-                    class="stat-num-progress">
-                    0%
-                </span>
-                <span 
-                    id="goalStatusDesc"
-                    class="stat-desc">
-                    Target Goal: none
-                </span>
-            </div>
-        </div>
-        <!-- TABS -->
-        <div class="tab-button-container">
-            <button 
-                id="tabGoal"
-                class="filter-btn active">
-                GOAL / PROGRESS
-            </button>
-            <button
-                id="tabLedger"
-                class="filter-btn">
-                ACTIVITIES / SERVICES
-            </button>
-        </div>
-        <!-- GOALS -->
-        <div 
-            id="goalSection"
-            class="contact-form-wrap panel-section-wrap">
-            <div class="panel-header-block">
-                <h2 class="panel-heading panel-title-override">
-                    Progress
-                </h2>
-            </div>
-            <form 
-                id="goalForm"
-                class="goal-form-flex-override">
-                <div class="input-flex-container">
-                    <label>
-                        target for total hours
-                    </label>
-                    <input
-                        id="targetInput"
-                        type="number"
-                        class="contact-input input-width-full uniform-height"
-                        placeholder="e.g. 100"
-                        min="1"
-                        required
-                    >
-                </div>
-                <button
-                    id="goalSubmitBtn"
-                    class="btn-send btn-send-goal uniform-height">
-                    update goal
-                </button>
-            </form>
-            <label class="progress-bar-label">
-                progress bar
-            </label>
-            <div class="progress-bar-track">
-                <div 
-                    id="progressBarFill"
-                    class="progress-bar-fill-initial">
-                </div>
-            </div>
-        </div>
-        <!-- ACTIVITY LEDGER -->
-        <div 
-            id="ledgerSection"
-            class="contact-form-wrap panel-section-wrap ledger-section-hidden">
-            <div class="panel-header-block">
-                <h2 class="panel-heading panel-title-override">
-                    Service Spreadsheet
-                </h2>
-                <span class="eyebrow">
-                    log all of your activities :)
-                </span>
-            </div>
-            <form 
-                id="activitiesForm"
-                class="activities-logging-grid">
-                <div>
-                    <label>
-                        activity title
-                    </label>
-                    <input
-                        id="actName"
-                        class="contact-input uniform-height"
-                        placeholder="Beach Clean Up"
-                        required
-                    >
-                </div>
-                <div>
-                    <label>
-                        date
-                    </label>
-                    <input
-                        id="actStart"
-                        class="contact-input compact-date-input date-picker-narrow uniform-height"
-                        placeholder="mm/dd/yyyy"
-                        required
-                    >
-                </div>
-                <div>
-                    <label>
-                        in
-                    </label>
-                    <input
-                        id="timeIn"
-                        class="contact-input mini-time-box uniform-height"
-                        placeholder="12:00 pm"
-                        required
-                    >
-                </div>
-                <div>
-                    <label>
-                        out
-                    </label>
-                    <input
-                        id="timeOut"
-                        class="contact-input mini-time-box uniform-height"
-                        placeholder="6:00 pm"
-                        required
-                    >
-                </div>
-                <div>
-                    <label>
-                        type
-                    </label>
-                    <select
-                        id="actType"
-                        class="contact-input centered-select"
-                        required>
-                        <option value="" disabled selected>
-                            Select..
-                        </option>
-                        <option value="Time-Based">
-                            TIMED BASED ACTIVITY
-                        </option>
-                        <option value="Donation-Based">
-                            DONATION BASED ACTIVITY
-                        </option>
-                    </select>
-                </div>
-                <div>
-                    <label>
-                        hours
-                    </label>
-                    <input
-                        id="actHours"
-                        type="number"
-                        class="contact-input uniform-height"
-                        min="1"
-                        max="24"
-                        step="0.1"
-                        required
-                    >
-                </div>
-                <button
-                    id="ledgerSubmitBtn"
-                    class="btn-send btn-send-ledger">
-                    log Activity
-                </button>
-            </form>
-            <h4 class="spreadsheet-section-heading">
-                - .𖥔 SPREADSHEET 𖥔. -
-            </h4>
-            <ul 
-                id="ledgerList"
-                class="ledger-list-track">
-            </ul>
-        </div>
-    </main>
-    <footer class="site-footer footer-center">
-        <p class="footer-copy">
-            -ˏ` ✶ ´ˎ-
-        </p>
-    </footer>
-    <script src="stars.js"></script>
-    <script src="dashboard.js"></script>
+
+
+<!-- BACKGROUND -->
+
+<div id="starCanvas"></div>
+<div id="cloudCanvas"></div>
+
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+
+<div class="navbar-left">
+
+
+<button
+id="menuToggleBtn"
+class="filter-btn">
+
+☰
+
+</button>
+
+
+<a href="dashboard.html" class="navbar-brand">
+
+VOLUNTA
+
+</a>
+
+
+</div>
+
+
+
+<div class="navbar-action-wrap">
+
+
+<button
+id="themeToggleBtn"
+class="filter-btn">
+
+⏾
+
+</button>
+
+
+
+<a
+href="index.html"
+class="nav-link">
+
+log out
+
+</a>
+
+
+</div>
+
+
+</nav>
+
+
+
+
+
+<!-- ACCOUNT MENU -->
+
+
+<div
+id="accountMenu"
+class="account-menu">
+
+
+<button
+id="menuCloseBtn">
+
+✕
+
+</button>
+
+
+
+<h3>
+
+Account
+
+</h3>
+
+
+
+<button
+onclick="location.href='profile.html'">
+
+Account Profile
+
+</button>
+
+
+
+<button
+onclick="location.href='about.html'">
+
+About Volunta
+
+</button>
+
+
+
+<button
+onclick="location.href='contact.html'">
+
+Contact
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+
+<main class="dashboard-main">
+
+
+
+
+
+<!-- ==========================
+TOP STATUS AREA
+========================== -->
+
+
+<section class="dashboard-status-bar">
+
+
+
+<div class="status-box">
+
+
+<h3>
+
+Total Hours Completed
+
+</h3>
+
+
+
+<span id="totalHours">
+
+0
+
+</span>
+
+
+</div>
+
+
+
+
+
+<div class="status-box">
+
+
+<h3>
+
+Goal Progress
+
+</h3>
+
+
+<span id="progressPercent">
+
+0%
+
+</span>
+
+
+
+<div class="progress-bar-track">
+
+
+<div
+id="progressBarFill"
+class="progress-bar-fill-initial">
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="status-box">
+
+
+<h3>
+
+Update Goal
+
+</h3>
+
+
+
+<form
+id="goalForm">
+
+
+<input
+
+id="targetInput"
+
+type="number"
+
+class="contact-input"
+
+placeholder="ex: 100"
+
+min="1"
+
+required>
+
+
+<button
+class="btn-send">
+
+Save Goal
+
+</button>
+
+
+
+</form>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ==========================
+ACTIVITY SPREADSHEET
+========================== -->
+
+
+
+<section
+id="ledgerSection"
+class="contact-form-wrap panel-section-wrap">
+
+
+
+<div class="panel-header-block">
+
+
+<h2 class="panel-heading">
+
+Service Spreadsheet
+
+</h2>
+
+
+
+<span class="eyebrow">
+
+log all of your activities :)
+
+</span>
+
+
+</div>
+
+
+
+
+
+
+
+<form
+id="activitiesForm"
+class="activities-logging-grid">
+
+
+
+
+
+<div>
+
+<label>
+
+activity title
+
+</label>
+
+
+<input
+
+id="actName"
+
+class="contact-input uniform-height"
+
+placeholder="Beach Clean Up"
+
+required>
+
+</div>
+
+
+
+
+
+
+<div>
+
+<label>
+
+date
+
+</label>
+
+
+<input
+
+id="actStart"
+
+class="contact-input uniform-height"
+
+placeholder="mm/dd/yyyy"
+
+required>
+
+
+</div>
+
+
+
+
+
+
+
+<div>
+
+<label>
+
+in
+
+</label>
+
+
+<input
+
+id="timeIn"
+
+class="contact-input mini-time-box uniform-height"
+
+placeholder="12:00 pm"
+
+required>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div>
+
+<label>
+
+out
+
+</label>
+
+
+<input
+
+id="timeOut"
+
+class="contact-input mini-time-box uniform-height"
+
+placeholder="6:00 pm"
+
+required>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div>
+
+<label>
+
+type
+
+</label>
+
+
+<select
+
+id="actType"
+
+class="contact-input"
+
+required>
+
+
+<option value="" disabled selected>
+
+Select...
+
+</option>
+
+
+<option value="Time-Based">
+
+TIME BASED ACTIVITY
+
+</option>
+
+
+<option value="Donation-Based">
+
+DONATION BASED ACTIVITY
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div>
+
+<label>
+
+hours
+
+</label>
+
+
+<input
+
+id="actHours"
+
+type="number"
+
+class="contact-input uniform-height"
+
+min="0.1"
+
+step="0.1"
+
+required>
+
+
+</div>
+
+
+
+
+
+
+
+<button
+
+id="ledgerSubmitBtn"
+
+class="btn-send">
+
+Log Activity
+
+</button>
+
+
+
+</form>
+
+
+
+
+
+
+
+
+<h4 class="spreadsheet-section-heading">
+
+- .𖥔 SPREADSHEET 𖥔. -
+
+</h4>
+
+
+
+
+
+<ul
+
+id="ledgerList"
+
+class="ledger-list-track">
+
+
+</ul>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+</main>
+
+
+
+
+
+
+
+
+<footer class="site-footer footer-center">
+
+
+<p class="footer-copy">
+
+-ˏ` ✶ ´ˎ-
+
+</p>
+
+
+</footer>
+
+
+
+
+
+
+
+<script src="stars.js"></script>
+
+<script src="menu.js"></script>
+
+<script src="dashboard.js"></script>
+
+
+
 </body>
+
+
 </html>
