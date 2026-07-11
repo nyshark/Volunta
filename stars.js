@@ -1,207 +1,793 @@
-// Execute after HTML works so it doesn't explode
-document.addEventListener("DOMContentLoaded", function() {
+// ======================================
+// VOLUNTA STARS.JS
+// STAR / CLOUD / SUN / MOON SYSTEM
+// ======================================
 
-    // Generate star coordinates
-    const starCount = 80;
-    const trackingParticles = [];
 
-    // Glowy sunny effecty thingy
-    const sun = document.createElement("div");
-    sun.className = "sun-element";
-    document.body.appendChild(sun);
+document.addEventListener(
+"DOMContentLoaded",
+function(){
 
-    // Moon effect thing
-    const moon = document.createElement("div");
-    moon.className = "moon-element";
-    document.body.appendChild(moon);
 
-    // Shooting stars canvas
-    const canvas = document.createElement("canvas");
-    canvas.id = "shootingStarCanvas";
-    document.body.appendChild(canvas);
-    const ctx = canvas.getContext("2d");
 
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
+// ===============================
+// CREATE SUN
+// ===============================
 
-    for (let i = 0; i < starCount; i++) {
-        const star = document.createElement("div");
-        star.className = "star-div";
 
-        // Random positioning across view viewport
-        star.style.left = (Math.random() * window.innerWidth) + "px";
-        star.style.top = (Math.random() * window.innerHeight) + "px";
+const sun =
+document.createElement("div");
 
-        // Transparency to simulate twinkle
-        star.style.opacity = Math.random();
-        document.body.appendChild(star);
+sun.className =
+"sun-element";
 
-        // Geometric values
-        trackingParticles.push({
-            domNode: star
-        });
-    }
+document.body.appendChild(
+sun
+);
 
-    // Refactored to completely avoid writing direct .style dimensions inside JavaScript logic loops
-    function morphAtmosphereView() {
-        const isDayMode = document.body.classList.contains("day-mode");
 
-        for (let i = 0; i < trackingParticles.length; i++) {
-            let p = trackingParticles[i];
-            if (isDayMode) {
-                // Stars -> clouds handling handled safely through global CSS style handles
-                p.domNode.classList.add("star-day-morph");
-            } else {
-                // Clouds -> stars
-                p.domNode.classList.remove("star-day-morph");
-            }
-        }
-    }
 
-    // Run updates safely
-    setInterval(function() {
-        const isDayMode = document.body.classList.contains("day-mode");
-        for (let i = 0; i < trackingParticles.length; i++) {
-            if (isDayMode) {
-                // Clouds move slowly
-                trackingParticles[i].domNode.style.opacity = 0.2 + Math.random() * 0.4;
-            } else {
-                // Stars twinkle rapidly
-                trackingParticles[i].domNode.style.opacity = Math.random();
-            }
-        }
 
-        // Sun ray flicker
-        if (isDayMode) {
-            sun.style.transform = "scale(" + (0.96 + Math.random() * 0.08) + ")";
-            sun.style.opacity = 0.8 + Math.random() * 0.2;
-        }
-    }, 1200);
 
-    // Fun cursor click thing
-    window.addEventListener("click", function(event) {
-        // No sparkles if pressing navigation items
-        if (event.target.tagName === "BUTTON" ||
-            event.target.tagName === "A" ||
-            event.target.tagName === "SELECT") {
-            return;
-        }
+// ===============================
+// CREATE MOON
+// ===============================
 
-        const isDayModeActive = document.body.classList.contains("day-mode");
 
-        // Mini sparkle burst upon click
-        for (let i = 0; i < 3; i++) {
-            const clickStar = document.createElement("div");
+const moon =
+document.createElement("div");
 
-            clickStar.className = isDayModeActive ? "star-div click-sparkle-day" : "star-div click-sparkle-night";
+moon.className =
+"moon-element";
 
-            const scatterX = Math.random() * 20 - 10;
-            const scatterY = Math.random() * 24 - 12;
-            clickStar.style.left = (event.clientX + scatterX) + "px";
-            clickStar.style.top = (event.clientY + scatterY) + "px";
+document.body.appendChild(
+moon
+);
 
-            document.body.appendChild(clickStar);
 
-            // Prevent canvas bleeding
-            setTimeout(function() {
-                clickStar.remove();
-            }, 800);
-        }
-    });
 
-    // Shooting stars animation
-    let activeComet = null;
 
-    function spawnCometTrail() {
-        activeComet = {
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * (window.innerHeight / 2),
-            length: 50 + Math.random() * 40,
-            speed: 9 + Math.random() * 5,
-            dx: 1,
-            dy: 0.75
-        };
-    }
 
-    function animateShootingStarsLoop() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const isDayMode = document.body.classList.contains("day-mode");
 
-        if (!isDayMode) {
-            if (!activeComet && Math.random() < 0.004) {
-                spawnCometTrail();
-            }
+// ===============================
+// CLOUD LAYER
+// ===============================
 
-            if (activeComet) {
-                ctx.beginPath();
-                let gradient = ctx.createLinearGradient(
-                    activeComet.x, activeComet.y,
-                    activeComet.x - (activeComet.length * activeComet.dx),
-                    activeComet.y - (activeComet.length * activeComet.dy)
-                );
-                gradient.addColorStop(0, "rgba(200, 216, 255, 0.9)");
-                gradient.addColorStop(1, "rgba(200, 216, 255, 0)");
 
-                ctx.strokeStyle = gradient;
-                ctx.lineWidth = 1.5;
-                ctx.moveTo(activeComet.x, activeComet.y);
-                ctx.lineTo(
-                    activeComet.x - (activeComet.length * activeComet.dx),
-                    activeComet.y - (activeComet.length * activeComet.dy)
-                );
-                ctx.stroke();
+let cloudCanvas =
+document.getElementById(
+"cloudCanvas"
+);
 
-                activeComet.x += activeComet.speed * activeComet.dx;
-                activeComet.y += activeComet.speed * activeComet.dy;
 
-                if (activeComet.x > window.innerWidth || activeComet.y > window.innerHeight) {
-                    activeComet = null;
-                }
-            }
-        }
-        requestAnimationFrame(animateShootingStarsLoop);
-    }
-    animateShootingStarsLoop();
 
-    // Theme toggle execution
-    const themeBtn = document.querySelector("#themeToggleBtn");
-    const cloudCanvas = document.getElementById("cloudCanvas");
+if(!cloudCanvas){
 
-function updateThemeVisuals() {
 
-    const isDay = document.body.classList.contains("day-mode");
+cloudCanvas =
+document.createElement(
+"div"
+);
 
-    morphAtmosphereView();
 
-    if (cloudCanvas) {
-        cloudCanvas.style.display = isDay ? "block" : "none";
-    }
+cloudCanvas.id =
+"cloudCanvas";
 
-    if (themeBtn) {
-        themeBtn.innerHTML = isDay ? "𖤓" : "⏾";
-    }
+
+document.body.appendChild(
+cloudCanvas
+);
+
+
 }
 
-updateThemeVisuals();
-    
-    if (themeBtn) {
-        // Run once at start to set correct layout states
-        morphAtmosphereView();
 
-        themeBtn.addEventListener("click", function() {
-            document.body.classList.toggle("day-mode");
 
-            if (document.body.classList.contains("day-mode")) {
-                themeBtn.innerHTML = "𖤓";
-            } else {
-                themeBtn.innerHTML = "⏾";
-            }
 
-            morphAtmosphereView();
-        });
-    }
+
+
+
+// ===============================
+// SHOOTING STAR CANVAS
+// ===============================
+
+
+const canvas =
+document.createElement(
+"canvas"
+);
+
+
+canvas.id =
+"shootingStarCanvas";
+
+
+document.body.appendChild(
+canvas
+);
+
+
+
+const ctx =
+canvas.getContext(
+"2d"
+);
+
+
+
+
+
+function resizeCanvas(){
+
+
+canvas.width =
+window.innerWidth;
+
+
+canvas.height =
+window.innerHeight;
+
+
+}
+
+
+
+resizeCanvas();
+
+
+window.addEventListener(
+"resize",
+resizeCanvas
+);
+
+
+
+
+
+
+
+
+
+// ===============================
+// CREATE STARS
+// ===============================
+
+
+const stars = [];
+
+const starCount = 80;
+
+
+
+for(
+let i = 0;
+i < starCount;
+i++
+){
+
+
+const star =
+document.createElement(
+"div"
+);
+
+
+star.className =
+"star-div";
+
+
+
+star.style.left =
+Math.random()
+*
+window.innerWidth
++
+"px";
+
+
+
+star.style.top =
+Math.random()
+*
+window.innerHeight
++
+"px";
+
+
+
+star.style.opacity =
+Math.random();
+
+
+
+document.body.appendChild(
+star
+);
+
+
+
+stars.push(
+star
+);
+
+
+}
+
+
+
+
+
+
+
+
+// ===============================
+// UPDATE DAY/NIGHT VISUALS
+// ===============================
+
+
+
+function updateAtmosphere(){
+
+
+const isDay =
+document.body.classList.contains(
+"day-mode"
+);
+
+
+
+
+
+stars.forEach(
+function(star){
+
+
+if(isDay){
+
+
+star.classList.add(
+"star-day-morph"
+);
+
+
+}
+
+else{
+
+
+star.classList.remove(
+"star-day-morph"
+);
+
+
+}
+
+
+
+}
+);
+
+
+
+
+
+
+if(cloudCanvas){
+
+
+cloudCanvas.style.display =
+isDay
+?
+"block"
+:
+"none";
+
+
+}
+
+
+
+
+
+sun.style.display =
+isDay
+?
+"block"
+:
+"none";
+
+
+
+moon.style.display =
+isDay
+?
+"none"
+:
+"block";
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// TWINKLE / CLOUD MOVEMENT
+// ===============================
+
+
+setInterval(
+function(){
+
+
+const isDay =
+document.body.classList.contains(
+"day-mode"
+);
+
+
+
+
+stars.forEach(
+function(star){
+
+
+if(isDay){
+
+
+star.style.opacity =
+0.2 +
+Math.random()
+*
+0.3;
+
+
+}
+
+else{
+
+
+star.style.opacity =
+Math.random();
+
+
+}
+
+
+
+}
+);
+
+
+
+
+if(isDay){
+
+
+sun.style.transform =
+"scale(" +
+(
+0.96 +
+Math.random()
+*
+0.08
+)
++
+")";
+
+
+
+}
+
+
+},
+1200
+);
+
+
+
+
+
+
+
+
+
+// ===============================
+// CLICK SPARKLES
+// ===============================
+
+
+
+window.addEventListener(
+"click",
+function(event){
+
+
+
+if(
+event.target.tagName === "BUTTON" ||
+event.target.tagName === "A" ||
+event.target.tagName === "SELECT"
+){
+
+return;
+
+}
+
+
+
+const isDay =
+document.body.classList.contains(
+"day-mode"
+);
+
+
+
+
+for(
+let i = 0;
+i < 3;
+i++
+){
+
+
+
+const sparkle =
+document.createElement(
+"div"
+);
+
+
+
+sparkle.className =
+isDay
+?
+"star-div click-sparkle-day"
+:
+"star-div click-sparkle-night";
+
+
+
+
+sparkle.style.left =
+event.clientX +
+(
+Math.random()
+*
+20
+-
+10
+)
++
+"px";
+
+
+
+sparkle.style.top =
+event.clientY +
+(
+Math.random()
+*
+20
+-
+10
+)
++
+"px";
+
+
+
+
+document.body.appendChild(
+sparkle
+);
+
+
+
+
+setTimeout(
+function(){
+
+sparkle.remove();
+
+},
+800
+);
+
+
+
+}
+
+
+
+}
+);
+
+
+
+
+
+
+
+
+
+// ===============================
+// SHOOTING STARS
+// ===============================
+
+
+
+let comet = null;
+
+
+
+function spawnComet(){
+
+
+comet = {
+
+
+x:
+Math.random()
+*
+window.innerWidth,
+
+
+y:
+Math.random()
+*
+(window.innerHeight/2),
+
+
+speed:
+8 +
+Math.random()
+*
+5,
+
+
+length:
+60 +
+Math.random()
+*
+40
+
+
+};
+
+
+
+}
+
+
+
+
+
+
+
+function animateShootingStars(){
+
+
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+
+
+const isDay =
+document.body.classList.contains(
+"day-mode"
+);
+
+
+
+
+
+if(!isDay){
+
+
+
+if(
+!comet &&
+Math.random()
+<
+0.004
+){
+
+
+spawnComet();
+
+
+}
+
+
+
+
+if(comet){
+
+
+
+const gradient =
+ctx.createLinearGradient(
+comet.x,
+comet.y,
+comet.x-comet.length,
+comet.y-comet.length
+);
+
+
+
+gradient.addColorStop(
+0,
+"rgba(200,216,255,.9)"
+);
+
+
+
+gradient.addColorStop(
+1,
+"rgba(200,216,255,0)"
+);
+
+
+
+
+ctx.strokeStyle =
+gradient;
+
+
+
+ctx.lineWidth =
+2;
+
+
+
+ctx.beginPath();
+
+
+
+ctx.moveTo(
+comet.x,
+comet.y
+);
+
+
+
+ctx.lineTo(
+comet.x-comet.length,
+comet.y-comet.length
+);
+
+
+
+ctx.stroke();
+
+
+
+
+
+comet.x += comet.speed;
+
+
+comet.y += comet.speed;
+
+
+
+if(
+comet.x >
+window.innerWidth ||
+comet.y >
+window.innerHeight
+){
+
+
+comet = null;
+
+
+}
+
+
+
+}
+
+
+}
+
+
+
+
+
+requestAnimationFrame(
+animateShootingStars
+);
+
+
+}
+
+
+
+animateShootingStars();
+
+
+
+
+
+
+
+
+// ===============================
+// THEME BUTTON
+// ===============================
+
+
+
+const themeButton =
+document.getElementById(
+"themeToggleBtn"
+);
+
+
+
+
+
+if(themeButton){
+
+
+
+themeButton.addEventListener(
+"click",
+function(){
+
+
+
+document.body.classList.toggle(
+"day-mode"
+);
+
+
+
+updateAtmosphere();
+
+
+
+
+themeButton.innerHTML =
+document.body.classList.contains(
+"day-mode"
+)
+?
+"𖤓"
+:
+"⏾";
+
+
+
+}
+);
+
+
+
+}
+
+
+
+
+
+updateAtmosphere();
+
+
+
+
 });
