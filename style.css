@@ -694,6 +694,37 @@ body.day-mode .star-div {
   display: block !important;
 }
 
+
+/* =================================
+   SMOOTH SLIDE DOWN BANNER ANIMATION
+================================= */
+
+.auth-notice-banner-layout {
+
+    opacity: 0;
+
+    transform: translateY(-80px);
+
+    transition:
+        opacity .5s ease,
+        transform .5s cubic-bezier(.22,1,.36,1);
+
+    pointer-events: none;
+
+}
+
+
+
+.auth-notice-banner-layout.banner-slide-show {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+    pointer-events: auto;
+
+}
+
 .auth-notice-heading-layout {
   font-size: 1.1rem;
   margin-bottom: 0.15rem;
