@@ -1,164 +1,215 @@
 // ======================================
-// VOLUNTA BACKGROUND ANIMATION
-// stars.js
+// VOLUNTA STARS.JS
+// BACKGROUND STARS + DAY/NIGHT TOGGLE
 // ======================================
 
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function(){
 
+
+
+    // ==============================
+    // STAR CREATION
+    // ==============================
 
 
     const starCanvas =
         document.getElementById("starCanvas");
 
 
-    const cloudCanvas =
-        document.getElementById("cloudCanvas");
-
-
-
-    const themeBtn =
-        document.getElementById("themeToggleBtn");
-
-
-
-    // ===============================
-    // CREATE STAR FIELD
-    // ===============================
-
-
-    const starAmount = 90;
-
 
     let stars = [];
 
 
 
-    for (let i = 0; i < starAmount; i++) {
+    function createStars(){
 
 
-        const star =
-            document.createElement("div");
+        if(!starCanvas) return;
 
 
-        star.className =
-            "star-div";
+        for(let i = 0; i < 80; i++){
 
 
-
-        star.style.left =
-            Math.random() * 100 + "%";
-
-
-        star.style.top =
-            Math.random() * 100 + "%";
+            const star =
+                document.createElement("div");
 
 
+            star.className =
+                "star-div";
 
-        star.style.animationDelay =
-            Math.random() * 5 + "s";
+
+            const size =
+                Math.random() * 3 + 2;
 
 
 
-        starCanvas.appendChild(star);
+            star.style.width =
+                size + "px";
+
+
+            star.style.height =
+                size + "px";
 
 
 
-        stars.push(star);
+            star.style.left =
+                Math.random() * 100 + "%";
+
+
+
+            star.style.top =
+                Math.random() * 100 + "%";
+
+
+
+            star.style.opacity =
+                Math.random();
+
+
+
+            star.style.animation =
+                "twinkleStar " +
+                (2 + Math.random()*3)
+                + "s infinite alternate";
+
+
+
+            starCanvas.appendChild(star);
+
+
+            stars.push(star);
+
+
+        }
+
 
     }
 
 
 
+    createStars();
 
 
 
 
-    // ===============================
-    // CREATE CLOUDS
-    // ===============================
+
+    // ==============================
+    // STAR TWINKLE ANIMATION
+    // ==============================
 
 
-    const cloudAmount = 6;
+    const style =
+        document.createElement("style");
 
 
-    let clouds = [];
+    style.textContent = `
 
 
-
-    for(let i = 0; i < cloudAmount; i++){
-
+    @keyframes twinkleStar {
 
 
-        const cloud =
-            document.createElement("div");
+        from {
+
+            opacity:.2;
+            transform:scale(1);
+
+        }
 
 
+        to {
 
-        cloud.className =
-            "cloud-div";
+            opacity:1;
+            transform:scale(1.5);
 
+        }
 
-
-        cloud.style.top =
-            (10 + Math.random() * 50) + "%";
-
-
-
-        cloud.style.left =
-            (-30 + Math.random() * 80) + "%";
-
-
-
-        cloud.style.animationDelay =
-            Math.random() * 20 + "s";
-
-
-
-        cloudCanvas.appendChild(cloud);
-
-
-
-        clouds.push(cloud);
 
     }
 
 
+    `;
+
+
+    document.head.appendChild(style);
 
 
 
 
 
-    // ===============================
-    // SHOOTING STAR CANVAS
-    // ===============================
 
 
-    const canvas =
+    // ==============================
+    // MOON + SUN CREATION
+    // ==============================
+
+
+    const body =
+        document.body;
+
+
+
+    const moon =
+        document.createElement("div");
+
+
+    moon.className =
+        "moon-element";
+
+
+    body.appendChild(moon);
+
+
+
+
+    const sun =
+        document.createElement("div");
+
+
+    sun.className =
+        "sun-element";
+
+
+    body.appendChild(sun);
+
+
+
+
+
+
+
+
+    // ==============================
+    // SHOOTING STAR SYSTEM
+    // ==============================
+
+
+    const shootingCanvas =
         document.createElement("canvas");
 
 
-    canvas.id =
-        "shootingStars";
+    shootingCanvas.id =
+        "shootingStarCanvas";
 
 
-    document.body.appendChild(canvas);
-
+    document.body.appendChild(
+        shootingCanvas
+    );
 
 
     const ctx =
-        canvas.getContext("2d");
+        shootingCanvas.getContext("2d");
 
 
 
     function resizeCanvas(){
 
 
-        canvas.width =
+        shootingCanvas.width =
             window.innerWidth;
 
 
-        canvas.height =
+        shootingCanvas.height =
             window.innerHeight;
 
 
@@ -176,38 +227,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    let comet = null;
+    let shootingStars = [];
 
 
 
+    function spawnShootingStar(){
 
-    function createComet(){
+
+        if(body.classList.contains("day-mode"))
+            return;
 
 
-        comet = {
 
+        shootingStars.push({
 
             x:
-                Math.random() *
-                canvas.width,
-
+            Math.random()*window.innerWidth,
 
             y:
-                Math.random() *
-                (canvas.height / 3),
+            Math.random()*200,
 
-
+            length:
+            120,
 
             speed:
-                8,
+            8
 
-
-
-            size:
-                60
-
-
-        };
+        });
 
 
     }
@@ -216,222 +262,144 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-
-    function animateComets(){
+    function animateShootingStars(){
 
 
         ctx.clearRect(
             0,
             0,
-            canvas.width,
-            canvas.height
+            shootingCanvas.width,
+            shootingCanvas.height
         );
 
 
 
-        const dayMode =
-            document.body.classList.contains(
-                "day-mode"
-            );
-
-
-
-        if(!dayMode){
-
-
-
-            if(
-                comet === null &&
-                Math.random() < 0.006
-            ){
-
-                createComet();
-
-            }
-
-
-
-
-            if(comet){
-
-
-
-                let gradient =
-                    ctx.createLinearGradient(
-                        comet.x,
-                        comet.y,
-                        comet.x - comet.size,
-                        comet.y - comet.size
-                    );
-
-
-
-                gradient.addColorStop(
-                    0,
-                    "white"
-                );
-
-
-                gradient.addColorStop(
-                    1,
-                    "transparent"
-                );
-
-
-
-                ctx.strokeStyle =
-                    gradient;
-
-
-
-                ctx.lineWidth =
-                    2;
-
+        shootingStars.forEach(
+            (star,index)=>{
 
 
                 ctx.beginPath();
 
 
                 ctx.moveTo(
-                    comet.x,
-                    comet.y
+                    star.x,
+                    star.y
                 );
 
 
                 ctx.lineTo(
-                    comet.x - comet.size,
-                    comet.y - comet.size
+                    star.x-star.length,
+                    star.y+star.length
                 );
+
+
+
+                ctx.strokeStyle =
+                    "rgba(200,216,255,.7)";
+
+
+                ctx.lineWidth =
+                    2;
 
 
                 ctx.stroke();
 
 
 
-                comet.x += comet.speed;
+                star.x += star.speed;
 
-
-                comet.y += comet.speed;
+                star.y += star.speed;
 
 
 
                 if(
-                    comet.x >
-                    canvas.width + 100
+                    star.x >
+                    window.innerWidth+200
                 ){
 
-                    comet = null;
+                    shootingStars.splice(
+                        index,
+                        1
+                    );
 
                 }
 
-            }
 
-        }
+
+            }
+        );
 
 
 
         requestAnimationFrame(
-            animateComets
+            animateShootingStars
         );
 
-    }
-
-
-
-    animateComets();
-
-
-
-
-
-
-
-
-    // ===============================
-    // THEME SWITCHER
-    // ===============================
-
-
-
-    function updateTheme(){
-
-
-        const day =
-            document.body.classList.contains(
-                "day-mode"
-            );
-
-
-
-        if(day){
-
-
-
-            starCanvas.style.display =
-                "none";
-
-
-            cloudCanvas.style.display =
-                "block";
-
-
-
-            themeBtn.innerHTML =
-                "𖤓";
-
-
-
-        }
-
-        else {
-
-
-
-            starCanvas.style.display =
-                "block";
-
-
-            cloudCanvas.style.display =
-                "none";
-
-
-
-            themeBtn.innerHTML =
-                "⏾";
-
-
-        }
-
-
 
     }
 
 
 
-
-    updateTheme();
-
+    animateShootingStars();
 
 
 
-    if(themeBtn){
+    setInterval(
+        spawnShootingStar,
+        5000
+    );
 
 
-        themeBtn.addEventListener(
+
+
+
+
+
+
+
+    // ==============================
+    // THEME BUTTON
+    // ==============================
+
+
+    const themeButton =
+        document.getElementById(
+            "themeToggleBtn"
+        );
+
+
+
+    if(themeButton){
+
+
+        themeButton.addEventListener(
             "click",
             function(){
 
 
-
-                document.body.classList.toggle(
+                body.classList.toggle(
                     "day-mode"
                 );
 
 
 
-                updateTheme();
+                localStorage.setItem(
 
+                    "voluntaTheme",
+
+                    body.classList.contains(
+                        "day-mode"
+                    )
+                    ?
+                    "day"
+                    :
+                    "night"
+
+                );
+
+
+
+                updateStars();
 
 
             }
@@ -446,46 +414,135 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    // ===============================
-    // CLICK SPARKLES
-    // ===============================
 
+    // ==============================
+    // LOAD SAVED THEME
+    // ==============================
+
+
+    const savedTheme =
+        localStorage.getItem(
+            "voluntaTheme"
+        );
+
+
+
+    if(savedTheme === "day"){
+
+
+        body.classList.add(
+            "day-mode"
+        );
+
+
+    }
+
+
+
+
+
+
+
+    function updateStars(){
+
+
+        stars.forEach(
+            star=>{
+
+
+                if(
+                    body.classList.contains(
+                        "day-mode"
+                    )
+                ){
+
+                    star.classList.add(
+                        "star-day-morph"
+                    );
+
+
+                }
+
+                else {
+
+
+                    star.classList.remove(
+                        "star-day-morph"
+                    );
+
+
+                }
+
+
+            }
+        );
+
+
+    }
+
+
+
+    updateStars();
+
+
+
+
+
+
+
+
+
+    // ==============================
+    // CLICK SPARKLES
+    // ==============================
 
 
     document.addEventListener(
         "click",
-        function(e){
-
-
-
-            if(
-                e.target.tagName === "BUTTON" ||
-                e.target.tagName === "A"
-            ){
-
-                return;
-
-            }
-
-
+        function(event){
 
 
             const sparkle =
-                document.createElement("div");
-
+                document.createElement(
+                    "div"
+                );
 
 
             sparkle.className =
-                "click-sparkle";
+                body.classList.contains(
+                    "day-mode"
+                )
+                ?
+                "click-sparkle-day"
+                :
+                "click-sparkle-night";
+
+
+
+            sparkle.style.position =
+                "fixed";
 
 
 
             sparkle.style.left =
-                e.clientX + "px";
+                event.clientX + "px";
 
 
             sparkle.style.top =
-                e.clientY + "px";
+                event.clientY + "px";
+
+
+
+            sparkle.style.borderRadius =
+                "50%";
+
+
+            sparkle.style.pointerEvents =
+                "none";
+
+
+            sparkle.style.zIndex =
+                "300";
 
 
 
@@ -496,12 +553,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             setTimeout(
-                function(){
+                ()=>{
 
                     sparkle.remove();
 
                 },
-                800
+                600
             );
 
 
