@@ -69,16 +69,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function showBanner(title, message) {
 
-        if (!authNoticeBanner) return;
+    if (!authNoticeBanner) return;
 
-        authNoticeTitle.textContent = title;
-        authNoticeDesc.textContent = message;
 
-        authNoticeBanner.classList.add(
-            "auth-banner-show"
+    authNoticeTitle.textContent =
+        title;
+
+
+    authNoticeDesc.textContent =
+        message;
+
+
+    authNoticeBanner.classList.add(
+        "banner-slide-show"
+    );
+
+
+    setTimeout(function(){
+
+        authNoticeBanner.classList.remove(
+            "banner-slide-show"
         );
 
-    }
+    },5000);
+
+}
 
 
 
@@ -87,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!authNoticeBanner) return;
 
         authNoticeBanner.classList.remove(
-            "auth-banner-show"
+            "banner-slide-show"
         );
 
     }
