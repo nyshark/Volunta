@@ -1,6 +1,63 @@
 // ddashboard workspace
 document.addEventListener("DOMContentLoaded", function() {
+    // =============================
+    // ACCOUNT LOADING
+    // =============================
 
+    const currentUser =
+    JSON.parse(localStorage.getItem("voluntaCurrentUser"));
+
+
+    const userName =
+    document.getElementById("userName");
+
+    const userEmail =
+    document.getElementById("userEmail");
+
+    const studentID =
+    document.getElementById("studentID");
+
+    const userPicture =
+    document.getElementById("userPicture");
+
+
+    if(currentUser){
+
+
+        userName.textContent =
+        "Welcome " + currentUser.name;
+
+
+        if(currentUser.betaTester){
+
+            userEmail.textContent =
+            "BETA TESTER ACCOUNT";
+
+        }
+        else{
+
+            userEmail.textContent =
+            currentUser.email;
+
+        }
+
+
+        studentID.textContent =
+        "Student ID: " + currentUser.studentId;
+
+
+
+        if(currentUser.picture){
+
+            userPicture.src =
+            currentUser.picture;
+
+        }
+
+
+    }
+
+    
     // profile gate!!
     const currentUser = JSON.parse(localStorage.getItem("voluntaCurrentUser"));
 
@@ -309,4 +366,100 @@ document.addEventListener("DOMContentLoaded", function() {
             setTimeout(renderSpreadsheetList, 50);
         });
     }
+    // =============================
+// ACCOUNT MENU
+// =============================
+
+
+const menuToggleBtn =
+document.getElementById("menuToggleBtn");
+
+
+const accountMenu =
+document.getElementById("accountMenu");
+
+
+const menuCloseBtn =
+document.getElementById("menuCloseBtn");
+
+
+const detailsBox =
+document.getElementById("accountDetailsBox");
+
+
+
+if(menuToggleBtn){
+
+menuToggleBtn.onclick=function(){
+
+accountMenu.classList.toggle("menu-open");
+
+}
+
+}
+
+
+
+if(menuCloseBtn){
+
+menuCloseBtn.onclick=function(){
+
+accountMenu.classList.remove("menu-open");
+
+}
+
+}
+
+
+
+const detailsBtn =
+document.getElementById("detailsMenuBtn");
+
+
+
+if(detailsBtn){
+
+detailsBtn.onclick=function(){
+
+
+if(currentUser.betaTester){
+
+detailsBox.innerHTML =
+`
+<h4>Account Details</h4>
+
+<p>
+BETA TESTER ACCOUNT
+</p>
+
+<p>
+Student ID:
+${currentUser.studentId}
+</p>
+`;
+
+}
+else{
+
+detailsBox.innerHTML =
+`
+<h4>Account Details</h4>
+
+<p>
+Student Account
+</p>
+
+<p>
+Student ID:
+${currentUser.studentId}
+</p>
+`;
+
+}
+
+
+}
+
+
+}
 });
