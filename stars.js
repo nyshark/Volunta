@@ -1,516 +1,444 @@
 // ======================================
-// VOLUNTA STARS.JS
-// STAR / CLOUD / SUN / MOON SYSTEM
+// VOLUNTA BACKGROUND ANIMATION
+// stars.js
 // ======================================
 
 
-document.addEventListener(
-"DOMContentLoaded",
-function(){
+document.addEventListener("DOMContentLoaded", function () {
 
 
 
-// ===============================
-// CREATE SUN
-// ===============================
+    const starCanvas =
+        document.getElementById("starCanvas");
 
 
-const sun =
-document.createElement("div");
+    const cloudCanvas =
+        document.getElementById("cloudCanvas");
 
-sun.className =
-"sun-element";
 
-document.body.appendChild(
-sun
-);
 
+    const themeBtn =
+        document.getElementById("themeToggleBtn");
 
 
 
+    // ===============================
+    // CREATE STAR FIELD
+    // ===============================
 
-// ===============================
-// CREATE MOON
-// ===============================
 
+    const starAmount = 90;
 
-const moon =
-document.createElement("div");
 
-moon.className =
-"moon-element";
+    let stars = [];
 
-document.body.appendChild(
-moon
-);
 
 
+    for (let i = 0; i < starAmount; i++) {
 
 
+        const star =
+            document.createElement("div");
 
 
-// ===============================
-// CLOUD LAYER
-// ===============================
+        star.className =
+            "star-div";
 
 
-let cloudCanvas =
-document.getElementById(
-"cloudCanvas"
-);
 
+        star.style.left =
+            Math.random() * 100 + "%";
 
 
-if(!cloudCanvas){
+        star.style.top =
+            Math.random() * 100 + "%";
 
 
-cloudCanvas =
-document.createElement(
-"div"
-);
 
+        star.style.animationDelay =
+            Math.random() * 5 + "s";
 
-cloudCanvas.id =
-"cloudCanvas";
 
 
-document.body.appendChild(
-cloudCanvas
-);
+        starCanvas.appendChild(star);
 
 
-}
 
+        stars.push(star);
 
+    }
 
 
 
 
 
-// ===============================
-// SHOOTING STAR CANVAS
-// ===============================
 
 
-const canvas =
-document.createElement(
-"canvas"
-);
+    // ===============================
+    // CREATE CLOUDS
+    // ===============================
 
 
-canvas.id =
-"shootingStarCanvas";
+    const cloudAmount = 6;
 
 
-document.body.appendChild(
-canvas
-);
+    let clouds = [];
 
 
 
-const ctx =
-canvas.getContext(
-"2d"
-);
+    for(let i = 0; i < cloudAmount; i++){
 
 
 
+        const cloud =
+            document.createElement("div");
 
 
-function resizeCanvas(){
 
+        cloud.className =
+            "cloud-div";
 
-canvas.width =
-window.innerWidth;
 
 
-canvas.height =
-window.innerHeight;
+        cloud.style.top =
+            (10 + Math.random() * 50) + "%";
 
 
-}
 
+        cloud.style.left =
+            (-30 + Math.random() * 80) + "%";
 
 
-resizeCanvas();
 
+        cloud.style.animationDelay =
+            Math.random() * 20 + "s";
 
-window.addEventListener(
-"resize",
-resizeCanvas
-);
 
 
+        cloudCanvas.appendChild(cloud);
 
 
 
+        clouds.push(cloud);
 
+    }
 
 
 
-// ===============================
-// CREATE STARS
-// ===============================
 
 
-const stars = [];
 
-const starCount = 80;
 
+    // ===============================
+    // SHOOTING STAR CANVAS
+    // ===============================
 
 
-for(
-let i = 0;
-i < starCount;
-i++
-){
+    const canvas =
+        document.createElement("canvas");
 
 
-const star =
-document.createElement(
-"div"
-);
+    canvas.id =
+        "shootingStars";
 
 
-star.className =
-"star-div";
+    document.body.appendChild(canvas);
 
 
 
-star.style.left =
-Math.random()
-*
-window.innerWidth
-+
-"px";
+    const ctx =
+        canvas.getContext("2d");
 
 
 
-star.style.top =
-Math.random()
-*
-window.innerHeight
-+
-"px";
+    function resizeCanvas(){
 
 
+        canvas.width =
+            window.innerWidth;
 
-star.style.opacity =
-Math.random();
 
+        canvas.height =
+            window.innerHeight;
 
 
-document.body.appendChild(
-star
-);
+    }
 
 
 
-stars.push(
-star
-);
+    resizeCanvas();
 
 
-}
+    window.addEventListener(
+        "resize",
+        resizeCanvas
+    );
 
 
 
+    let comet = null;
 
 
 
 
+    function createComet(){
 
-// ===============================
-// UPDATE DAY/NIGHT VISUALS
-// ===============================
 
+        comet = {
 
 
-function updateAtmosphere(){
+            x:
+                Math.random() *
+                canvas.width,
 
 
-const isDay =
-document.body.classList.contains(
-"day-mode"
-);
+            y:
+                Math.random() *
+                (canvas.height / 3),
 
 
 
+            speed:
+                8,
 
 
-stars.forEach(
-function(star){
 
+            size:
+                60
 
-if(isDay){
 
+        };
 
-star.classList.add(
-"star-day-morph"
-);
 
+    }
 
-}
 
-else{
 
 
-star.classList.remove(
-"star-day-morph"
-);
 
 
-}
 
+    function animateComets(){
 
 
-}
-);
+        ctx.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
 
 
 
+        const dayMode =
+            document.body.classList.contains(
+                "day-mode"
+            );
 
 
 
-if(cloudCanvas){
+        if(!dayMode){
 
 
-cloudCanvas.style.display =
-isDay
-?
-"block"
-:
-"none";
 
+            if(
+                comet === null &&
+                Math.random() < 0.006
+            ){
 
-}
+                createComet();
 
+            }
 
 
 
 
-sun.style.display =
-isDay
-?
-"block"
-:
-"none";
+            if(comet){
 
 
 
-moon.style.display =
-isDay
-?
-"none"
-:
-"block";
+                let gradient =
+                    ctx.createLinearGradient(
+                        comet.x,
+                        comet.y,
+                        comet.x - comet.size,
+                        comet.y - comet.size
+                    );
 
 
 
+                gradient.addColorStop(
+                    0,
+                    "white"
+                );
 
 
-}
+                gradient.addColorStop(
+                    1,
+                    "transparent"
+                );
 
 
 
+                ctx.strokeStyle =
+                    gradient;
 
 
 
+                ctx.lineWidth =
+                    2;
 
 
 
-// ===============================
-// TWINKLE / CLOUD MOVEMENT
-// ===============================
+                ctx.beginPath();
 
 
-setInterval(
-function(){
+                ctx.moveTo(
+                    comet.x,
+                    comet.y
+                );
 
 
-const isDay =
-document.body.classList.contains(
-"day-mode"
-);
+                ctx.lineTo(
+                    comet.x - comet.size,
+                    comet.y - comet.size
+                );
 
 
+                ctx.stroke();
 
 
-stars.forEach(
-function(star){
 
+                comet.x += comet.speed;
 
-if(isDay){
 
+                comet.y += comet.speed;
 
-star.style.opacity =
-0.2 +
-Math.random()
-*
-0.3;
 
 
-}
+                if(
+                    comet.x >
+                    canvas.width + 100
+                ){
 
-else{
+                    comet = null;
 
+                }
 
-star.style.opacity =
-Math.random();
+            }
 
+        }
 
-}
 
 
+        requestAnimationFrame(
+            animateComets
+        );
 
-}
-);
+    }
 
 
 
+    animateComets();
 
-if(isDay){
 
 
-sun.style.transform =
-"scale(" +
-(
-0.96 +
-Math.random()
-*
-0.08
-)
-+
-")";
 
 
 
-}
 
 
-},
-1200
-);
+    // ===============================
+    // THEME SWITCHER
+    // ===============================
 
 
 
+    function updateTheme(){
 
 
+        const day =
+            document.body.classList.contains(
+                "day-mode"
+            );
 
 
 
+        if(day){
 
-// ===============================
-// CLICK SPARKLES
-// ===============================
 
 
+            starCanvas.style.display =
+                "none";
 
-window.addEventListener(
-"click",
-function(event){
 
+            cloudCanvas.style.display =
+                "block";
 
 
-if(
-event.target.tagName === "BUTTON" ||
-event.target.tagName === "A" ||
-event.target.tagName === "SELECT"
-){
 
-return;
+            themeBtn.innerHTML =
+                "𖤓";
 
-}
 
 
+        }
 
-const isDay =
-document.body.classList.contains(
-"day-mode"
-);
+        else {
 
 
 
+            starCanvas.style.display =
+                "block";
 
-for(
-let i = 0;
-i < 3;
-i++
-){
 
+            cloudCanvas.style.display =
+                "none";
 
 
-const sparkle =
-document.createElement(
-"div"
-);
 
+            themeBtn.innerHTML =
+                "⏾";
 
 
-sparkle.className =
-isDay
-?
-"star-div click-sparkle-day"
-:
-"star-div click-sparkle-night";
+        }
 
 
 
+    }
 
-sparkle.style.left =
-event.clientX +
-(
-Math.random()
-*
-20
--
-10
-)
-+
-"px";
 
 
 
-sparkle.style.top =
-event.clientY +
-(
-Math.random()
-*
-20
--
-10
-)
-+
-"px";
+    updateTheme();
 
 
 
 
-document.body.appendChild(
-sparkle
-);
+    if(themeBtn){
 
 
+        themeBtn.addEventListener(
+            "click",
+            function(){
 
 
-setTimeout(
-function(){
 
-sparkle.remove();
+                document.body.classList.toggle(
+                    "day-mode"
+                );
 
-},
-800
-);
 
 
+                updateTheme();
 
-}
 
 
+            }
+        );
 
-}
-);
 
+    }
 
 
 
@@ -518,275 +446,68 @@ sparkle.remove();
 
 
 
+    // ===============================
+    // CLICK SPARKLES
+    // ===============================
 
-// ===============================
-// SHOOTING STARS
-// ===============================
 
 
+    document.addEventListener(
+        "click",
+        function(e){
 
-let comet = null;
 
 
+            if(
+                e.target.tagName === "BUTTON" ||
+                e.target.tagName === "A"
+            ){
 
-function spawnComet(){
+                return;
 
+            }
 
-comet = {
 
 
-x:
-Math.random()
-*
-window.innerWidth,
 
+            const sparkle =
+                document.createElement("div");
 
-y:
-Math.random()
-*
-(window.innerHeight/2),
 
 
-speed:
-8 +
-Math.random()
-*
-5,
+            sparkle.className =
+                "click-sparkle";
 
 
-length:
-60 +
-Math.random()
-*
-40
 
+            sparkle.style.left =
+                e.clientX + "px";
 
-};
 
+            sparkle.style.top =
+                e.clientY + "px";
 
 
-}
 
+            document.body.appendChild(
+                sparkle
+            );
 
 
 
+            setTimeout(
+                function(){
 
+                    sparkle.remove();
 
+                },
+                800
+            );
 
-function animateShootingStars(){
 
 
-
-ctx.clearRect(
-0,
-0,
-canvas.width,
-canvas.height
-);
-
-
-
-const isDay =
-document.body.classList.contains(
-"day-mode"
-);
-
-
-
-
-
-if(!isDay){
-
-
-
-if(
-!comet &&
-Math.random()
-<
-0.004
-){
-
-
-spawnComet();
-
-
-}
-
-
-
-
-if(comet){
-
-
-
-const gradient =
-ctx.createLinearGradient(
-comet.x,
-comet.y,
-comet.x-comet.length,
-comet.y-comet.length
-);
-
-
-
-gradient.addColorStop(
-0,
-"rgba(200,216,255,.9)"
-);
-
-
-
-gradient.addColorStop(
-1,
-"rgba(200,216,255,0)"
-);
-
-
-
-
-ctx.strokeStyle =
-gradient;
-
-
-
-ctx.lineWidth =
-2;
-
-
-
-ctx.beginPath();
-
-
-
-ctx.moveTo(
-comet.x,
-comet.y
-);
-
-
-
-ctx.lineTo(
-comet.x-comet.length,
-comet.y-comet.length
-);
-
-
-
-ctx.stroke();
-
-
-
-
-
-comet.x += comet.speed;
-
-
-comet.y += comet.speed;
-
-
-
-if(
-comet.x >
-window.innerWidth ||
-comet.y >
-window.innerHeight
-){
-
-
-comet = null;
-
-
-}
-
-
-
-}
-
-
-}
-
-
-
-
-
-requestAnimationFrame(
-animateShootingStars
-);
-
-
-}
-
-
-
-animateShootingStars();
-
-
-
-
-
-
-
-
-// ===============================
-// THEME BUTTON
-// ===============================
-
-
-
-const themeButton =
-document.getElementById(
-"themeToggleBtn"
-);
-
-
-
-
-
-if(themeButton){
-
-
-
-themeButton.addEventListener(
-"click",
-function(){
-
-
-
-document.body.classList.toggle(
-"day-mode"
-);
-
-
-
-updateAtmosphere();
-
-
-
-
-themeButton.innerHTML =
-document.body.classList.contains(
-"day-mode"
-)
-?
-"𖤓"
-:
-"⏾";
-
-
-
-}
-);
-
-
-
-}
-
-
-
-
-
-updateAtmosphere();
-
+        }
+    );
 
 
 
