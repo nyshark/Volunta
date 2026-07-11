@@ -2201,3 +2201,126 @@ LOGIN OPTION CARDS (FIXED)
     pointer-events: auto;
 
 }
+/* ==================================
+ DASHBOARD TOP STATUS BAR
+================================== */
+
+
+.dashboard-main {
+
+    width:100%;
+    max-width:1200px;
+    margin:auto;
+
+    padding:2rem;
+
+}
+
+
+
+.dashboard-status-bar {
+
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:1.5rem;
+
+    margin-bottom:2rem;
+
+
+}
+
+
+
+.status-box {
+
+
+    background:
+    rgba(255,255,255,.08);
+
+
+    backdrop-filter:
+    blur(15px);
+
+
+    border:
+    1px solid var(--border);
+
+
+    border-radius:20px;
+
+
+    padding:1.5rem;
+
+
+    text-align:center;
+
+
+}
+
+
+
+.status-box h3 {
+
+
+    font-size:.9rem;
+
+    color:var(--muted);
+
+    text-transform:uppercase;
+
+}
+
+
+
+.status-box span {
+
+
+    display:block;
+
+    font-size:2.8rem;
+
+    color:var(--accent);
+
+
+}
+
+
+
+.goal-box form {
+
+
+    display:flex;
+
+    gap:.75rem;
+
+}
+
+
+
+.goal-box input {
+
+
+    width:100%;
+
+
+}
+
+
+
+
+@media(max-width:800px){
+
+
+.dashboard-status-bar{
+
+grid-template-columns:1fr;
+
+
+}
+
+
+}
