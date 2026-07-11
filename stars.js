@@ -288,7 +288,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
                 ctx.lineTo(
-                    star.x + star.length,
+                    star.x - star.length,
                     star.y - star.length
                 );
 
