@@ -17,12 +17,68 @@
 
     <!--nav bar-->
     <nav class="navbar">
-        <a href="dashboard.html" class="navbar-brand">DASHBOARD</a>
-        <div class="navbar-action-wrap">
-            <button id="themeToggleBtn" class="filter-btn theme-toggle-override">⏾</button>
-            <a href="index.html" class="nav-link logout-nav-override">log out</a>
-        </div>
-    </nav>
+
+    <button id="menuToggleBtn" class="filter-btn menu-button">
+        ☰
+    </button>
+
+    <a href="dashboard.html" class="navbar-brand">
+        VOLUNTA
+    </a>
+
+
+    <div class="navbar-action-wrap">
+
+        <button id="themeToggleBtn" class="filter-btn theme-toggle-override">
+            ⏾
+        </button>
+
+        <a href="index.html" class="nav-link logout-nav-override">
+            log out
+        </a>
+
+    </div>
+
+</nav>
+
+
+<div id="accountMenu" class="account-menu">
+
+    <button class="menu-close" id="menuCloseBtn">
+        ✕
+    </button>
+
+
+    <h3>
+        Account
+    </h3>
+
+
+    <button class="menu-option" id="profileMenuBtn">
+        Account Profile
+    </button>
+
+
+    <button class="menu-option" id="detailsMenuBtn">
+        Account Details
+    </button>
+
+
+    <button class="menu-option">
+        About Volunta
+    </button>
+
+
+    <button class="menu-option">
+        Contact
+    </button>
+
+
+    <div id="accountDetailsBox" class="account-details-box">
+
+    </div>
+
+</div>
 
     <!--panel layout stuff-->
     <main class="main-container dashboard-container">
@@ -31,29 +87,35 @@
 
     <section class="contact-form-wrap profile-card">
 
-        <img
-            id="userPicture"
-            class="profile-picture"
-            src="twinkle.png"
-            alt="profile">
 
-        <div class="profile-info">
+<img
+id="userPicture"
+class="profile-picture"
+src="twinkle.png"
+alt="profile">
 
-            <h1 id="userName">
-                Welcome ✦
-            </h1>
 
-            <p id="userEmail">
-                loading account...
-            </p>
+<div class="profile-info">
 
-            <p id="studentID">
-                Student ID: loading...
-            </p>
+<h1 id="userName">
+Welcome
+</h1>
 
-        </div>
 
-    </section>
+<p id="userEmail">
+loading account...
+</p>
+
+
+<p id="studentID">
+Student ID: loading...
+</p>
+
+
+</div>
+
+
+</section>
 
         <!--achievement popupsss-->
         <div id="achievementBanner" class="auth-notice-banner-layout">
