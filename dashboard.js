@@ -1,465 +1,1200 @@
-// ddashboard workspace
-document.addEventListener("DOMContentLoaded", function() {
-    // =============================
+// ======================================
+// VOLUNTA DASHBOARD.JS
+// PART 1/2
+// ======================================
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+
+    // ===============================
     // ACCOUNT LOADING
-    // =============================
+    // ===============================
+
 
     const currentUser =
-    JSON.parse(localStorage.getItem("voluntaCurrentUser"));
+        JSON.parse(localStorage.getItem("voluntaCurrentUser"));
+
 
 
     const userName =
-    document.getElementById("userName");
+        document.getElementById("userName");
+
 
     const userEmail =
-    document.getElementById("userEmail");
+        document.getElementById("userEmail");
+
 
     const studentID =
-    document.getElementById("studentID");
+        document.getElementById("studentID");
+
 
     const userPicture =
-    document.getElementById("userPicture");
+        document.getElementById("userPicture");
 
 
-    if(currentUser){
+
+
+    if (currentUser) {
 
 
         userName.textContent =
-        "Welcome " + currentUser.name;
+            "Welcome " + (currentUser.name || "✦");
 
 
-        if(currentUser.betaTester){
+
+        if (currentUser.betaTester) {
+
 
             userEmail.textContent =
-            "BETA TESTER ACCOUNT";
+                "BETA TESTER ACCOUNT";
+
+
+            studentID.textContent =
+                "";
 
         }
-        else{
+
+
+        else {
+
 
             userEmail.textContent =
-            currentUser.email;
+                currentUser.email || "loading account...";
+
+
+            studentID.textContent =
+                "Student ID: " +
+                (currentUser.studentId || "loading...");
+
 
         }
+
+
+
+
+
+        if (currentUser.picture) {
+
+
+            userPicture.src =
+                currentUser.picture;
+
+
+        }
+
+
+
+    }
+
+    else {
+
+
+        userName.textContent =
+            "Welcome ✦";
+
+
+        userEmail.textContent =
+            "loading account...";
 
 
         studentID.textContent =
-        "Student ID: " + currentUser.studentId;
-
-
-
-        if(currentUser.picture){
-
-            userPicture.src =
-            currentUser.picture;
-
-        }
+            "Student ID: loading...";
 
 
     }
 
-    
-    // profile gate!!
-    const currentUser = JSON.parse(localStorage.getItem("voluntaCurrentUser"));
 
-    // fall back to generic account (in case someone goes straight to dashboard.html...)
-    const userEmail = currentUser ? currentUser.email : "default_user";
-    const activitiesKey = "voluntaActivities_" + userEmail;
-    const goalKey = "voluntaGoal_" + userEmail;
 
-    // navigating tab things
-    const tabGoal = document.querySelector("#tabGoal");
-    const tabLedger = document.querySelector("#tabLedger");
-    const goalSection = document.querySelector("#goalSection");
-    const ledgerSection = document.querySelector("#ledgerSection");
 
-    // tag selectorss
-    const goalForm = document.querySelector("#goalForm");
-    const activitiesForm = document.querySelector("#activitiesForm");
-    const ledgerList = document.querySelector("#ledgerList");
 
-    // selectors for dates
-    const actStartInput = document.querySelector("#actStart");
-    const timeInInput = document.querySelector("#timeIn");
-    const timeOutInput = document.querySelector("#timeOut");
 
-    // just visual text lol
-    const totalHoursDisplay = document.querySelector("#totalHours");
-    const progressPercentDisplay = document.querySelector("#progressPercent");
-    const goalStatusDesc = document.querySelector("#goalStatusDesc");
-    const progressBarFill = document.querySelector("#progressBarFill");
 
-    // seelctors for badges/achievments
-    const achievementBanner = document.querySelector("#achievementBanner");
-    const achievementTitle = document.querySelector("#achievementTitle");
-    const achievementDesc = document.querySelector("#achievementDesc");
+    // ===============================
+    // ACCOUNT MENU
+    // ===============================
 
-    // trackinggg
-    let activitiesMemory = JSON.parse(localStorage.getItem(activitiesKey)) || [];
-    let runningTotalHours = 0.0;
-    let studentTargetGoal = parseInt(localStorage.getItem(goalKey)) || 0;
 
-    // blocks repeateda lerts
+    const menuToggleBtn =
+        document.getElementById("menuToggleBtn");
+
+
+    const accountMenu =
+        document.getElementById("accountMenu");
+
+
+    const menuCloseBtn =
+        document.getElementById("menuCloseBtn");
+
+
+    const detailsMenuBtn =
+        document.getElementById("detailsMenuBtn");
+
+
+    const detailsBox =
+        document.getElementById("accountDetailsBox");
+
+
+
+
+
+    if (menuToggleBtn && accountMenu) {
+
+
+        menuToggleBtn.addEventListener(
+            "click",
+            function () {
+
+
+                accountMenu.classList.toggle(
+                    "menu-open"
+                );
+
+
+            }
+        );
+
+
+    }
+
+
+
+
+
+    if (menuCloseBtn && accountMenu) {
+
+
+        menuCloseBtn.addEventListener(
+            "click",
+            function () {
+
+
+                accountMenu.classList.remove(
+                    "menu-open"
+                );
+
+
+            }
+        );
+
+
+    }
+
+
+
+
+
+
+    if (detailsMenuBtn && detailsBox) {
+
+
+        detailsMenuBtn.addEventListener(
+            "click",
+            function () {
+
+
+
+                if (
+                    currentUser &&
+                    currentUser.betaTester
+                ) {
+
+
+
+                    detailsBox.innerHTML = `
+
+                    <h4>
+                    Account Details
+                    </h4>
+
+                    <p>
+                    BETA TESTER ACCOUNT
+                    </p>
+
+                    <p>
+                    Student ID:
+                    ${currentUser.studentId || "N/A"}
+                    </p>
+
+                    `;
+
+
+                }
+
+
+                else {
+
+
+
+                    detailsBox.innerHTML = `
+
+                    <h4>
+                    Account Details
+                    </h4>
+
+                    <p>
+                    Student Account
+                    </p>
+
+                    <p>
+                    Student ID:
+                    ${currentUser?.studentId || "N/A"}
+                    </p>
+
+                    `;
+
+
+                }
+
+
+
+            }
+        );
+
+
+    }
+
+
+
+
+
+
+
+
+
+    // ===============================
+    // USER STORAGE KEYS
+    // ===============================
+
+
+
+    const accountEmail =
+        currentUser ?
+        currentUser.email :
+        "default_user";
+
+
+
+    const activitiesKey =
+        "voluntaActivities_" + accountEmail;
+
+
+
+    const goalKey =
+        "voluntaGoal_" + accountEmail;
+
+
+
+
+
+
+
+
+
+    // ===============================
+    // ELEMENT REFERENCES
+    // ===============================
+
+
+
+    const tabGoal =
+        document.getElementById("tabGoal");
+
+
+    const tabLedger =
+        document.getElementById("tabLedger");
+
+
+    const goalSection =
+        document.getElementById("goalSection");
+
+
+    const ledgerSection =
+        document.getElementById("ledgerSection");
+
+
+
+    const goalForm =
+        document.getElementById("goalForm");
+
+
+    const activitiesForm =
+        document.getElementById("activitiesForm");
+
+
+
+    const ledgerList =
+        document.getElementById("ledgerList");
+
+
+
+
+    const totalHoursDisplay =
+        document.getElementById("totalHours");
+
+
+    const progressPercentDisplay =
+        document.getElementById("progressPercent");
+
+
+    const goalStatusDesc =
+        document.getElementById("goalStatusDesc");
+
+
+    const progressBarFill =
+        document.getElementById("progressBarFill");
+
+
+
+
+    const achievementBanner =
+        document.getElementById("achievementBanner");
+
+
+    const achievementTitle =
+        document.getElementById("achievementTitle");
+
+
+    const achievementDesc =
+        document.getElementById("achievementDesc");
+
+
+
+
+
+    const actStartInput =
+        document.getElementById("actStart");
+
+
+    const timeInInput =
+        document.getElementById("timeIn");
+
+
+    const timeOutInput =
+        document.getElementById("timeOut");
+
+
+
+
+
+
+
+    // ===============================
+    // DATA
+    // ===============================
+
+
+
+    let activitiesMemory =
+        JSON.parse(
+            localStorage.getItem(activitiesKey)
+        ) || [];
+
+
+
+    let studentTargetGoal =
+        parseInt(
+            localStorage.getItem(goalKey)
+        ) || 0;
+
+
+
+    let runningTotalHours = 0;
+
+
+
+
+
     let unlockedMilestones = {
-        quarter: false,
-        half: false,
-        threeQuarters: false,
-        complete: false
+
+        quarter:false,
+
+        half:false,
+
+        threeQuarters:false,
+
+        complete:false
+
     };
 
-    // to handle dates and times nicer
-    function setupDynamicInput(element, alternateType) {
-        if (!element) return;
-        element.addEventListener("focus", function() {
-            this.type = alternateType;
-        });
-        element.addEventListener("blur", function() {
-            if (!this.value) this.type = "text";
-        });
+        // ===============================
+    // INPUT TYPE HELPERS
+    // ===============================
+
+
+    function setupDynamicInput(element, type){
+
+
+        if(!element) return;
+
+
+
+        element.addEventListener(
+            "focus",
+            function(){
+
+                this.type = type;
+
+            }
+        );
+
+
+
+        element.addEventListener(
+            "blur",
+            function(){
+
+                if(!this.value){
+
+                    this.type = "text";
+
+                }
+
+            }
+        );
+
+
     }
-    setupDynamicInput(actStartInput, "date");
-    setupDynamicInput(timeInInput, "time");
-    setupDynamicInput(timeOutInput, "time");
 
-    // calc items instantly
-    recalculateTotalHoursAndProgress();
-    renderSpreadsheetList();
 
-    // switch panels
-    tabGoal.addEventListener("click", function() {
-        tabGoal.classList.add("active");
-        tabLedger.classList.remove("active");
-        goalSection.classList.remove("ledger-section-hidden");
-        ledgerSection.classList.add("ledger-section-hidden");
-    });
 
-    tabLedger.addEventListener("click", function() {
-        tabLedger.classList.add("active");
-        tabGoal.classList.remove("active");
-        goalSection.classList.add("ledger-section-hidden");
-        ledgerSection.classList.remove("ledger-section-hidden");
-    });
+    setupDynamicInput(
+        actStartInput,
+        "date"
+    );
 
-    // total log calcs
-    function recalculateTotalHoursAndProgress() {
-        let currentSum = 0.0;
 
-        for (let i = 0; i < activitiesMemory.length; i++) {
-            currentSum += activitiesMemory[i].hours;
+    setupDynamicInput(
+        timeInInput,
+        "time"
+    );
+
+
+    setupDynamicInput(
+        timeOutInput,
+        "time"
+    );
+
+
+
+
+
+
+
+    // ===============================
+    // TAB SWITCHING
+    // ===============================
+
+
+
+    if(tabGoal){
+
+
+        tabGoal.addEventListener(
+            "click",
+            function(){
+
+
+                tabGoal.classList.add(
+                    "active"
+                );
+
+
+                tabLedger.classList.remove(
+                    "active"
+                );
+
+
+                goalSection.classList.remove(
+                    "ledger-section-hidden"
+                );
+
+
+                ledgerSection.classList.add(
+                    "ledger-section-hidden"
+                );
+
+
+            }
+        );
+
+
+    }
+
+
+
+
+    if(tabLedger){
+
+
+        tabLedger.addEventListener(
+            "click",
+            function(){
+
+
+                tabLedger.classList.add(
+                    "active"
+                );
+
+
+                tabGoal.classList.remove(
+                    "active"
+                );
+
+
+                ledgerSection.classList.remove(
+                    "ledger-section-hidden"
+                );
+
+
+                goalSection.classList.add(
+                    "ledger-section-hidden"
+                );
+
+
+            }
+        );
+
+
+    }
+
+
+
+
+
+
+
+
+    // ===============================
+    // ACHIEVEMENTS
+    // ===============================
+
+
+
+    function showAchievement(title, desc){
+
+
+        if(!achievementBanner)
+            return;
+
+
+
+        achievementTitle.textContent =
+            title;
+
+
+        achievementDesc.textContent =
+            desc;
+
+
+
+        achievementBanner.classList.add(
+            "auth-banner-show"
+        );
+
+
+
+    }
+
+
+
+
+
+
+
+
+    // ===============================
+    // PROGRESS CALCULATIONS
+    // ===============================
+
+
+
+    function updateProgress(){
+
+
+        let total = 0;
+
+
+
+        activitiesMemory.forEach(
+            function(activity){
+
+
+                total += Number(
+                    activity.hours
+                );
+
+
+            }
+        );
+
+
+
+        runningTotalHours = total;
+
+
+
+        if(totalHoursDisplay){
+
+            totalHoursDisplay.textContent =
+                total.toFixed(1);
+
         }
 
-        runningTotalHours = currentSum;
-        totalHoursDisplay.textContent = runningTotalHours.toFixed(1);
 
-        if (studentTargetGoal > 0) {
-            let percentage = Math.round((runningTotalHours / studentTargetGoal) * 100);
 
-            let barWidth = percentage;
-            if (barWidth > 100) {
-                barWidth = 100;
+
+
+        if(studentTargetGoal > 0){
+
+
+            let percent =
+                Math.round(
+                    (total / studentTargetGoal)
+                    *100
+                );
+
+
+
+            if(progressPercentDisplay){
+
+                progressPercentDisplay.textContent =
+                    percent + "%";
+
             }
 
-            progressPercentDisplay.textContent = percentage + "%";
-            progressBarFill.style.width = barWidth + "%";
-            goalStatusDesc.textContent = "Target Goal Progress (" + studentTargetGoal + " hrs set)";
 
-            if (percentage >= 100 && !unlockedMilestones.complete) {
-                unlockedMilestones.complete = true;
-                triggerAchievementAlert("YOU DID IT!! - CONGRATULATIONS", "ദ്ദി ( ｡•̀ ,< ) ✩‧₊");
-            } else if (percentage >= 75 && percentage < 100 && !unlockedMilestones.threeQuarters) {
-                unlockedMilestones.threeQuarters = true;
-                triggerAchievementAlert("75% completed - you can do it!", "(  ˶°ㅁ°) !!");
-            } else if (percentage >= 50 && percentage < 75 && !unlockedMilestones.half) {
-                unlockedMilestones.half = true;
-                triggerAchievementAlert("50% done - woah!", "( ๑•᎑•๑ )!");
-            } else if (percentage >= 25 && percentage < 50 && !unlockedMilestones.quarter) {
-                unlockedMilestones.quarter = true;
-                triggerAchievementAlert("25% of the way there - keep making progress!", "( ˶ˆᗜˆ˵ )");
+
+            if(progressBarFill){
+
+                progressBarFill.style.width =
+                    Math.min(percent,100)
+                    +"%";
+
             }
 
-            if (percentage < 25) unlockedMilestones.quarter = false;
-            if (percentage < 50) unlockedMilestones.half = false;
-            if (percentage < 75) unlockedMilestones.threeQuarters = false;
-            if (percentage < 100) unlockedMilestones.complete = false;
 
-            if (percentage === 0) {
-                achievementBanner.classList.remove("auth-banner-show");
+
+            if(goalStatusDesc){
+
+                goalStatusDesc.textContent =
+                "Target Goal Progress ("+
+                studentTargetGoal+
+                " hrs set)";
+
             }
 
-        } else {
-            progressPercentDisplay.textContent = "0%";
-            progressBarFill.style.width = "0%";
-            goalStatusDesc.textContent = "Target Goal: None Set";
-            achievementBanner.classList.remove("auth-banner-show");
+
+
+
+
+            if(
+                percent >= 100 &&
+                !unlockedMilestones.complete
+            ){
+
+                unlockedMilestones.complete=true;
+
+
+                showAchievement(
+                    "YOU DID IT!!",
+                    "ദ്ദി(｡•̀ᴗ-)✧ Goal completed!"
+                );
+
+            }
+
+
+
+            else if(
+                percent >=75 &&
+                !unlockedMilestones.threeQuarters
+            ){
+
+
+                unlockedMilestones.threeQuarters=true;
+
+
+                showAchievement(
+                    "75% COMPLETED",
+                    "Almost there!! Keep going ✦"
+                );
+
+
+            }
+
+
+
+            else if(
+                percent >=50 &&
+                !unlockedMilestones.half
+            ){
+
+
+                unlockedMilestones.half=true;
+
+
+                showAchievement(
+                    "50% COMPLETE",
+                    "Halfway finished!!"
+                );
+
+
+            }
+
+
+
+            else if(
+                percent >=25 &&
+                !unlockedMilestones.quarter
+            ){
+
+
+                unlockedMilestones.quarter=true;
+
+
+                showAchievement(
+                    "25% COMPLETE",
+                    "Great start!!"
+                );
+
+
+            }
+
+
         }
-    }
 
-    function triggerAchievementAlert(titleText, descText) {
-        const oldX = achievementBanner.querySelector(".close-x-btn");
-        if (oldX) {
-            oldX.remove();
+
+        else{
+
+
+            if(progressPercentDisplay)
+                progressPercentDisplay.textContent="0%";
+
+
+            if(progressBarFill)
+                progressBarFill.style.width="0%";
+
+
+            if(goalStatusDesc)
+                goalStatusDesc.textContent=
+                "Target Goal: none";
+
+
         }
 
-        achievementTitle.textContent = titleText;
-        achievementDesc.textContent = descText;
 
-        const closeX = document.createElement("button");
-        closeX.className = "close-x-btn alert-dismiss-action";
-        closeX.textContent = "✕";
 
-        closeX.addEventListener("click", function() {
-            achievementBanner.classList.remove("auth-banner-show");
-        });
-
-        achievementBanner.appendChild(closeX);
-        achievementBanner.classList.add("auth-banner-show");
-    }
-    // dates
-    function formatToMonthDay(dateString) {
-        if (!dateString) return "";
-        const parts = dateString.split("-");
-        if (parts.length < 3) return dateString;
-        const month = parseInt(parts[1], 10);
-        const day = parseInt(parts[2], 10);
-        return `${month}/${day}`;
     }
 
-    // formatting stuff
-    function convertToTwelveHour(timeStr) {
-        if (!timeStr) return "";
-        const parts = timeStr.split(":");
-        if (parts.length < 2) return timeStr;
-        let hours = parseInt(parts[0], 10);
-        const minutes = parts[1];
-        hours = hours % 12;
-        if (hours === 0) hours = 12;
-        return `${hours}:${minutes}`;
+
+
+
+
+
+
+
+    // ===============================
+    // RENDER ACTIVITY LIST
+    // ===============================
+
+
+
+    function renderActivities(){
+
+
+        if(!ledgerList)
+            return;
+
+
+
+        ledgerList.innerHTML="";
+
+
+
+        activitiesMemory.forEach(
+            function(activity,index){
+
+
+
+                const li =
+                document.createElement("li");
+
+
+
+                li.className =
+                "ledger-item-row-layout";
+
+
+
+                li.innerHTML = `
+
+                <div>
+
+                <strong>
+                ${activity.name}
+                </strong>
+
+                <span class="ledger-type-style">
+
+                ${activity.type}
+
+                </span>
+
+                </div>
+
+
+                <div class="ledger-right-wrap">
+
+                <span>
+                ${activity.hours} Hours
+                </span>
+
+
+                <button class="filter-btn">
+
+                Delete
+
+                </button>
+
+
+                </div>
+
+                `;
+
+
+
+                li.querySelector("button")
+                .addEventListener(
+                    "click",
+                    function(){
+
+
+                        activitiesMemory.splice(
+                            index,
+                            1
+                        );
+
+
+                        localStorage.setItem(
+                            activitiesKey,
+                            JSON.stringify(
+                                activitiesMemory
+                            )
+                        );
+
+
+                        renderActivities();
+
+                        updateProgress();
+
+
+                    }
+                );
+
+
+
+                ledgerList.appendChild(li);
+
+
+
+            }
+        );
+
+
     }
 
-    function renderSpreadsheetList() {
-        ledgerList.textContent = "";
 
-        // diff emoticons per mode
-        const isDayThemeActive = document.body.classList.contains("day-mode");
-        const activeEmoticonBadge = isDayThemeActive ? " - - ⁺₊⋆ ☀︎ ⋆⁺₊ - - " : "݁ - - 𖥔 ˚｡˚☽˚｡⋆𖥔 - - ";
 
-        for (let i = 0; i < activitiesMemory.length; i++) {
-            const currentItem = activitiesMemory[i];
-            const rowLi = document.createElement("li");
-            rowLi.className = "ledger-item-row-layout";
 
-            // formatting stuff again
-            const dateAndTimelineBadge = "(" + currentItem.formattedDate + ") " + activeEmoticonBadge + " (" + currentItem.rangeString + ")";
 
-            // rendering elements
-            const infoDiv = document.createElement("div");
-            const strongTitle = document.createElement("strong");
-            strongTitle.textContent = currentItem.name;
 
-            const badgeSpan = document.createElement("span");
-            badgeSpan.className = "ledger-badge-style";
-            badgeSpan.textContent = dateAndTimelineBadge;
+    // ===============================
+    // GOAL FORM
+    // ===============================
 
-            const typeSpan = document.createElement("span");
-            typeSpan.className = "ledger-type-style";
-            typeSpan.textContent = "[" + currentItem.type + "]";
 
-            infoDiv.appendChild(strongTitle);
-            infoDiv.appendChild(badgeSpan);
-            infoDiv.appendChild(typeSpan);
 
-            const rightDiv = document.createElement("div");
-            rightDiv.className = "ledger-right-wrap";
+    if(goalForm){
 
-            const hoursSpan = document.createElement("span");
-            hoursSpan.textContent = currentItem.hours + " Hours";
 
-            const deleteBtn = document.createElement("button");
-            deleteBtn.textContent = "Delete";
-            deleteBtn.className = "filter-btn ledger-delete-override";
+        goalForm.addEventListener(
+            "submit",
+            function(event){
 
-            const targetIndex = i;
 
-            deleteBtn.addEventListener("click", function() {
-                activitiesMemory.splice(targetIndex, 1);
-                localStorage.setItem(activitiesKey, JSON.stringify(activitiesMemory));
-                renderSpreadsheetList();
-                recalculateTotalHoursAndProgress();
-            });
+                event.preventDefault();
 
-            rightDiv.appendChild(hoursSpan);
-            rightDiv.appendChild(deleteBtn);
-            rowLi.appendChild(infoDiv);
-            rowLi.appendChild(rightDiv);
-            ledgerList.appendChild(rowLi);
-        }
+
+
+                const value =
+                Number(
+                    document.getElementById(
+                        "targetInput"
+                    ).value
+                );
+
+
+
+                if(value > 0){
+
+
+                    studentTargetGoal=value;
+
+
+
+                    localStorage.setItem(
+                        goalKey,
+                        value
+                    );
+
+
+
+                    updateProgress();
+
+
+                    goalForm.reset();
+
+
+                }
+
+
+
+            }
+        );
+
+
     }
-    
-    //goals/notifs
-    goalForm.addEventListener("submit", function(event) {
-        event.preventDefault();
+        // ===============================
+    // ACTIVITY FORM
+    // ===============================
 
-        const goalInputValue = parseInt(document.querySelector("#targetInput").value, 10);
 
-        if (goalInputValue > 0) {
-            studentTargetGoal = goalInputValue;
-            localStorage.setItem(goalKey, studentTargetGoal);
+    if(activitiesForm){
 
-            unlockedMilestones = { quarter: false, half: false, threeQuarters: false, complete: false };
-            achievementBanner.classList.remove("auth-banner-show");
 
-            recalculateTotalHoursAndProgress();
+        activitiesForm.addEventListener(
+            "submit",
+            function(event){
 
-            const submitButton = document.querySelector("#goalSubmitBtn");
-            submitButton.textContent = "Done! ✓⃝";
 
-            setTimeout(function() {
-                submitButton.textContent = "Update Goal";
-            }, 2000);
+                event.preventDefault();
 
-            goalForm.reset();
-        }
-    });
 
-    activitiesForm.addEventListener("submit", function(event) {
-        event.preventDefault();
 
-        const nameInputVal = document.querySelector("#actName").value;
-        const typeSelectVal = document.querySelector("#actType").value;
-        const hoursInputVal = parseFloat(document.querySelector("#actHours").value);
+                const activityName =
+                document.getElementById(
+                    "actName"
+                ).value;
 
-        const startTimeString = convertToTwelveHour(timeInInput.value);
-        const endTimeString = convertToTwelveHour(timeOutInput.value);
-        const compiledRange = startTimeString + "-" + endTimeString;
 
-        const loggedActivity = {
-            name: nameInputVal,
-            formattedDate: formatToMonthDay(actStartInput.value),
-            rangeString: compiledRange,
-            type: typeSelectVal,
-            hours: hoursInputVal
-        };
 
-        activitiesMemory.unshift(loggedActivity);
-        localStorage.setItem(activitiesKey, JSON.stringify(activitiesMemory));
+                const activityType =
+                document.getElementById(
+                    "actType"
+                ).value;
 
-        renderSpreadsheetList();
-        recalculateTotalHoursAndProgress();
 
-        activitiesForm.reset();
 
-        actStartInput.type = "text";
-        timeInInput.type = "text";
-        timeOutInput.type = "text";
-    });
+                const activityHours =
+                Number(
+                    document.getElementById(
+                        "actHours"
+                    ).value
+                );
 
-    // can u tell ive already lost my mind
-    const logoutBtn = document.querySelector("a[href='index.html']");
-    if (logoutBtn) {
-        logoutBtn.addEventListener("click", function() {
-            localStorage.removeItem("voluntaCurrentUser");
-        });
+
+
+                const activityDate =
+                actStartInput.value;
+
+
+
+                const startTime =
+                timeInInput.value;
+
+
+
+                const endTime =
+                timeOutInput.value;
+
+
+
+
+                const newActivity = {
+
+
+                    name:
+                    activityName,
+
+
+                    type:
+                    activityType,
+
+
+                    hours:
+                    activityHours,
+
+
+                    date:
+                    activityDate,
+
+
+                    time:
+                    startTime +
+                    " - " +
+                    endTime
+
+
+                };
+
+
+
+                activitiesMemory.unshift(
+                    newActivity
+                );
+
+
+
+                localStorage.setItem(
+                    activitiesKey,
+                    JSON.stringify(
+                        activitiesMemory
+                    )
+                );
+
+
+
+                renderActivities();
+
+
+                updateProgress();
+
+
+
+                activitiesForm.reset();
+
+
+
+                if(actStartInput)
+                    actStartInput.type="text";
+
+
+                if(timeInInput)
+                    timeInInput.type="text";
+
+
+                if(timeOutInput)
+                    timeOutInput.type="text";
+
+
+            }
+        );
+
+
     }
 
-    const themeBtn = document.querySelector("#themeToggleBtn");
-    if (themeBtn) {
-        themeBtn.addEventListener("click", function() {
-            setTimeout(renderSpreadsheetList, 50);
-        });
+
+
+
+
+
+
+
+    // ===============================
+    // INITIAL LOAD
+    // ===============================
+
+
+    renderActivities();
+
+    updateProgress();
+
+
+
+
+
+
+
+
+    // ===============================
+    // LOGOUT
+    // ===============================
+
+
+    const logoutButton =
+    document.querySelector(
+        ".logout-nav-override"
+    );
+
+
+
+    if(logoutButton){
+
+
+        logoutButton.addEventListener(
+            "click",
+            function(){
+
+
+                localStorage.removeItem(
+                    "voluntaCurrentUser"
+                );
+
+
+            }
+        );
+
+
     }
-    // =============================
-// ACCOUNT MENU
-// =============================
-
-
-const menuToggleBtn =
-document.getElementById("menuToggleBtn");
-
-
-const accountMenu =
-document.getElementById("accountMenu");
-
-
-const menuCloseBtn =
-document.getElementById("menuCloseBtn");
-
-
-const detailsBox =
-document.getElementById("accountDetailsBox");
 
 
 
-if(menuToggleBtn){
-
-menuToggleBtn.onclick=function(){
-
-accountMenu.classList.toggle("menu-open");
-
-}
-
-}
 
 
 
-if(menuCloseBtn){
-
-menuCloseBtn.onclick=function(){
-
-accountMenu.classList.remove("menu-open");
-
-}
-
-}
 
 
+    // ===============================
+    // THEME REFRESH
+    // ===============================
 
-const detailsBtn =
-document.getElementById("detailsMenuBtn");
+
+    const themeButton =
+    document.getElementById(
+        "themeToggleBtn"
+    );
 
 
 
-if(detailsBtn){
-
-detailsBtn.onclick=function(){
+    if(themeButton){
 
 
-if(currentUser.betaTester){
-
-detailsBox.innerHTML =
-`
-<h4>Account Details</h4>
-
-<p>
-BETA TESTER ACCOUNT
-</p>
-
-<p>
-Student ID:
-${currentUser.studentId}
-</p>
-`;
-
-}
-else{
-
-detailsBox.innerHTML =
-`
-<h4>Account Details</h4>
-
-<p>
-Student Account
-</p>
-
-<p>
-Student ID:
-${currentUser.studentId}
-</p>
-`;
-
-}
+        themeButton.addEventListener(
+            "click",
+            function(){
 
 
-}
+                setTimeout(
+                    function(){
 
 
-}
+                        renderActivities();
+
+
+                    },
+                    100
+                );
+
+
+            }
+        );
+
+
+    }
+
+
+
+
+
 });
