@@ -291,6 +291,20 @@ main {
   z-index: 10;
 }
 
+.panel-section-wrap {
+
+width:100%;
+
+margin:0 auto;
+
+}
+
+.contact-form-wrap {
+
+width:100%;
+
+}
+
 label {
   display: block;
   font-size: 0.8rem;
@@ -2141,16 +2155,27 @@ LOGIN OPTION CARDS (FIXED)
 
 }
 .account-menu {
-    position: fixed;
-    top: 70px;
-    left: 20px;
-    width: 260px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.5rem;
-    z-index: 500;
-    display: none;
+
+position:fixed;
+
+top:80px;
+
+left:20px;
+
+width:300px;
+
+background:var(--surface);
+
+border:1px solid var(--border);
+
+border-radius:15px;
+
+padding:25px;
+
+z-index:500;
+
+display:none;
+
 }
 
 .account-menu.menu-open {
@@ -2209,10 +2234,14 @@ LOGIN OPTION CARDS (FIXED)
 .dashboard-main {
 
     width:100%;
+
     max-width:1200px;
-    margin:auto;
+
+    margin:0 auto;
 
     padding:2rem;
+
+    display:block;
 
 }
 
@@ -2220,20 +2249,16 @@ LOGIN OPTION CARDS (FIXED)
 
 .dashboard-status-bar {
 
+display:grid;
 
-    display:grid;
+grid-template-columns:
+repeat(3,minmax(0,1fr));
 
-    grid-template-columns:
-    repeat(3,1fr);
+gap:1.5rem;
 
-    gap:1.5rem;
-
-    margin-bottom:2rem;
-
+width:100%;
 
 }
-
-
 
 .status-box {
 
@@ -2324,3 +2349,100 @@ grid-template-columns:1fr;
 
 
 }
+
+#menuCloseBtn {
+
+    position:absolute !important;
+
+    top:15px !important;
+
+    right:15px !important;
+
+    width:auto !important;
+
+    min-width:0 !important;
+
+    margin:0 !important;
+
+    padding:5px 10px !important;
+
+    border:none !important;
+
+    background:none !important;
+
+    font-size:1.2rem;
+
+    color:var(--accent);
+
+}
+
+/* ===========================
+   DASHBOARD OVERRIDE FINAL
+=========================== */
+
+
+main:has(.dashboard-main){
+
+    display:block;
+
+    padding:2rem 1rem;
+
+}
+
+
+
+.dashboard-main{
+
+    width:100%;
+
+    max-width:1200px;
+
+    margin:0 auto;
+
+}
+
+
+
+.dashboard-status-bar{
+
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:1.5rem;
+
+}
+
+
+
+.status-box{
+
+    width:100%;
+
+}
+
+
+
+#ledgerSection{
+
+    width:100%;
+
+    margin:0 auto;
+
+}
+
+
+
+@media(max-width:800px){
+
+    .dashboard-status-bar{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
