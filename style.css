@@ -1671,7 +1671,7 @@ to {
 .welcome-screen.fade-out {
 
     opacity:0;
-    visibility:hidden;
+    display:none;
     pointer-events:none;
 }
 
@@ -2165,4 +2165,39 @@ LOGIN OPTION CARDS (FIXED)
     border:1px solid var(--border);
     color:var(--text);
     cursor:pointer;
+}
+/* ===================================
+   FINAL GLOBAL BANNER FIX
+=================================== */
+
+.auth-notice-banner-layout {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(-80px);
+
+    pointer-events: none;
+
+    transition:
+        opacity .5s ease,
+        transform .5s cubic-bezier(.22,1,.36,1),
+        visibility .5s ease;
+
+}
+
+
+/* when javascript adds this class */
+
+.auth-notice-banner-layout.banner-slide-show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+
+    pointer-events: auto;
+
 }
