@@ -237,6 +237,51 @@ document.getElementById(
 "activitiesForm"
 );
 
+// ==========================
+// AUTO DATE + TIME FILL
+// ==========================
+
+function fillCurrentDateTime(){
+
+    const now = new Date();
+
+
+    const month =
+    String(now.getMonth()+1).padStart(2,"0");
+
+    const day =
+    String(now.getDate()).padStart(2,"0");
+
+    const year =
+    now.getFullYear();
+
+
+    document.getElementById("actStart").value =
+    `${month}/${day}/${year}`;
+
+
+
+    let hours = now.getHours();
+
+    let minutes =
+    String(now.getMinutes()).padStart(2,"0");
+
+
+    let ampm =
+    hours >= 12 ? "pm" : "am";
+
+
+    hours =
+    hours % 12 || 12;
+
+
+    document.getElementById("timeIn").value =
+    `${hours}:${minutes} ${ampm}`;
+
+}
+
+
+fillCurrentDateTime();
 
 const ledgerList =
 document.getElementById(
@@ -326,6 +371,23 @@ e.preventDefault();
 
 let activity={
 
+const now = new Date();
+
+let hours = now.getHours();
+
+let minutes =
+String(now.getMinutes()).padStart(2,"0");
+
+let ampm =
+hours >= 12 ? "pm" : "am";
+
+hours =
+hours % 12 || 12;
+
+
+document.getElementById("timeOut").value =
+`${hours}:${minutes} ${ampm}`;
+    
 name:
 document.getElementById("actName").value,
 
