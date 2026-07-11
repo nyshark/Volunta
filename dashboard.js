@@ -249,90 +249,69 @@ document.getElementById(
 
 function renderActivities(){
 
-
-ledgerList.innerHTML="";
-
+    ledgerList.innerHTML="";
 
 
-user.activities =
-
-user.activities || [];
+    user.activities = user.activities || [];
 
 
+    user.activities.forEach(
 
-user.activities.forEach(
-
-(activity,index)=>{
-
+    (activity,index)=>{
 
 
-let li =
-document.createElement(
-"li"
-);
+        let li =
+        document.createElement("li");
 
 
-
-li.className =
-"ledger-item-row-layout";
-
+        li.className =
+        "ledger-table-row";
 
 
-li.innerHTML = `
-
-<div>
-
-<strong>
-${activity.name}
-</strong>
-
-<br>
-
-<span class="ledger-type-style">
-
-${activity.type}
-
-</span>
-
-</div>
+        li.innerHTML = `
 
 
-<div>
-
-${activity.hours} hrs
-
-
-<button
-
-class="filter-btn"
-
-data-index="${index}">
-
-X
-
-</button>
+        <div>
+            ${activity.name}
+        </div>
 
 
-</div>
+        <div>
+            ${activity.date}
+        </div>
 
-`;
+
+        <div>
+            ${activity.type}
+        </div>
 
 
+        <div>
+            ${Number(activity.hours).toFixed(1)}
+        </div>
 
-ledgerList.appendChild(li);
 
+        <button
+
+        class="ledger-delete-btn"
+
+        data-index="${index}">
+
+        X
+
+        </button>
+
+
+        `;
+
+
+        ledgerList.appendChild(li);
+
+
+    });
 
 
 }
-
-);
-
-
-
-}
-
-
-
 
 activityForm.addEventListener(
 
@@ -347,42 +326,38 @@ e.preventDefault();
 
 let activity={
 
-
 name:
-document.getElementById(
-"actName"
-).value,
-
+document.getElementById("actName").value,
 
 date:
-document.getElementById(
-"actStart"
-).value,
+document.getElementById("actStart").value,
 
+timeIn:
+document.getElementById("timeIn").value,
+
+timeOut:
+document.getElementById("timeOut").value,
 
 type:
-document.getElementById(
-"actType"
-).value,
-
+document.getElementById("actType").value,
 
 hours:
 Number(
-document.getElementById(
-"actHours"
-).value
+document.getElementById("actHours").value
 )
-
 
 };
 
 
 
 
+user.activities = user.activities || [];
+
 user.activities.push(activity);
 
 
 
+user.hours = Number(user.hours) || 0;
 user.hours += activity.hours;
 
 
@@ -435,7 +410,8 @@ user.activities[index];
 
 
 
-user.hours -= removed.hours;
+user.hours -= Number(removed.hours);
+user.hours = Math.max(user.hours,0);
 
 
 
