@@ -112,24 +112,48 @@ body {
 
 /* clouds.webp file thing */
 #cloudCanvas {
-  position: fixed;
-  top: 0;
-  left: -5%;
-  width: 110%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-  display: none; /* so its hidden at night lol */
 
-  background-image:
-    url("clouds.webp"), url("clouds.webp"), url("clouds.webp"), url("clouds.webp"), url("clouds.webp");
-  background-repeat: no-repeat;
+    position: fixed;
 
-  background-position: 75% 15%, 85% 48%, 12% 55%, 60% 82%, 28% 88%;
-  background-size: 160px auto, 220px auto, 140px auto, 190px auto, 175px auto;
+    top: 0;
+    left: -10%;
 
-  /* cloud animation (w help of Gemini (sigh)) */
-  animation: driftCloudsAnimation 10s ease-in-out infinite alternate;
+    width: 120%;
+    height: 100%;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+    display: none;
+
+    opacity: .85;
+
+    background-image:
+        url("clouds.webp"),
+        url("clouds.webp"),
+        url("clouds.webp"),
+        url("clouds.webp"),
+        url("clouds.webp");
+
+    background-repeat:no-repeat;
+
+    background-size:
+        220px auto,
+        170px auto,
+        260px auto,
+        180px auto,
+        240px auto;
+
+    background-position:
+        5% 18%,
+        30% 52%,
+        70% 12%,
+        88% 42%,
+        55% 78%;
+
+    animation:
+        driftCloudsAnimation 18s ease-in-out infinite alternate;
 }
 
 @keyframes driftCloudsAnimation {
