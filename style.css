@@ -687,11 +687,27 @@ body.day-mode .star-div {
   background: rgba(123, 159, 255, 0.05);
   position: relative;
   margin-bottom: 1.5rem;
-  display: none;
+  visibility: hidden ;
 }
+.auth-notice-banner-layout {
 
-.auth-banner-show {
-  display: block !important;
+    opacity: 0;
+
+    transform: translateY(-80px);
+
+    transition:
+        opacity .5s ease,
+        transform .5s cubic-bezier(.22,1,.36,1);
+
+}
+.banner-slide-show {
+
+    visibility: visible;
+
+    opacity: 1;
+
+    transform: translateY(0);
+
 }
 
 
