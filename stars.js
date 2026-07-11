@@ -169,6 +169,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Theme toggle execution
     const themeBtn = document.querySelector("#themeToggleBtn");
+    const cloudCanvas = document.getElementById("cloudCanvas");
+
+function updateThemeVisuals() {
+
+    const isDay = document.body.classList.contains("day-mode");
+
+    morphAtmosphereView();
+
+    if (cloudCanvas) {
+        cloudCanvas.style.display = isDay ? "block" : "none";
+    }
+
+    if (themeBtn) {
+        themeBtn.innerHTML = isDay ? "𖤓" : "⏾";
+    }
+}
+
+updateThemeVisuals();
+    
     if (themeBtn) {
         // Run once at start to set correct layout states
         morphAtmosphereView();
