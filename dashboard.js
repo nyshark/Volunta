@@ -315,39 +315,25 @@ function renderActivities(){
 
         li.innerHTML = `
 
+<div>${activity.name}</div>
 
-        <div>
-            ${activity.name}
-        </div>
+<div>${activity.date}</div>
 
+<div>${activity.timeIn}</div>
 
-        <div>
-            ${activity.date}
-        </div>
+<div>${activity.timeOut}</div>
 
+<div>${activity.type}</div>
 
-        <div>
-            ${activity.type}
-        </div>
+<div>${Number(activity.hours).toFixed(1)}</div>
 
+<button
+class="ledger-delete-btn"
+data-index="${index}">
+✕
+</button>
 
-        <div>
-            ${Number(activity.hours).toFixed(1)}
-        </div>
-
-
-        <button
-
-        class="ledger-delete-btn"
-
-        data-index="${index}">
-
-        X
-
-        </button>
-
-
-        `;
+`;
 
 
         ledgerList.appendChild(li);
@@ -369,8 +355,16 @@ e.preventDefault();
 
 
 
-let activity={
+activityForm.addEventListener(
 
+"submit",
+
+(e)=>{
+
+e.preventDefault();
+
+
+// current time for Time Out
 const now = new Date();
 
 let hours = now.getHours();
@@ -384,10 +378,13 @@ hours >= 12 ? "pm" : "am";
 hours =
 hours % 12 || 12;
 
-
 document.getElementById("timeOut").value =
 `${hours}:${minutes} ${ampm}`;
-    
+
+
+// create activity
+let activity={
+
 name:
 document.getElementById("actName").value,
 
@@ -409,6 +406,28 @@ document.getElementById("actHours").value
 )
 
 };
+
+
+user.activities = user.activities || [];
+
+user.activities.push(activity);
+
+user.hours = Number(user.hours) || 0;
+user.hours += activity.hours;
+
+saveUser();
+
+activityForm.reset();
+
+fillCurrentDateTime();
+
+renderActivities();
+
+updateDashboard();
+
+}
+
+);
 
 
 
