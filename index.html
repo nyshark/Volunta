@@ -9,12 +9,12 @@
 </head>
 <body>
 
-<!-- BACKGROUND -->
+<!--bg-->
 
 <div id="starCanvas"></div>
 <div id="cloudCanvas"></div>
 
-<!-- NAVBAR -->
+<!--navbar-->
 
 <nav class="navbar">
     <a href="index.html" class="navbar-brand">
@@ -27,12 +27,10 @@
             id="themeToggleBtn"
             class="filter-btn theme-toggle-override">
             ⏾
-
         </button>
 
         <span class="mood-status">
             get back to grinding bro
-
         </span>
 
     </div>
@@ -41,9 +39,7 @@
 
 <main>
     
-<!-- =========================
-WELCOME INTRO
-========================= -->
+<!--welcome into-->
 
 <section 
     id="welcomeIntro" 
@@ -53,25 +49,19 @@ WELCOME INTRO
 
         <h1 class="welcome-title">
             Welcome!!
-
         </h1>
         
         <div class="welcome-gif-placeholder">
-            <!--PLACEHOLDER IMG-->
+            <!--placeholder img-->
             <img
                 src="twinkle.png"
                 alt="welcome animation">
-
+            
         </div>
-
     </div>
 
 </section>
-
-<!-- =========================
-ROLE SELECTION
-========================= -->
-    
+<!--choosing role-->    
 <section 
     id="roleSelection" 
     class="welcome-screen hidden-screen"
@@ -81,18 +71,17 @@ ROLE SELECTION
 
         <h1 class="welcome-title">
            ✦ Select your role ✦
-
         </h1>
         
         <div class="role-card-container">
 
-            <!-- STUDENT -->
+            <!--student-->
             
             <button
                 id="studentRoleBtn"
                 class="role-card">
 
-                <!--PLACEHOLDER IMG-->
+                <!--placeholder img-->
                 <img
                     src="twinkle.png" 
                     class="role-placeholder-img"
@@ -100,21 +89,18 @@ ROLE SELECTION
 
                 <h3>
                     STUDENT
-
                 </h3>
                 
                 <span class="role-tag beta-tag">
                     BETA
-                    
                 </span>
                 
             </button>
-
-            <!-- SERVICE ORGANIZER -->
+            <!--service organizer (WILL WORK ON SOON)-->
             <button
                 id="organizerRoleBtn"
                 class="role-card">
-                <!--PLACEHOLDER IMG-->
+                <!--placeholder img-->
                 <img
                     src="twinkle.png"
                     class="role-placeholder-img"
@@ -122,26 +108,18 @@ ROLE SELECTION
 
                 <h3>
                     SERVICE ORGANIZER
-
                 </h3>
 
                 <span class="role-tag not-started-tag">
                     UNDER MAINTENANCE
-
                 </span>
-
             </button>
 
         </div>
-
     </div>
 
-</section>
-    
-<!-- =========================
-LOGIN SECTION
-========================= -->
-
+</section>    
+<!--login section-->
 <section 
     id="authSection" 
     class="contact-form-wrap auth-hidden">
@@ -169,7 +147,6 @@ LOGIN SECTION
     <h4
         id="authNoticeTitle"
         class="panel-heading auth-notice-heading-layout">
-
     </h4>
 
     <p
@@ -178,36 +155,25 @@ LOGIN SECTION
     </p>
 </div>
 
-<!-- =========================
-LOGIN OPTIONS
-========================= -->
+<!--login details-->
 
 <div class="login-options-container">
-
-
-    <!-- STUDENT GOOGLE LOGIN -->
-
+    <!--student google login (NOT WORKING ATM)-->
     <div class="login-option-card">
-
 
         <h3>
              STUDENT LOGIN
         </h3>
 
-
         <p>
             (UNDER MAINTENANCE)
         </p>
-
-
 
         <div
             id="g_id_onload"
             data-client_id="423428817974-s4oq7p4ehbkpn9dtrp1orosh8sbo9cnp.apps.googleusercontent.com"
             data-callback="handleGoogleLogin">
         </div>
-
-
 
         <div
             class="g_id_signin"
@@ -217,31 +183,19 @@ LOGIN OPTIONS
             data-text="continue_with"
             data-shape="rectangular">
         </div>
-
-
-
     </div>
 
-
-
-
-
-    <!-- BETA LOGIN -->
+    <!--beta users-->
 
     <div class="login-option-card beta-card">
-
 
         <h3>
              BETA TESTING
         </h3>
 
-
-
         <p></p>
             Volunta Beta Testing 
         </p>
-
-            
 
         <input
             id="betaEmail"
@@ -249,35 +203,23 @@ LOGIN OPTIONS
             class="contact-input input-width-full"
             placeholder="noyster">
 
-
-
         <input
             id="betaPassword"
             type="password"
             class="contact-input input-width-full"
             placeholder="password">
 
-
-
         <button
             id="betaLoginBtn"
             class="btn-send">
-
             Beta Login
-
         </button>
-
-
-
+        
     </div>
-
-
 </div>
-
-</section>
     
+</section>
 </main>
-
 <script src="stars.js"></script>
     
 <script src="login.js?v=5"></script>
