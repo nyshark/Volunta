@@ -9,624 +9,296 @@
 <title>
 Volunta - Dashboard
 </title>
-
 <link rel="stylesheet" href="style.css">
-
 </head>
-
 
 <body>
 
-
-<!-- BACKGROUND -->
+<!-- bg -->
 
 <div id="starCanvas"></div>
 <div id="cloudCanvas"></div>
 
-
-
-<!-- NAVBAR -->
+<!-- navbar -->
 
 <nav class="navbar">
 
-
 <div class="navbar-left">
-
 
 <button
 id="menuToggleBtn"
 class="filter-btn">
-
 ☰
-
 </button>
 
-
 <a href="dashboard.html" class="navbar-brand">
-
 VOLUNTA
-
 </a>
 
-
 </div>
-
-
-
 <div class="navbar-action-wrap">
-
 
 <button
 id="themeToggleBtn"
 class="filter-btn">
-
 ⏾
-
 </button>
-
-
 
 <a
 href="index.html"
 class="nav-link">
-
 log out
-
 </a>
-
 
 </div>
 
-
 </nav>
-
-
-
-
-
-<!-- ACCOUNT MENU -->
-
+  
+<!--menu-->
 
 <div
 id="accountMenu"
 class="account-menu">
 
-
 <button
 id="menuCloseBtn">
-
 ✕
-
 </button>
 
-
-
 <h3>
-
 Account
-
 </h3>
-
-
 
 <button
 onclick="location.href='profile.html'">
-
 Account Profile
-
 </button>
-
-
 
 <button
 onclick="location.href='about.html'">
-
 About Volunta
-
 </button>
-
-
 
 <button
 onclick="location.href='contact.html'">
-
 Contact
-
 </button>
 
-
 </div>
-
-
-
-
-
-
-
 
 <main class="dashboard-main">
 
-
-
-
-
-<!-- ==========================
-TOP STATUS AREA
-========================== -->
-
+<!-- status bar area-->
 
 <section class="dashboard-status-bar">
-
-
-
 <div class="status-box">
 
-
 <h3>
-
 Total Hours Completed
-
 </h3>
-
-
 
 <span id="totalHours">
-
 0
-
 </span>
-
-
 </div>
-
-
-
-
 
 <div class="status-box">
 
-
 <h3>
-
 Goal Progress
-
 </h3>
 
-
 <span id="progressPercent">
-
 0%
-
 </span>
-
-
-
 <div class="progress-bar-track">
-
 
 <div
 id="progressBarFill"
 class="progress-bar-fill-initial">
-
 </div>
 
-
 </div>
-
-
+  
 </div>
-
-
-
-
-
 
 <div class="status-box">
 
-
 <h3>
-
 Update Goal
-
 </h3>
-
-
 
 <form
 id="goalForm">
 
-
-<input
-
+  <input
 id="targetInput"
-
 type="number"
-
 class="contact-input"
-
 placeholder="ex: 100"
-
 min="1"
-
 required>
-
 
 <button
 class="btn-send">
-
 Save Goal
-
 </button>
-
-
 
 </form>
 
-
 </div>
 
-
-
 </section>
-
-
-
-
-
-
-
-
-
-<!-- ==========================
-ACTIVITY SPREADSHEET
-========================== -->
-
-
+<!-- activity spreadsheet-->
 
 <section
 id="ledgerSection"
 class="contact-form-wrap panel-section-wrap">
-
-
-
 <div class="panel-header-block">
 
-
 <h2 class="panel-heading">
-
 Service Spreadsheet
-
 </h2>
 
-
-
 <span class="eyebrow">
-
 log all of your activities :)
-
 </span>
 
-
 </div>
-
-
-
-
-
-
 
 <form
 id="activitiesForm"
 class="activities-logging-grid">
-
-
-
-
-
 <div>
 
 <label>
-
 activity title
-
 </label>
 
-
 <input
-
 id="actName"
-
 class="contact-input uniform-height"
-
 placeholder="Beach Clean Up"
-
 required>
-
 </div>
 
-
-
-
-
-
 <div>
-
 <label>
-
 date
-
 </label>
 
-
 <input
-
 id="actStart"
-
 class="contact-input uniform-height"
-
 placeholder="mm/dd/yyyy"
-
 required>
-
-
 </div>
-
-
-
-
-
-
 
 <div>
 
 <label>
-
 in
-
 </label>
 
-
 <input
-
 id="timeIn"
-
 class="contact-input mini-time-box uniform-height"
-
 placeholder="12:00 pm"
-
 required>
-
-
 </div>
-
-
-
-
-
-
-
-
+  
 <div>
 
 <label>
-
 out
-
 </label>
-
 
 <input
-
 id="timeOut"
-
 class="contact-input mini-time-box uniform-height"
-
 placeholder="6:00 pm"
-
 required>
-
-
 </div>
-
-
-
-
-
-
-
 
 <div>
 
 <label>
-
 type
-
 </label>
-
 
 <select
-
 id="actType"
-
 class="contact-input"
-
 required>
-
 
 <option value="" disabled selected>
-
 Select...
-
 </option>
-
 
 <option value="Time-Based">
-
 TIME BASED ACTIVITY
-
 </option>
-
-
+  
 <option value="Donation-Based">
-
 DONATION BASED ACTIVITY
-
 </option>
-
-
+  
 </select>
 
-
 </div>
-
-
-
-
-
-
-
 
 <div>
-
 <label>
-
 hours
-
 </label>
 
-
 <input
-
 id="actHours"
-
 type="number"
-
 class="contact-input uniform-height"
-
 min="0.1"
-
 step="0.1"
-
 required>
-
-
 </div>
-
-
-
-
-
-
-
 <button
-
 id="ledgerSubmitBtn"
-
 class="btn-send">
-
 Log Activity
-
 </button>
-
-
-
+  
 </form>
 
-
-
-
-
-
-
-
-<h4 class="spreadsheet-section-heading">
-
+  <h4 class="spreadsheet-section-heading">
 - .𖥔 SPREADSHEET 𖥔. -
-
 </h4>
 
-
-
-
-
 <div class="ledger-table">
-
-
 <div class="ledger-table-header">
-
 <div>Activity</div>
-
 <div>Date</div>
-
 <div>Type</div>
-
 <div>Hours</div>
-
 <div></div>
-
+  
 </div>
-
-
 <ul
-
 id="ledgerList"
-
 class="ledger-list-track">
-
-
 </ul>
-
-
 </div>
-
-
-
-
 
 </section>
-
-
-
-
-
-
-
+  
 </main>
 
-
-
-
-
-
-
-
 <footer class="site-footer footer-center">
-
-
 <p class="footer-copy">
-
 -ˏ` ✶ ´ˎ-
-
 </p>
-
-
 </footer>
 
-
-
-
-
-
-
 <script src="stars.js"></script>
-
 <script src="menu.js"></script>
-
 <script src="dashboard.js"></script>
-
-
-
 </body>
-
-
 </html>
