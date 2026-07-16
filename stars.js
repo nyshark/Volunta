@@ -445,40 +445,45 @@ document.addEventListener("DOMContentLoaded", function(){
 
     function updateStars(){
 
+    const isDay =
+    body.classList.contains(
+        "day-mode"
+    );
 
-        stars.forEach(
-            star=>{
+    stars.forEach(
+        star=>{
 
+            if(isDay){
 
-                if(
-                    body.classList.contains(
-                        "day-mode"
-                    )
-                ){
-
-                    star.classList.add(
-                        "star-day-morph"
-                    );
-
-
-                }
-
-                else {
-
-
-                    star.classList.remove(
-                        "star-day-morph"
-                    );
-
-
-                }
-
+                star.classList.add(
+                    "star-day-morph"
+                );
 
             }
-        );
 
+            else{
+
+                star.classList.remove(
+                    "star-day-morph"
+                );
+
+            }
+
+        }
+    );
+
+    if(themeButton){
+
+        themeButton.textContent =
+        isDay
+        ?
+        "𖤓"
+        :
+        "☾";
 
     }
+
+}
 
 
 
