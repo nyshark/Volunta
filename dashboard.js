@@ -249,7 +249,6 @@ user.hours = Number(user.hours) || 0;
 user.hours += activity.hours;
 saveUser();
 activityForm.reset();
-fillCurrentDateTime();
 renderActivities();
 updateDashboard();
 }
