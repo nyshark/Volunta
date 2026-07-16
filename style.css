@@ -453,6 +453,21 @@ body.day-mode .star-div {
   border-radius: 20px;
 }
 
+/* SHOW REAL CLOUDS IN DAY MODE */
+body.day-mode #cloudCanvas{
+
+    display:block !important;
+
+    opacity:.9;
+
+}
+
+body.day-mode .star-div{
+
+    opacity:0;
+
+}
+
 /*sjfasdfjaskld im losing my mind*/
 .dashboard-container {
   max-width: 1000px;
