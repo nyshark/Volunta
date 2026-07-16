@@ -266,24 +266,32 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
             const email =
-                payload.email;
+    payload.email.toLowerCase();
 
-            const name =
-                payload.name;
+const name =
+    payload.name;
 
-            const picture =
-                payload.picture;
-            
-            if (!email.includes("@")) {
+const picture =
+    payload.picture;
 
-                showBanner(
+// Allow common school email domains
+const isSchoolEmail =
+    email.endsWith(".edu") ||
+    email.includes(".k12.") ||
+    email.includes("school") ||
+    email.includes("district");
 
-                    "Invalid Account",
-                    "Please use a valid Google account."
-                );
+if (!isSchoolEmail) {
 
-                return;
-            }
+    showBanner(
+
+        "School Email Required",
+        "Please sign in with your school email account."
+
+    );
+
+    return;
+}
 
             // load users
 
