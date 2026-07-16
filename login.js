@@ -101,10 +101,10 @@ document.addEventListener("DOMContentLoaded", function () {
         authSection.classList.add("auth-visible");
 
         // Scroll to the login section
-        authSection.scrollIntoView({
-            behavior: "instant",
-            block: "start"
-        });
+        window.scrollTo({
+    top: 0,
+    behavior: "instant"
+});
 
     }
 
