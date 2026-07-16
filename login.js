@@ -86,21 +86,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
             setTimeout(function () {
 
-                roleSelection.style.display =
-                    "none";
+    // Completely remove the role selection
+    roleSelection.style.display = "none";
 
-                if (authSection) {
+    // Remove the welcome screen too
+    if (welcomeIntro) {
+        welcomeIntro.style.display = "none";
+    }
 
-                    authSection.classList.remove(
-                        "auth-hidden"
-                    );
+    // Show login
+    if (authSection) {
 
-                    authSection.classList.add(
-                        "auth-visible"
-                    );
-                }
+        authSection.classList.remove("auth-hidden");
+        authSection.classList.add("auth-visible");
 
-            }, 700);
+        // Scroll to the login section
+        authSection.scrollIntoView({
+            behavior: "instant",
+            block: "start"
+        });
+
+    }
+
+}, 700);
 
         };
     }
