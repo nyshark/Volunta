@@ -1474,8 +1474,20 @@ color: var(--muted);
 display: none;
 }
 
-.auth-visible {
-display: block;
+.auth-visible{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:calc(100vh - 90px);
+
+    margin-top:0;
+
+    padding-top:20px;
+
 }
 
 @media(max-width:600px){
