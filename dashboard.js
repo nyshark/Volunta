@@ -157,7 +157,6 @@ function fillCurrentDateTime(){
     `${hours}:${minutes} ${ampm}`;
 }
 
-fillCurrentDateTime();
 const ledgerList =
 document.getElementById(
 "ledgerList"
