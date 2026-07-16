@@ -115,21 +115,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (organizerRoleBtn) {
 
-        organizerRoleBtn.onclick = function () {
+    organizerRoleBtn.onclick = function () {
 
-            showBanner(
+        alert("The button was clicked!");
 
-                "Sorry!!",
-                "Under maintenance at the moment ✦"
-            );
+        showBanner(
 
-            setTimeout(function () {
-                
-                hideBanner();
-            }, 4000);
+            "Sorry!!",
+            "Under maintenance at the moment ✦"
+        );
 
-        };
-    }
+        setTimeout(function () {
+
+            hideBanner();
+
+        }, 4000);
+
+    };
+}
 
     // beta login
 
