@@ -1,45 +1,37 @@
-document.addEventListener(
-"DOMContentLoaded",
-()=>{
+document.addEventListener("DOMContentLoaded",()=>{
 
 const user =
-    
 JSON.parse(
-localStorage.getItem(
-"voluntaCurrentUser"
-)
+localStorage.getItem("voluntaCurrentUser")
 );
 
 if(!user){
 
 window.location.href="index.html";
 return;
+
 }
 
 const totalHours =
-document.getElementById(
-"totalHours"
-);
+document.getElementById("totalHours");
 
 const progressPercent =
-document.getElementById(
-"progressPercent"
-);
+document.getElementById("progressPercent");
 
 const progressBar =
-document.getElementById(
-"progressBarFill"
-);
+document.getElementById("progressBarFill");
 
 const goalForm =
-document.getElementById(
-"goalForm"
-);
+document.getElementById("goalForm");
 
 const targetInput =
-document.getElementById(
-"targetInput"
-);
+document.getElementById("targetInput");
+
+const activityForm =
+document.getElementById("activitiesForm");
+
+const ledgerList =
+document.getElementById("ledgerList");
 
 function saveUser(){
 
@@ -50,23 +42,25 @@ JSON.stringify(user)
 
 let users =
 JSON.parse(
-localStorage.getItem(
-"voluntaUsers"
-)
+localStorage.getItem("voluntaUsers")
 )||[];
 
-let index = users.findIndex(
+let index =
+users.findIndex(
 u=>u.email===user.email
 );
 
 if(index!==-1){
+
 users[index]=user;
+
 }
 
 localStorage.setItem(
 "voluntaUsers",
 JSON.stringify(users)
 );
+
 }
 
 function updateDashboard(){
@@ -78,10 +72,7 @@ let goal =
 Number(user.goal)||50;
 
 let percent =
-Math.min(
-(hours/goal)*100,
-100
-);
+Math.min((hours/goal)*100,100);
 
 totalHours.textContent =
 hours.toFixed(1);
@@ -93,6 +84,7 @@ progressBar.style.width =
 percent+"%";
 
 targetInput.value = goal;
+
 }
 
 goalForm.addEventListener(
@@ -102,9 +94,7 @@ goalForm.addEventListener(
 e.preventDefault();
 
 let newGoal =
-Number(
-targetInput.value
-);
+Number(targetInput.value);
 
 if(newGoal>0){
 
@@ -113,70 +103,29 @@ user.goal=newGoal;
 saveUser();
 
 updateDashboard();
-}
 
 }
-);
 
-// activity logging
-
-const activityForm =
-document.getElementById(
-"activitiesForm"
-);
-
-// auto date/timef ill
-
-function fillCurrentDateTime(){
-
-    const now = new Date();
-
-    const month =
-    String(now.getMonth()+1).padStart(2,"0");
-
-    const day =
-    String(now.getDate()).padStart(2,"0");
-    
-    const year =
-    now.getFullYear();
-
-    document.getElementById("actStart").value =
-    `${month}/${day}/${year}`;
-    
-    let hours = now.getHours();
-    let minutes =
-    String(now.getMinutes()).padStart(2,"0");
-
-    let ampm =
-    hours >= 12 ? "pm" : "am";
-
-    hours =
-    hours % 12 || 12;
-
-    document.getElementById("timeIn").value =
-    `${hours}:${minutes} ${ampm}`;
 }
-
-const ledgerList =
-document.getElementById(
-"ledgerList"
 );
 
 function renderActivities(){
-    ledgerList.innerHTML="";
 
-    user.activities = user.activities || [];
+ledgerList.innerHTML="";
 
-    user.activities.forEach(
-    (activity,index)=>{
+user.activities =
+user.activities || [];
 
-        let li =
-        document.createElement("li");
-        
-        li.className =
-        "ledger-table-row";
-        
-        li.innerHTML = `
+user.activities.forEach(
+(activity,index)=>{
+
+let li =
+document.createElement("li");
+
+li.className =
+"ledger-table-row";
+
+li.innerHTML = `
 <div>${activity.name}</div>
 <div>${activity.date}</div>
 <div>${activity.timeIn}</div>
@@ -185,12 +134,14 @@ function renderActivities(){
 <div>${Number(activity.hours).toFixed(1)}</div>
 <button
 class="ledger-delete-btn"
-data-index="${index}">
-✕
-</button>
+data-index="${index}">✕</button>
 `;
-        ledgerList.appendChild(li);
-    });
+
+ledgerList.appendChild(li);
+
+}
+);
+
 }
 
 activityForm.addEventListener(
@@ -199,40 +150,19 @@ activityForm.addEventListener(
 
 e.preventDefault();
 
-activityForm.addEventListener(
-"submit",
-(e)=>{
-e.preventDefault();
-
-// current time (for out)
-const now = new Date();
-
-let hours = now.getHours();
-
-let minutes =
-String(now.getMinutes()).padStart(2,"0");
-
-let ampm =
-hours >= 12 ? "pm" : "am";
-hours =
-hours % 12 || 12;
-document.getElementById("timeOut").value =
-`${hours}:${minutes} ${ampm}`;
-
-// create activity
 let activity={
 
 name:
-document.getElementById("actName").value,
+document.getElementById("actName").value.trim(),
 
 date:
 document.getElementById("actStart").value,
 
 timeIn:
-document.getElementById("timeIn").value,
+document.getElementById("timeIn").value.trim(),
 
 timeOut:
-document.getElementById("timeOut").value,
+document.getElementById("timeOut").value.trim(),
 
 type:
 document.getElementById("actType").value,
@@ -241,29 +171,27 @@ hours:
 Number(
 document.getElementById("actHours").value
 )
+
 };
 
-user.activities = user.activities || [];
-user.activities.push(activity);
-user.hours = Number(user.hours) || 0;
-user.hours += activity.hours;
-saveUser();
-activityForm.reset();
-renderActivities();
-updateDashboard();
-}
-);
+user.activities =
+user.activities || [];
 
-user.activities = user.activities || [];
 user.activities.push(activity);
 
-user.hours = Number(user.hours) || 0;
+user.hours =
+Number(user.hours)||0;
+
 user.hours += activity.hours;
+
 saveUser();
 
 activityForm.reset();
+
 renderActivities();
+
 updateDashboard();
+
 }
 );
 
@@ -272,34 +200,38 @@ ledgerList.addEventListener(
 (e)=>{
 
 if(
-e.target.tagName==="BUTTON"
+e.target.classList.contains(
+"ledger-delete-btn"
+)
 ){
 
 let index =
-e.target.dataset.index;
+Number(e.target.dataset.index);
 
 let removed =
 user.activities[index];
 
-user.hours -= Number(removed.hours);
-user.hours = Math.max(user.hours,0);
+user.hours -=
+Number(removed.hours);
 
-user.activities.splice(
-index,
-1
-);
+user.hours =
+Math.max(user.hours,0);
+
+user.activities.splice(index,1);
 
 saveUser();
 
 renderActivities();
 
 updateDashboard();
-}
 
 }
 
+}
 );
 
 updateDashboard();
+
 renderActivities();
+
 });
