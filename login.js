@@ -44,26 +44,26 @@ document.addEventListener("DOMContentLoaded", function () {
     
     // banner
 
-    function showBanner(title, message) {
+   function showBanner(title, message) {
 
     if (!authNoticeBanner) return;
 
-    authNoticeTitle.textContent =
-        title;
+    authNoticeTitle.textContent = title;
+    authNoticeDesc.textContent = message;
 
-    authNoticeDesc.textContent =
-        message;
+    authNoticeBanner.classList.remove("banner-slide-show");
 
-    authNoticeBanner.classList.add(
-        "banner-slide-show"
-    );
+    // Forces the browser to restart the animation
+    void authNoticeBanner.offsetWidth;
 
-    setTimeout(function(){
+    authNoticeBanner.classList.add("banner-slide-show");
 
-        authNoticeBanner.classList.remove(
-            "banner-slide-show"
-        );
-    },5000);
+    setTimeout(function () {
+
+        authNoticeBanner.classList.remove("banner-slide-show");
+
+    }, 4000);
+
 }
 
     function hideBanner() {
