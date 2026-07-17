@@ -104,30 +104,20 @@ function setupDateMask(id){
 
 function setupTimeMask(id){
 
-
     const input =
     document.getElementById(id);
 
-
     if(!input) return;
-
-
 
     input.placeholder =
     "HH:MM AM/PM";
 
-
-
     input.addEventListener("input", function(){
-
 
         let raw =
         input.value.toUpperCase();
 
-
-
         let meridiem = "";
-
 
         if(raw.includes("A")){
 
@@ -141,30 +131,20 @@ function setupTimeMask(id){
 
         }
 
-
-
         let numbers =
         raw.replace(/\D/g,"");
-
-
 
         if(numbers.length === 0){
 
             input.value = "";
-
             return;
 
         }
 
-
-
         numbers =
         numbers.slice(0,4);
 
-
         let value = "";
-
-
 
         if(numbers.length <= 2){
 
@@ -172,73 +152,49 @@ function setupTimeMask(id){
 
         }
 
-
         else if(numbers.length === 3){
 
-    if(
-        numbers[0] === "1"
-    ){
+            if(numbers[0] === "1"){
 
-        // wait for possible 10:00, 11:00, 12:00
-        value = numbers;
+                // wait for 10xx,11xx,12xx
+                value = numbers;
 
-    }
+            }
 
-    else{
+            else{
 
-        value =
-        "0" +
-        numbers.substring(0,1)
-        +
-        ":"
-        +
-        numbers.substring(1,3);
+                value =
+                "0" +
+                numbers.substring(0,1)
+                +
+                ":"
+                +
+                numbers.substring(1,3);
 
-    }
-
-}
-
-
-        else if(numbers.length === 4){
-
-    let hour =
-    Number(numbers.substring(0,2));
-
-    let minute =
-    Number(numbers.substring(2,4));
-
-    if(hour > 12){
-
-        hour = 12;
-
-    }
-
-    if(minute > 59){
-
-        minute = 59;
-
-    }
-
-    input.value =
-String(hour).padStart(2,"0")
-+
-":"
-+
-String(minute).padStart(2,"0");
-}
-
-
-        if(meridiem){
-
-            value += " " + meridiem;
+            }
 
         }
 
+        else if(numbers.length === 4){
 
+            value =
+            numbers.substring(0,2)
+            +
+            ":"
+            +
+            numbers.substring(2,4);
+
+        }
+
+        if(meridiem){
+
+            value +=
+            " " +
+            meridiem;
+
+        }
 
         input.value = value;
-
-
 
         if(typeof updateHoursAutomatically === "function"){
 
@@ -246,109 +202,88 @@ String(minute).padStart(2,"0");
 
         }
 
+    });
+
+    input.addEventListener("blur", function(){
+
+        let raw =
+        input.value.toUpperCase();
+
+        let meridiem = "";
+
+        if(raw.includes("A")){
+
+            meridiem = "AM";
+
+        }
+
+        else if(raw.includes("P")){
+
+            meridiem = "PM";
+
+        }
+
+        let numbers =
+        raw.replace(/\D/g,"");
+
+        let value = "";
+
+        if(numbers.length === 1){
+
+            value =
+            "0" +
+            numbers +
+            ":00";
+
+        }
+
+        else if(numbers.length === 2){
+
+            value =
+            numbers +
+            ":00";
+
+        }
+
+        else if(numbers.length === 3){
+
+            value =
+            "0" +
+            numbers.substring(0,1)
+            +
+            ":"
+            +
+            numbers.substring(1,3);
+
+        }
+
+        else if(numbers.length === 4){
+
+            value =
+            numbers.substring(0,2)
+            +
+            ":"
+            +
+            numbers.substring(2,4);
+
+        }
+
+        if(meridiem){
+
+            value +=
+            " " +
+            meridiem;
+
+        }
+
+        input.value = value;
+
+        if(typeof updateHoursAutomatically === "function"){
+
+            updateHoursAutomatically();
+
+        }
 
     });
-input.addEventListener("blur", function(){
-
-    let raw =
-    input.value.toUpperCase();
-
-
-    let meridiem = "";
-
-
-    if(raw.includes("A")){
-
-        meridiem = "AM";
-
-    }
-
-    else if(raw.includes("P")){
-
-        meridiem = "PM";
-
-    }
-
-
-
-    let numbers =
-    raw.replace(/\D/g,"");
-
-
-
-    if(numbers.length === 1){
-
-        input.value =
-        "0" +
-        numbers +
-        ":00";
-
-    }
-
-
-
-    else if(numbers.length === 3){
-
-        input.value =
-        "0" +
-        numbers.substring(0,1)
-        +
-        ":"
-        +
-        numbers.substring(1,3);
-
-    }
-
-
-
-    else if(numbers.length === 4){
-
-    let hour =
-    Number(numbers.substring(0,2));
-
-
-    let minute =
-    Number(numbers.substring(2,4));
-
-
-    // Cap hour at 12
-
-    if(hour > 12){
-
-        hour = 12;
-
-    }
-
-
-    // Cap minutes at 59
-
-    if(minute > 59){
-
-        minute = 59;
-
-    }
-
-
-    value =
-    String(hour).padStart(2,"0")
-    +
-    ":"
-    +
-    String(minute).padStart(2,"0");
-
-}
-
-
-
-    if(meridiem){
-
-        input.value +=
-        " " + meridiem;
-
-    }
-
-
-
-});
 
 }
