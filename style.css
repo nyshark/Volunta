@@ -708,59 +708,16 @@ body.day-mode .star-div{
 }
 
 /*banner bs*/
-.auth-notice-banner-layout {
-  width: 100%;
-  border-color: var(--accent2);
-  text-align: center;
-  padding: 1rem;
-  background: rgba(123, 159, 255, 0.05);
-  position: relative;
-  margin-bottom: 1.5rem;
-  visibility: hidden ;
-}
-.auth-notice-banner-layout {
 
-    opacity: 0;
-
-    transform: translateY(-80px);
-
-    transition:
-        opacity .5s ease,
-        transform .5s cubic-bezier(.22,1,.36,1);
-
-}
 .banner-slide-show{
 
-    visibility: visible !important;
+    visibility: visible;
 
-    opacity: 1 !important;
+    opacity: 1;
 
-    transform: translateY(0) !important;
-
-    animation: bannerDrop .45s ease;
+    transform: translateY(0);
 
 }
-
-
-/* =================================
-   SMOOTH SLIDE DOWN BANNER ANIMATION
-================================= */
-
-.auth-notice-banner-layout {
-
-    opacity: 0;
-
-    transform: translateY(-80px);
-
-    transition:
-        opacity .5s ease,
-        transform .5s cubic-bezier(.22,1,.36,1);
-
-    pointer-events: none;
-
-}
-
-
 
 .auth-notice-banner-layout.banner-slide-show {
 
@@ -809,11 +766,6 @@ body.day-mode .auth-notice-heading-layout {
   color: #072363;
 }
 
-/*night notif border*/
-.auth-notice-banner-layout {
-  border: 2px solid #d4deff;
-  border-radius: 4px;
-}
 
 /*day notif border*/
 body.day-mode .auth-notice-banner-layout {
@@ -2214,26 +2166,7 @@ display:none;
     color:var(--text);
     cursor:pointer;
 }
-/* ===================================
-   FINAL GLOBAL BANNER FIX
-=================================== */
 
-.auth-notice-banner-layout {
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    transform: translateY(-80px);
-
-    pointer-events: none;
-
-    transition:
-        opacity .5s ease,
-        transform .5s cubic-bezier(.22,1,.36,1),
-        visibility .5s ease;
-
-}
 
 
 /* when javascript adds this class */
@@ -2670,5 +2603,86 @@ main:has(.dashboard-main){
         transform:translateY(0);
 
     }
+
+}
+
+/* ==========================
+   LOGIN NOTIFICATION BANNER
+========================== */
+
+.auth-banner{
+
+    position:fixed;
+
+    top:-180px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:min(520px,90%);
+
+    background:rgba(18,18,32,.95);
+
+    border:2px solid #8fa8ff;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    text-align:center;
+
+    z-index:9999;
+
+    backdrop-filter:blur(15px);
+
+    transition:top .45s cubic-bezier(.22,1,.36,1);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.35);
+
+}
+
+.auth-banner-show{
+
+    top:95px;
+
+}
+
+.auth-banner h4{
+
+    margin:0;
+
+    font-size:1.25rem;
+
+    color:#dfe6ff;
+
+}
+
+.auth-banner p{
+
+    margin-top:10px;
+
+    color:#bfc8ff;
+
+}
+
+.auth-banner-close{
+
+    position:absolute;
+
+    right:15px;
+
+    top:12px;
+
+    border:none;
+
+    background:none;
+
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
 
 }
