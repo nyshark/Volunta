@@ -179,6 +179,7 @@ user.activities || [];
 
 user.activities.push(activity);
 
+    
 user.hours =
 Number(user.hours)||0;
 
@@ -234,10 +235,6 @@ updateDashboard();
 
 renderActivities();
 
-updateDashboard();
-
-renderActivities();
-
 
 // ============================
 // INPUT MASKS
@@ -245,15 +242,7 @@ renderActivities();
 
 function maskDate(input){
 
-    input.value = "__/__/__";
-
-    input.addEventListener("focus", function(){
-
-        if(input.value === "__/__/__"){
-            input.value="";
-        }
-
-    });
+    input.value="__/__/__";
 
 
     input.addEventListener("input", function(){
@@ -262,8 +251,7 @@ function maskDate(input){
         input.value.replace(/\D/g,"").slice(0,6);
 
 
-        let result =
-        "";
+        let result="";
 
 
         for(let i=0;i<6;i++){
@@ -271,7 +259,6 @@ function maskDate(input){
             if(i===2 || i===4){
                 result += "/";
             }
-
 
             result += numbers[i] || "_";
 
@@ -288,22 +275,36 @@ function maskDate(input){
 
 function maskTime(input){
 
+    let meridiem = "";
+
+
     input.value="__:__";
-
-
-    input.addEventListener("focus",function(){
-
-        if(input.value==="__:__"){
-            input.value="";
-        }
-
-    });
 
 
     input.addEventListener("input",function(){
 
+        let raw =
+        input.value.toUpperCase();
+
+        // detect AM / PM
+
+        if(raw.includes("A")){
+
+            meridiem="AM";
+
+        }
+
+        if(raw.includes("P")){
+
+            meridiem="PM";
+
+        }
+
+
+        // keep only numbers
+
         let numbers =
-        input.value.replace(/\D/g,"").slice(0,4);
+        raw.replace(/\D/g,"").slice(0,4);
 
 
         let result="";
@@ -312,7 +313,9 @@ function maskTime(input){
         for(let i=0;i<4;i++){
 
             if(i===2){
-                result+=":";
+
+                result += ":";
+
             }
 
 
@@ -321,19 +324,24 @@ function maskTime(input){
         }
 
 
+        if(meridiem){
+
+            result += " " + meridiem;
+
+        }
+
+
         input.value=result;
 
+
     });
+
 
 }
 maskDate(
     document.getElementById("actStart")
 );
 
-console.log(
-    "date input:",
-    document.getElementById("actStart")
-);
 
 maskTime(
     document.getElementById("timeIn")
@@ -346,4 +354,3 @@ maskTime(
 
 
 });
-
