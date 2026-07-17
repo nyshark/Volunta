@@ -236,4 +236,9 @@ updateDashboard();
 renderActivities();
 
 
+setupDateMask("actStart");
+
+setupTimeMask("timeIn");
+
+setupTimeMask("timeOut");
 });
