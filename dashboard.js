@@ -378,19 +378,31 @@ function updateHoursAutomatically(){
 
 
 timeInInput.addEventListener(
-
     "input",
+    function(){
 
-    updateHoursAutomatically
+        updateHoursAutomatically();
 
+    }
 );
 
 timeOutInput.addEventListener(
-
     "input",
+    function(){
 
+        updateHoursAutomatically();
+
+    }
+);
+
+timeInInput.addEventListener(
+    "blur",
     updateHoursAutomatically
+);
 
+timeOutInput.addEventListener(
+    "blur",
+    updateHoursAutomatically
 );
 
 // ======================================
