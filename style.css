@@ -2709,8 +2709,8 @@ body.day-mode .auth-banner{
     background:
         linear-gradient(
             135deg,
-            rgba(177,214,252,.96),
-            rgba(211,224,237,.96)
+            rgba(177,228,252,.96),
+            rgba(202,236,252,.96)
         );
 
     border:1px solid #72aacf;
