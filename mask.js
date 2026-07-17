@@ -92,159 +92,205 @@ function setupDateMask(id){
 }
 function setupTimeMask(id){
 
-    console.log("NEW TIME MASK LOADED:", id);
-
     const input =
     document.getElementById(id);
 
     if(!input) return;
 
 
-    input.placeholder="HH:MM AM/PM";
+    input.placeholder = "HH:MM AM/PM";
 
 
-   input.addEventListener("input", function(){
+    input.addEventListener("input", function(e){
 
-    let raw =
-    input.value.toUpperCase();
 
+        let cursor =
+        input.selectionStart;
 
-    let meridiem = "";
 
+        let raw =
+        input.value.toUpperCase();
 
-    if(raw.includes("A")){
 
-        meridiem = "AM";
 
-    }
+        let meridiem = "";
 
-    else if(raw.includes("P")){
 
-        meridiem = "PM";
+        if(raw.includes("A")){
 
-    }
+            meridiem = "AM";
 
+        }
 
-    let numbers =
-    raw.replace(/\D/g,"");
+        else if(raw.includes("P")){
 
+            meridiem = "PM";
 
-    numbers =
-    numbers.slice(0,4);
+        }
 
 
 
-    // allow deleting everything
+        let numbers =
+        raw.replace(/\D/g,"");
 
-    if(numbers.length === 0){
 
-        input.value = "";
 
-        return;
+        // allow full deletion
 
-    }
+        if(numbers.length === 0){
 
+            input.value = "";
 
+            return;
 
-    let value = "";
+        }
 
 
 
-    // 1-2 digits
-    if(numbers.length <= 2){
+        numbers =
+        numbers.slice(0,4);
 
-        value = numbers;
 
-    }
 
+        let value = "";
 
 
-    // 530 -> 05:30
 
-    else if(numbers.length === 3){
+        // 1-2 numbers
 
-        value =
-        "0" +
-        numbers.substring(0,1)
-        +
-        ":"
-        +
-        numbers.substring(1,3);
+        if(numbers.length <= 2){
 
-    }
+            value = numbers;
 
+        }
 
 
-    // 1030 -> 10:30
-    // 1130 -> 11:30
-    // 1200 -> 12:00
 
-    else if(numbers.length === 4){
+        // 530 -> 05:30
 
-        value =
-        numbers.substring(0,2)
-        +
-        ":"
-        +
-        numbers.substring(2,4);
+        else if(numbers.length === 3){
 
-    }
+            value =
+            "0" +
+            numbers.substring(0,1)
+            +
+            ":"
+            +
+            numbers.substring(1,3);
 
+        }
 
 
-    if(meridiem){
 
-        value += " " + meridiem;
+        // 1030 -> 10:30
 
-    }
+        else if(numbers.length === 4){
 
+            value =
+            numbers.substring(0,2)
+            +
+            ":"
+            +
+            numbers.substring(2,4);
 
+        }
 
-    input.value = value;
 
 
+        if(meridiem){
 
-    if(typeof updateHoursAutomatically === "function"){
+            value += " " + meridiem;
 
-        updateHoursAutomatically();
+        }
 
-    }
 
 
-});
+        input.value = value;
 
 
-    input.addEventListener("keydown",function(e){
 
+        // restore cursor
 
-        // Allow colon shortcut
+        let newCursor =
+        cursor;
 
-        if(e.key === ":"){
 
-            e.preventDefault();
 
+        if(value.includes(":") && cursor === 2){
 
-            let numbers =
-            input.value.replace(/\D/g,"");
+            newCursor = 3;
 
+        }
 
-            if(numbers.length === 1){
 
-                input.value =
-                "0" + numbers + ":";
+        if(newCursor > value.length){
 
-            }
+            newCursor = value.length;
 
-            else if(numbers.length === 2){
+        }
 
-                input.value =
-                numbers + ":";
 
-            }
+        input.setSelectionRange(
+            newCursor,
+            newCursor
+        );
+
+
+
+        if(typeof updateHoursAutomatically === "function"){
+
+            updateHoursAutomatically();
 
         }
 
 
     });
+
+
+
+
+    // colon shortcut
+
+    input.addEventListener("keydown", function(e){
+
+
+        if(e.key !== ":"){
+
+            return;
+
+        }
+
+
+        e.preventDefault();
+
+
+
+        let numbers =
+        input.value.replace(/\D/g,"");
+
+
+
+        if(numbers.length === 1){
+
+            input.value =
+            "0" +
+            numbers +
+            ":";
+
+        }
+
+
+        else if(numbers.length === 2){
+
+            input.value =
+            numbers +
+            ":";
+
+        }
+
+
+
+    });
+
 
 }
