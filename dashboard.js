@@ -234,29 +234,44 @@ updateDashboard();
 
 renderActivities();
 
-});
+updateDashboard();
+
+renderActivities();
+
+
+// ============================
+// INPUT MASKS
+// ============================
 
 function maskDate(input){
 
     input.addEventListener("input", function(){
 
-        let value = input.value.replace(/\D/g,"");
+        let value =
+        input.value.replace(/\D/g,"");
 
-        if(value.length >= 3){
+
+        if(value.length > 2){
+
             value =
             value.slice(0,2)
             + "/"
             + value.slice(2);
+
         }
 
-        if(value.length >= 6){
+
+        if(value.length > 5){
+
             value =
             value.slice(0,5)
             + "/"
             + value.slice(5,7);
+
         }
 
-        input.value = value;
+
+        input.value=value;
 
     });
 
@@ -273,7 +288,7 @@ function maskTime(input){
         .replace(/[^0-9APM]/g,"");
 
 
-        if(value.length >= 3){
+        if(value.length > 2){
 
             value =
             value.slice(0,2)
@@ -283,7 +298,7 @@ function maskTime(input){
         }
 
 
-        input.value = value;
+        input.value=value;
 
     });
 
@@ -303,3 +318,8 @@ maskTime(
 maskTime(
     document.getElementById("timeOut")
 );
+
+
+});
+
+});
