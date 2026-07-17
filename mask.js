@@ -154,24 +154,19 @@ function setupTimeMask(id){
 
         else if(numbers.length === 3){
 
-            if(numbers[0] === "1"){
+    // allow 100-959 as H:MM
+    // example: 130 → 01:30
+    // but keep 100, 110, 120 possible as 1:00, 1:10, 1:20
 
-                // wait for 10xx,11xx,12xx
-                value = numbers;
+    value =
+    "0" +
+    numbers.substring(0,1)
+    +
+    ":"
+    +
+    numbers.substring(1,3);
 
-            }
-
-            else{
-
-                value =
-                "0" +
-                numbers.substring(0,1)
-                +
-                ":"
-                +
-                numbers.substring(1,3);
-
-            }
+}
 
         }
 
