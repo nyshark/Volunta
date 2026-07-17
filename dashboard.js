@@ -245,34 +245,40 @@ renderActivities();
 
 function maskDate(input){
 
-    input.addEventListener("input",()=>{
+    input.value = "__/__/__";
 
-        let value =
-        input.value.replace(/\D/g,"");
+    input.addEventListener("focus", function(){
 
-        if(value.length > 6){
-            value=value.slice(0,6);
+        if(input.value === "__/__/__"){
+            input.value="";
         }
 
-        if(value.length > 4){
+    });
 
-            value =
-            value.slice(0,4)
-            + "/"
-            + value.slice(4);
+
+    input.addEventListener("input", function(){
+
+        let numbers =
+        input.value.replace(/\D/g,"").slice(0,6);
+
+
+        let result =
+        "";
+
+
+        for(let i=0;i<6;i++){
+
+            if(i===2 || i===4){
+                result += "/";
+            }
+
+
+            result += numbers[i] || "_";
 
         }
 
-        if(value.length > 2){
 
-            value =
-            value.slice(0,2)
-            + "/"
-            + value.slice(2);
-
-        }
-
-        input.value=value;
+        input.value=result;
 
     });
 
@@ -282,35 +288,44 @@ function maskDate(input){
 
 function maskTime(input){
 
-    input.addEventListener("input",()=>{
-
-        let value =
-        input.value
-        .toUpperCase()
-        .replace(/[^0-9]/g,"");
+    input.value="__:__";
 
 
-        if(value.length > 4){
-            value=value.slice(0,4);
+    input.addEventListener("focus",function(){
+
+        if(input.value==="__:__"){
+            input.value="";
+        }
+
+    });
+
+
+    input.addEventListener("input",function(){
+
+        let numbers =
+        input.value.replace(/\D/g,"").slice(0,4);
+
+
+        let result="";
+
+
+        for(let i=0;i<4;i++){
+
+            if(i===2){
+                result+=":";
+            }
+
+
+            result += numbers[i] || "_";
+
         }
 
 
-        if(value.length > 2){
-
-            value =
-            value.slice(0,2)
-            + ":"
-            + value.slice(2);
-
-        }
-
-
-        input.value=value;
+        input.value=result;
 
     });
 
 }
-
 maskDate(
     document.getElementById("actStart")
 );
