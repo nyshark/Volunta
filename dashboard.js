@@ -33,6 +33,9 @@ document.getElementById("activitiesForm");
 const ledgerList =
 document.getElementById("ledgerList");
 
+const activityType =
+document.getElementById("actType");
+
 function saveUser(){
 
 localStorage.setItem(
@@ -189,6 +192,8 @@ saveUser();
 
 activityForm.reset();
 
+updateActivityInputs();
+
 renderActivities();
 
 updateDashboard();
@@ -225,6 +230,8 @@ saveUser();
 renderActivities();
 
 updateDashboard();
+
+updateHoursAutomatically();
 
 }
 
@@ -319,6 +326,12 @@ function convertTimeToMinutes(time){
 
 function updateHoursAutomatically(){
 
+    if(activityType.value === "Donation-Based"){
+
+    return;
+
+    }
+
     const start =
     convertTimeToMinutes(
         timeInInput.value
@@ -370,6 +383,231 @@ timeOutInput.addEventListener(
     updateHoursAutomatically
 
 );
+
+// ======================================
+// INPUT VALIDATION
+// ======================================
+
+function currentYear(){
+
+    return new Date()
+        .getFullYear()
+        .toString()
+        .slice(-2);
+
+}
+
+function validateDate(){
+
+    const input =
+    document.getElementById("actStart");
+
+    const value =
+    input.value;
+
+    if(value.length !== 8){
+
+        return;
+
+    }
+
+    const parts =
+    value.split("/");
+
+    if(parts.length !== 3){
+
+        return;
+
+    }
+
+    let month =
+    Number(parts[0]);
+
+    let day =
+    Number(parts[1]);
+
+    let year =
+    Number(parts[2]);
+
+    if(month < 1 || month > 12){
+
+        alert(
+            "Month must be between 01 and 12."
+        );
+
+        input.focus();
+
+        return;
+
+    }
+
+    if(day < 1 || day > 31){
+
+        alert(
+            "Day must be between 01 and 31."
+        );
+
+        input.focus();
+
+        return;
+
+    }
+
+    if(year > Number(currentYear())){
+
+        alert(
+            "You cannot enter a future year."
+        );
+
+        input.focus();
+
+        return;
+
+    }
+
+}
+
+function validateTime(id){
+
+    const input =
+    document.getElementById(id);
+
+    const value =
+    input.value.toUpperCase();
+
+    if(
+
+        !value.includes("AM")
+        &&
+        !value.includes("PM")
+
+    ){
+
+        return;
+
+    }
+
+    const parts =
+    value.split(" ");
+
+    if(parts.length !== 2){
+
+        return;
+
+    }
+
+    const clock =
+    parts[0].split(":");
+
+    if(clock.length !== 2){
+
+        return;
+
+    }
+
+    const hour =
+    Number(clock[0]);
+
+    const minute =
+    Number(clock[1]);
+
+    if(hour < 1 || hour > 12){
+
+        alert(
+            "Hours must be between 1 and 12."
+        );
+
+        input.focus();
+
+        return;
+
+    }
+
+    if(minute < 0 || minute > 59){
+
+        alert(
+            "Minutes must be between 00 and 59."
+        );
+
+        input.focus();
+
+        return;
+
+    }
+
+}
+
+document
+.getElementById("actStart")
+.addEventListener(
+
+    "blur",
+
+    validateDate
+
+);
+
+document
+.getElementById("timeIn")
+.addEventListener(
+
+    "blur",
+
+    function(){
+
+        validateTime("timeIn");
+
+    }
+
+);
+
+document
+.getElementById("timeOut")
+.addEventListener(
+
+    "blur",
+
+    function(){
+
+        validateTime("timeOut");
+
+    }
+
+);
+
+function updateActivityInputs(){
+
+    if(activityType.value === "Donation-Based"){
+
+        timeInInput.disabled = true;
+        timeOutInput.disabled = true;
+
+        timeInInput.value = "";
+        timeOutInput.value = "";
+
+        hoursInput.readOnly = false;
+
+    }
+
+    else{
+
+        timeInInput.disabled = false;
+        timeOutInput.disabled = false;
+
+        hoursInput.readOnly = true;
+
+        updateHoursAutomatically();
+
+    }
+
+}
+
+activityType.addEventListener(
+    "change",
+    updateActivityInputs
+);
+
+updateActivityInputs();
 
 setupDateMask("actStart");
 
