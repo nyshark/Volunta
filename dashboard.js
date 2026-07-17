@@ -235,3 +235,71 @@ updateDashboard();
 renderActivities();
 
 });
+
+function maskDate(input){
+
+    input.addEventListener("input", function(){
+
+        let value = input.value.replace(/\D/g,"");
+
+        if(value.length >= 3){
+            value =
+            value.slice(0,2)
+            + "/"
+            + value.slice(2);
+        }
+
+        if(value.length >= 6){
+            value =
+            value.slice(0,5)
+            + "/"
+            + value.slice(5,7);
+        }
+
+        input.value = value;
+
+    });
+
+}
+
+
+function maskTime(input){
+
+    input.addEventListener("input", function(){
+
+        let value =
+        input.value
+        .toUpperCase()
+        .replace(/[^0-9APM]/g,"");
+
+
+        if(value.length >= 3){
+
+            value =
+            value.slice(0,2)
+            + ":"
+            + value.slice(2);
+
+        }
+
+
+        input.value = value;
+
+    });
+
+}
+
+
+maskDate(
+    document.getElementById("actStart")
+);
+
+
+maskTime(
+    document.getElementById("timeIn")
+);
+
+
+maskTime(
+    document.getElementById("timeOut")
+);
