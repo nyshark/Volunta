@@ -94,6 +94,8 @@ function setupDateMask(id){
 }
 function setupTimeMask(id){
 
+    console.log("NEW TIME MASK LOADED:", id);
+
     const input =
     document.getElementById(id);
 
