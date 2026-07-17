@@ -656,11 +656,25 @@ body.day-mode .star-div{
 }
 
 .activities-logging-grid {
-  display: grid;
-  grid-template-columns: 2fr 95px 75px 75px 2fr 75px 1.2fr;
-  gap: 0.85rem;
-  align-items: flex-end;
-  margin-bottom: 2.5rem;
+
+    display:grid;
+
+    grid-template-columns:
+
+    2.6fr
+    120px
+    95px
+    95px
+    2.2fr
+    95px
+    1.3fr;
+
+    gap:0.55rem;
+
+    align-items:flex-end;
+
+    margin-bottom:2.5rem;
+
 }
 
 .label-centered {
@@ -2297,21 +2311,6 @@ main:has(.dashboard-main){
    ACTIVITY FORM CLEAN GRID
 =================================== */
 
-
-.activities-logging-grid {
-
-    display:grid;
-
-    grid-template-columns:
-    2fr 1fr 1fr 1fr 1.5fr 1fr auto;
-
-    gap:1rem;
-
-    align-items:end;
-
-    width:100%;
-
-}
 
 
 
