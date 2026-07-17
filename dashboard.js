@@ -36,6 +36,62 @@ document.getElementById("ledgerList");
 const activityType =
 document.getElementById("actType");
 
+const authNoticeBanner =
+document.getElementById("authNoticeBanner");
+
+const authNoticeTitle =
+document.getElementById("authNoticeTitle");
+
+const authNoticeDesc =
+document.getElementById("authNoticeDesc");
+
+const authBannerClose =
+document.getElementById("authBannerClose");
+
+let bannerTimeout;
+
+function showBanner(title, message){
+
+    authNoticeTitle.textContent = title;
+
+    authNoticeDesc.textContent = message;
+
+    authNoticeBanner.classList.remove(
+        "auth-banner-show"
+    );
+
+    void authNoticeBanner.offsetWidth;
+
+    authNoticeBanner.classList.add(
+        "auth-banner-show"
+    );
+
+    clearTimeout(bannerTimeout);
+
+    bannerTimeout = setTimeout(function(){
+
+        authNoticeBanner.classList.remove(
+            "auth-banner-show"
+        );
+
+    },4000);
+
+}
+
+function hideBanner(){
+
+    authNoticeBanner.classList.remove(
+        "auth-banner-show"
+    );
+
+}
+
+if(authBannerClose){
+
+    authBannerClose.onclick = hideBanner;
+
+}
+
 function saveUser(){
 
 localStorage.setItem(
@@ -468,9 +524,10 @@ function validateDate(){
 
     if(month < 1 || month > 12){
 
-        alert(
-            "Month must be between 01 and 12."
-        );
+        showBanner(
+    "Invalid Month",
+    "Month must be between 01 and 12."
+);
 
         input.focus();
 
@@ -480,9 +537,10 @@ function validateDate(){
 
     if(day < 1 || day > 31){
 
-        alert(
-            "Day must be between 01 and 31."
-        );
+        showBanner(
+    "Invalid Day",
+    "Day must be between 01 and 31."
+);
 
         input.focus();
 
@@ -492,9 +550,10 @@ function validateDate(){
 
     if(year > Number(currentYear())){
 
-        alert(
-            "You cannot enter a future year."
-        );
+        showBanner(
+    "Future Date",
+    "You cannot enter a future year."
+);
 
         input.focus();
 
@@ -550,9 +609,10 @@ function validateTime(id){
 
     if(hour < 1 || hour > 12){
 
-        alert(
-            "Hours must be between 1 and 12."
-        );
+        showBanner(
+    "Invalid Time",
+    "Hours must be between 1 and 12."
+);
 
         input.focus();
 
@@ -562,9 +622,10 @@ function validateTime(id){
 
     if(minute < 0 || minute > 59){
 
-        alert(
-            "Minutes must be between 00 and 59."
-        );
+        showBanner(
+    "Invalid Time",
+    "Minutes must be between 00 and 59."
+);
 
         input.focus();
 
