@@ -105,163 +105,109 @@ function setupTimeMask(id){
 
    input.addEventListener("input", function(){
 
-    let cursorPosition =
-    input.selectionStart;
-
-
-    let oldLength =
-    input.value.length;
-
-
     let raw =
-    input.value
-    .toUpperCase();
+    input.value.toUpperCase();
 
 
-        let meridiem = "";
+    // allow complete deletion
 
+    if(raw.trim() === ""){
 
-        // Detect AM / PM typing
+        input.value = "";
 
-        if(raw.includes("A")){
+        return;
 
-            meridiem = "AM";
+    }
 
-        }
 
-        else if(raw.includes("P")){
 
-            meridiem = "PM";
+    let meridiem = "";
 
-        }
 
+    if(raw.includes("A")){
 
-        // Keep only numbers
+        meridiem = "AM";
 
-        let numbers =
-        raw.replace(/\D/g,"");
+    }
 
+    else if(raw.includes("P")){
 
-        // Maximum HHMM
+        meridiem = "PM";
 
-        numbers =
-        numbers.slice(0,4);
+    }
 
 
 
-        let hour = "";
-let minute = "";
+    let numbers =
+    raw.replace(/\D/g,"");
 
 
-if(numbers.length === 1){
+    numbers =
+    numbers.slice(0,4);
 
-    hour = numbers;
 
-}
 
+    let value = "";
 
-else if(numbers.length === 2){
 
-    hour = numbers;
 
-}
+    // 1-2 digits stay untouched
 
+    if(numbers.length <= 2){
 
-else if(numbers.length === 3){
+        value = numbers;
 
-    hour =
-    "0" + numbers.substring(0,1);
+    }
 
-    minute =
-    numbers.substring(1,3);
 
-}
+    // 530 -> 05:30
 
+    else if(numbers.length === 3){
 
-else if(numbers.length === 4){
+        value =
+        "0" +
+        numbers[0] +
+        ":" +
+        numbers.substring(1,3);
 
-    hour =
-    numbers.substring(0,2);
+    }
 
-    minute =
-    numbers.substring(2,4);
 
-}
+    // 1130 -> 11:30
 
+    else if(numbers.length === 4){
 
-        let value = hour;
+        value =
+        numbers.substring(0,2)
+        +
+        ":"
+        +
+        numbers.substring(2,4);
 
+    }
 
-        // Add :
 
-        if(numbers.length >= 3){
 
-            value += ":" + minute;
+    if(meridiem){
 
-        }
+        value += " " + meridiem;
 
+    }
 
-        // Add AM/PM
 
-        if(meridiem){
 
-            if(numbers.length === 2){
+    input.value = value;
 
-                value += ":00";
 
-            }
 
-            value += " " + meridiem;
+    if(typeof updateHoursAutomatically === "function"){
 
-        }
+        updateHoursAutomatically();
 
+    }
 
-       let newLength =
-value.length;
 
-
-input.value = value;
-
-
-// keep cursor from jumping
-
-let difference =
-newLength - oldLength;
-
-
-let newCursor =
-cursorPosition + difference;
-
-
-if(newCursor < 0){
-
-    newCursor = 0;
-
-}
-
-
-if(newCursor > value.length){
-
-    newCursor = value.length;
-
-}
-
-
-input.setSelectionRange(
-    newCursor,
-    newCursor
-);
-
-
-
-if(typeof updateHoursAutomatically === "function"){
-
-    updateHoursAutomatically();
-
-}
-
-
-    });
+});
 
 
 
