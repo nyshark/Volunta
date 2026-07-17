@@ -204,9 +204,11 @@ body {
 /* page layout */
 main {
 
-    position: relative;
+    position: absolute;
 
-    z-index: 1;
+    top: 90px;
+
+    left: 0;
 
     width: 100%;
 
@@ -215,12 +217,6 @@ main {
     flex-direction: column;
 
     align-items: center;
-
-    justify-content: flex-start;
-
-    padding-top: 90px;
-
-    padding-bottom: 40px;
 
 }
 
