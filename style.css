@@ -324,6 +324,53 @@ margin:0 auto;
 width:100%;
 
 }
+/* ======================================
+   LOGIN PAGE LAYOUT FIX
+====================================== */
+
+#authSection{
+
+    width:min(1200px,95%);
+
+    margin:0 auto;
+
+    margin-top:20px;
+
+    align-self:flex-start;
+
+}
+
+#authSection.auth-visible{
+
+    display:block;
+
+    animation:authReveal .6s ease forwards;
+
+}
+
+.login-options-container{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:stretch;
+
+    gap:30px;
+
+    margin-top:35px;
+
+    flex-wrap:wrap;
+
+}
+
+.login-option-card{
+
+    width:min(420px,100%);
+
+    flex:1;
+
+}
 
 label {
   display: block;
@@ -1446,10 +1493,6 @@ border: 1px solid var(--muted);
 color: var(--muted);
 }
 
-.auth-hidden {
-display: none;
-}
-
 .auth-visible{
 
     display:block;
@@ -1516,143 +1559,6 @@ animation-delay: 0.55s;
 
 }
 
-/* ===================================
-   VOLUNTA WELCOME INTRO EXPERIENCE
-=================================== */
-
-.welcome-screen {
-
-    position: fixed;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg);
-    z-index: 200;
-    transition:
-        opacity .8s ease,
-        transform .8s ease;
-}
-
-.welcome-content {
-
-    text-align: center;
-}
-
-.welcome-title {
-
-    font-family: var(--font-display);
-    font-size: 3.5rem;
-    color: white;
-    margin-bottom: 1.5rem;
-}
-
-.welcome-gif-placeholder img {
-  
-    width: 60px;
-    height: 60px;
-    margin-bottom: 1.5rem;
-    animation:
-        floatGift 3s ease-in-out infinite;
-}
-
-@keyframes floatGift {
-
-    0%,100% {
-
-        transform: translateY(0);
-    }
-
-    50% {
-      
-        transform: translateY(-10px);
-    }
-
-}
-
-.hidden-screen {
-
-    opacity: 0;
-    pointer-events: none;
-}
-
-.fade-out {
-
-    opacity: 0;
-    transform: translateY(-25px);
-    pointer-events: none;
-}
-
-/* ROLE CARDS */
-
-.role-card-container {
-
-    display:flex;
-    justify-content:center;
-    gap:3rem;
-}
-
-.role-card {
-
-    width:260px;
-    height:260px;
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:12px;
-    cursor:pointer;
-    color:var(--text);
-    opacity:0;
-}
-
-.role-card:nth-child(1) {
-  
-    animation:
-        fallIn .8s ease forwards;
-
-}
-
-.role-card:nth-child(2) {
-
-    animation:
-        fallIn .8s ease .25s forwards;
-
-}
-
-@keyframes fallIn {
-
-from {
-
-    opacity:0;
-    transform:translateY(-120px);
-}
-
-to {
-
-    opacity:1;
-    transform:translateY(0);
-}
-
-}
-
-/* GIF / IMAGE SIZE */
-
-.role-placeholder-img {
-
-    width:60px;
-    height:60px;
-}
-
-/* SELECT PLACEHOLDER COLOR */
-
-#school {
-
-    color:var(--muted);
-}
-
-#school option {
-
-    color:var(--text);
-}
 
 /* ==========================================
    VOLUNTA WELCOME SCREEN FINAL FIX
@@ -2624,26 +2530,23 @@ main:has(.dashboard-main){
 
     transform:translateX(-50%);
 
-    width:min(520px,90%);
+    width:min(500px,90vw);
 
-    background:rgba(18,18,32,.95);
+    background:var(--surface);
 
-    border:2px solid #8fa8ff;
+    border:1px solid var(--accent2);
 
-    border-radius:18px;
+    border-radius:16px;
 
     padding:20px;
 
-    text-align:center;
+    z-index:1000;
 
-    z-index:9999;
-
-    backdrop-filter:blur(15px);
-
-    transition:top .45s cubic-bezier(.22,1,.36,1);
+    transition:
+        top .55s cubic-bezier(.22,1,.36,1);
 
     box-shadow:
-        0 10px 35px rgba(0,0,0,.35);
+        0 20px 60px rgba(0,0,0,.25);
 
 }
 
