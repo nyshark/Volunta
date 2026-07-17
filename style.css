@@ -2207,22 +2207,6 @@ display:none;
 ================================== */
 
 
-.dashboard-main {
-
-    width:100%;
-
-    max-width:1200px;
-
-    margin:0 auto;
-
-    padding:2rem;
-
-    display:block;
-
-}
-
-
-
 .dashboard-status-bar {
 
 display:grid;
