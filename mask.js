@@ -166,7 +166,6 @@ function setupTimeMask(id){
     +
     numbers.substring(1,3);
 
-}
 
         }
 
