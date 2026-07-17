@@ -174,15 +174,10 @@ function setupTimeMask(id){
 
         else if(numbers.length === 3){
 
-            value =
-            "0" +
-            numbers[0]
-            +
-            ":"
-            +
-            numbers.substring(1,3);
+    // wait for the fourth digit
+    value = numbers;
 
-        }
+}
 
 
         else if(numbers.length === 4){
@@ -218,7 +213,81 @@ function setupTimeMask(id){
 
 
     });
+input.addEventListener("blur", function(){
+
+    let raw =
+    input.value.toUpperCase();
 
 
+    let meridiem = "";
+
+
+    if(raw.includes("A")){
+
+        meridiem = "AM";
+
+    }
+
+    else if(raw.includes("P")){
+
+        meridiem = "PM";
+
+    }
+
+
+
+    let numbers =
+    raw.replace(/\D/g,"");
+
+
+
+    if(numbers.length === 1){
+
+        input.value =
+        "0" +
+        numbers +
+        ":00";
+
+    }
+
+
+
+    else if(numbers.length === 3){
+
+        input.value =
+        "0" +
+        numbers.substring(0,1)
+        +
+        ":"
+        +
+        numbers.substring(1,3);
+
+    }
+
+
+
+    else if(numbers.length === 4){
+
+        input.value =
+        numbers.substring(0,2)
+        +
+        ":"
+        +
+        numbers.substring(2,4);
+
+    }
+
+
+
+    if(meridiem){
+
+        input.value +=
+        " " + meridiem;
+
+    }
+
+
+
+});
 
 }
