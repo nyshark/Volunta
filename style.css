@@ -317,21 +317,16 @@ main {
 
 }
 
-.panel-section-wrap {
+.panel-section-wrap{
 
-width:100%;
+    width:100%;
 
-margin:0 auto;
-
-}
-
-.contact-form-wrap {
-
-width:100%;
+    margin:30px auto;
 
 }
+
 /* ======================================
-   LOGIN PAGE LAYOUT FIX
+   LOGIN PAGE LAYOUT FIX   
 ====================================== */
 
 #authSection{
@@ -610,10 +605,6 @@ body.day-mode .star-div{
   display: flex;
   justify-content: center;
   gap: 1rem;
-}
-
-.panel-section-wrap {
-  width: 100%;
 }
 
 .panel-header-block {
@@ -2254,14 +2245,13 @@ main:has(.dashboard-main){
 
 .dashboard-main{
 
-    width:100%;
-
-    max-width:1200px;
+    width:min(1200px,90vw);
 
     margin:0 auto;
 
-}
+    padding-top:30px;
 
+}
 
 
 .dashboard-status-bar{
@@ -2632,5 +2622,80 @@ main:has(.dashboard-main){
     background:rgba(255,255,255,.2);
 
     transform:scale(1.1);
+
+}
+
+.dashboard-banner{
+
+    position:fixed;
+
+    top:-220px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:min(520px,90vw);
+
+    padding:22px;
+
+    background:var(--surface);
+
+    border:1px solid var(--accent2);
+
+    border-radius:20px;
+
+    z-index:9999;
+
+    opacity:0;
+
+    transition:
+        top .55s cubic-bezier(.22,1,.36,1),
+        opacity .35s ease;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.35);
+
+}
+
+
+.dashboard-banner-show{
+
+    top:90px;
+
+    opacity:1;
+
+}
+
+
+.dashboard-banner h4{
+
+    margin:0;
+
+}
+
+
+.dashboard-banner p{
+
+    margin-top:10px;
+
+}
+
+
+.dashboard-banner-close{
+
+    position:absolute;
+
+    right:15px;
+
+    top:12px;
+
+    border:none;
+
+    background:none;
+
+    color:white;
+
+    cursor:pointer;
 
 }
