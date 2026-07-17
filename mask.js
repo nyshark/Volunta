@@ -213,9 +213,6 @@ function setupTimeMask(id){
 
 });
 
-});
-
-
 
     input.addEventListener("keydown",function(e){
 
