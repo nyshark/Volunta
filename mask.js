@@ -174,8 +174,13 @@ function setupTimeMask(id){
 
         else if(numbers.length === 3){
 
-    // wait for the fourth digit
-    value = numbers;
+    value =
+    "0" +
+    numbers.substring(0,1)
+    +
+    ":"
+    +
+    numbers.substring(1,3);
 
 }
 
