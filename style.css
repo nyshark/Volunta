@@ -212,13 +212,18 @@ main {
 
     display: flex;
 
-    justify-content: center;
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: flex-start;
 
     padding-top: 90px;
 
     padding-bottom: 40px;
 
 }
+
 .main-coords {
   font-size: 0.78rem;
   letter-spacing: 0.15em;
