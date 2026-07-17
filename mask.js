@@ -220,10 +220,11 @@ function setupTimeMask(id){
     }
 
     input.value =
-        String(hour).padStart(2,"0")
-        + ":"
-        + String(minute).padStart(2,"0");
-
+String(hour).padStart(2,"0")
++
+":"
++
+String(minute).padStart(2,"0");
 }
 
 
