@@ -1,6 +1,4 @@
-// ======================================
 // VOLUNTA INPUT MASKS
-// ======================================
 
 function setupDateMask(id){
 
@@ -107,7 +105,113 @@ function setupTimeMask(id){
 
    input.addEventListener("input", function(){
 
-    console.log("TYPING:", input.value);
+    let raw =
+    input.value.toUpperCase();
+
+
+    let meridiem = "";
+
+
+    if(raw.includes("A")){
+
+        meridiem = "AM";
+
+    }
+
+    else if(raw.includes("P")){
+
+        meridiem = "PM";
+
+    }
+
+
+    let numbers =
+    raw.replace(/\D/g,"");
+
+
+    numbers =
+    numbers.slice(0,4);
+
+
+
+    // allow deleting everything
+
+    if(numbers.length === 0){
+
+        input.value = "";
+
+        return;
+
+    }
+
+
+
+    let value = "";
+
+
+
+    // 1-2 digits
+    if(numbers.length <= 2){
+
+        value = numbers;
+
+    }
+
+
+
+    // 530 -> 05:30
+
+    else if(numbers.length === 3){
+
+        value =
+        "0" +
+        numbers.substring(0,1)
+        +
+        ":"
+        +
+        numbers.substring(1,3);
+
+    }
+
+
+
+    // 1030 -> 10:30
+    // 1130 -> 11:30
+    // 1200 -> 12:00
+
+    else if(numbers.length === 4){
+
+        value =
+        numbers.substring(0,2)
+        +
+        ":"
+        +
+        numbers.substring(2,4);
+
+    }
+
+
+
+    if(meridiem){
+
+        value += " " + meridiem;
+
+    }
+
+
+
+    input.value = value;
+
+
+
+    if(typeof updateHoursAutomatically === "function"){
+
+        updateHoursAutomatically();
+
+    }
+
+
+});
 
 });
 
