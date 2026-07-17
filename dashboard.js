@@ -235,6 +235,141 @@ updateDashboard();
 
 renderActivities();
 
+// ======================================
+// AUTO HOURS CALCULATOR
+// ======================================
+
+const timeInInput =
+document.getElementById("timeIn");
+
+const timeOutInput =
+document.getElementById("timeOut");
+
+const hoursInput =
+document.getElementById("actHours");
+
+
+function convertTimeToMinutes(time){
+
+    time = time.trim().toUpperCase();
+
+    if(!time.includes("AM") && !time.includes("PM")){
+
+        return null;
+
+    }
+
+    const parts =
+    time.split(" ");
+
+    if(parts.length !== 2){
+
+        return null;
+
+    }
+
+    const clock =
+    parts[0].split(":");
+
+    if(clock.length !== 2){
+
+        return null;
+
+    }
+
+    let hour =
+    Number(clock[0]);
+
+    let minute =
+    Number(clock[1]);
+
+    const period =
+    parts[1];
+
+
+    if(
+
+        isNaN(hour) ||
+        isNaN(minute)
+
+    ){
+
+        return null;
+
+    }
+
+
+    if(period==="PM" && hour!==12){
+
+        hour += 12;
+
+    }
+
+    if(period==="AM" && hour===12){
+
+        hour = 0;
+
+    }
+
+    return hour*60 + minute;
+
+}
+
+
+
+function updateHoursAutomatically(){
+
+    const start =
+    convertTimeToMinutes(
+        timeInInput.value
+    );
+
+    const end =
+    convertTimeToMinutes(
+        timeOutInput.value
+    );
+
+    if(start===null || end===null){
+
+        hoursInput.value="";
+
+        return;
+
+    }
+
+    if(end<=start){
+
+        hoursInput.value="";
+
+        return;
+
+    }
+
+    const hours =
+    (end-start)/60;
+
+    hoursInput.value =
+    hours.toFixed(2);
+
+}
+
+
+
+timeInInput.addEventListener(
+
+    "input",
+
+    updateHoursAutomatically
+
+);
+
+timeOutInput.addEventListener(
+
+    "input",
+
+    updateHoursAutomatically
+
+);
 
 setupDateMask("actStart");
 
