@@ -83,6 +83,12 @@ function setupDateMask(id){
 
         input.value = value;
 
+        if(typeof updateHoursAutomatically === "function"){
+
+    updateHoursAutomatically();
+
+}
+
     });
 
 }
