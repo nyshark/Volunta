@@ -8,7 +8,7 @@ function setupDateMask(id){
 
     if(!input) return;
 
-    input.placeholder = "10/12/11";
+    input.placeholder = "MM/DD/YY";
     input.maxLength = 8;
 
     input.addEventListener("input", function(){
@@ -53,7 +53,7 @@ function setupTimeMask(id){
 
     if(!input) return;
 
-    input.placeholder="12:00 PM";
+    input.placeholder="HH:MM AM/PM";
 
     input.addEventListener("input",function(){
 
