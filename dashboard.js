@@ -328,7 +328,7 @@ function updateHoursAutomatically(){
 
     if(activityType.value === "Donation-Based"){
 
-    return;
+        return;
 
     }
 
@@ -345,21 +345,30 @@ function updateHoursAutomatically(){
     if(start===null || end===null){
 
         hoursInput.value="";
-
         return;
 
     }
 
-    if(end<=start){
+    let totalMinutes;
 
-        hoursInput.value="";
+    // Same day
+    if(end >= start){
 
-        return;
+        totalMinutes =
+        end - start;
+
+    }
+
+    // Overnight
+    else{
+
+        totalMinutes =
+        (24 * 60 - start) + end;
 
     }
 
     const hours =
-    (end-start)/60;
+    totalMinutes / 60;
 
     hoursInput.value =
     hours.toFixed(2);
