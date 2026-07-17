@@ -91,6 +91,7 @@ function setupDateMask(id){
 
 }
 function setupTimeMask(id){
+    alert("TIME MASK VERSION TEST " + id);
 
     const input =
     document.getElementById(id);
