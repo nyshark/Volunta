@@ -309,6 +309,10 @@ maskDate(
     document.getElementById("actStart")
 );
 
+console.log(
+    "date input:",
+    document.getElementById("actStart")
+);
 
 maskTime(
     document.getElementById("timeIn")
@@ -322,4 +326,3 @@ maskTime(
 
 });
 
-});
