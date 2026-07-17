@@ -103,11 +103,19 @@ function setupTimeMask(id){
     input.placeholder="HH:MM AM/PM";
 
 
-    input.addEventListener("input", function(){
+   input.addEventListener("input", function(){
 
-        let raw =
-        input.value
-        .toUpperCase();
+    let cursorPosition =
+    input.selectionStart;
+
+
+    let oldLength =
+    input.value.length;
+
+
+    let raw =
+    input.value
+    .toUpperCase();
 
 
         let meridiem = "";
@@ -142,40 +150,41 @@ function setupTimeMask(id){
 
 
         let hour = "";
-        let minute = "";
+let minute = "";
 
 
-        if(numbers.length >= 1){
+if(numbers.length === 1){
 
-            hour =
-            numbers.substring(0,2);
-
-        }
-
-
-        if(numbers.length >= 3){
-
-            minute =
-            numbers.substring(2,4);
-
-        }
-
-
-        // Auto format hour
-
-        if(hour.length === 1){
-
-    hour =
-    "0" + hour;
+    hour = numbers;
 
 }
 
 
-// Fix double digit hours
-if(hour.length === 3){
+else if(numbers.length === 2){
+
+    hour = numbers;
+
+}
+
+
+else if(numbers.length === 3){
 
     hour =
-    hour.substring(1);
+    "0" + numbers.substring(0,1);
+
+    minute =
+    numbers.substring(1,3);
+
+}
+
+
+else if(numbers.length === 4){
+
+    hour =
+    numbers.substring(0,2);
+
+    minute =
+    numbers.substring(2,4);
 
 }
 
@@ -207,14 +216,49 @@ if(hour.length === 3){
         }
 
 
-        input.value=value;
+       let newLength =
+value.length;
 
 
-        if(typeof updateHoursAutomatically === "function"){
+input.value = value;
 
-            updateHoursAutomatically();
 
-        }
+// keep cursor from jumping
+
+let difference =
+newLength - oldLength;
+
+
+let newCursor =
+cursorPosition + difference;
+
+
+if(newCursor < 0){
+
+    newCursor = 0;
+
+}
+
+
+if(newCursor > value.length){
+
+    newCursor = value.length;
+
+}
+
+
+input.setSelectionRange(
+    newCursor,
+    newCursor
+);
+
+
+
+if(typeof updateHoursAutomatically === "function"){
+
+    updateHoursAutomatically();
+
+}
 
 
     });
