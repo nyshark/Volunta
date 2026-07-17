@@ -1,4 +1,7 @@
+// ======================================
 // VOLUNTA INPUT MASKS
+// ======================================
+
 
 function setupDateMask(id){
 
@@ -7,59 +10,63 @@ function setupDateMask(id){
 
     if(!input) return;
 
+
     input.placeholder = "MM/DD/YY";
     input.maxLength = 8;
 
+
     input.addEventListener("keydown", function(e){
 
-        const key = e.key;
 
-        // Auto-pad month
-        if(key === "/"){
+        if(e.key !== "/"){
+            return;
+        }
 
-            let parts =
-            input.value.split("/");
 
-            // Month
-            if(parts.length === 1 && parts[0].length === 1){
+        let parts =
+        input.value.split("/");
 
-                input.value =
-                "0" + parts[0] + "/";
 
-                e.preventDefault();
-                return;
-            }
+        if(parts.length === 1 && parts[0].length === 1){
 
-            // Day
-            if(parts.length === 2 && parts[1].length === 1){
+            input.value =
+            "0" + parts[0] + "/";
 
-                input.value =
-                parts[0] +
-                "/0" +
-                parts[1] +
-                "/";
-
-                e.preventDefault();
-                return;
-            }
+            e.preventDefault();
 
         }
 
+
+        else if(parts.length === 2 && parts[1].length === 1){
+
+            input.value =
+            parts[0] +
+            "/0" +
+            parts[1] +
+            "/";
+
+            e.preventDefault();
+
+        }
+
+
     });
 
+
+
     input.addEventListener("input", function(){
+
 
         let numbers =
         input.value.replace(/\D/g,"");
 
-        if(numbers.length > 6){
 
-            numbers =
-            numbers.slice(0,6);
+        numbers =
+        numbers.slice(0,6);
 
-        }
 
         let value = "";
+
 
         if(numbers.length >= 1){
 
@@ -67,11 +74,13 @@ function setupDateMask(id){
 
         }
 
+
         if(numbers.length >= 3){
 
             value += "/" + numbers.substring(2,4);
 
         }
+
 
         if(numbers.length >= 5){
 
@@ -79,27 +88,32 @@ function setupDateMask(id){
 
         }
 
+
         input.value = value;
 
-        if(typeof updateHoursAutomatically === "function"){
-
-    updateHoursAutomatically();
-
-}
 
     });
 
+
 }
+
+
+
+
 function setupTimeMask(id){
-    alert("TIME MASK VERSION TEST " + id);
+
 
     const input =
     document.getElementById(id);
 
+
     if(!input) return;
 
 
-    input.placeholder = "HH:MM AM/PM";
+
+    input.placeholder =
+    "HH:MM AM/PM";
+
 
 
     input.addEventListener("input", function(){
@@ -111,6 +125,7 @@ function setupTimeMask(id){
 
 
         let meridiem = "";
+
 
         if(raw.includes("A")){
 
@@ -131,8 +146,6 @@ function setupTimeMask(id){
 
 
 
-        // completely empty
-
         if(numbers.length === 0){
 
             input.value = "";
@@ -143,18 +156,14 @@ function setupTimeMask(id){
 
 
 
-        // keep only HHMM
-
         numbers =
-        numbers.substring(0,4);
+        numbers.slice(0,4);
 
 
 
         let value = "";
 
 
-
-        // 1-4 numbers
 
         if(numbers.length <= 2){
 
@@ -166,8 +175,8 @@ function setupTimeMask(id){
         else if(numbers.length === 3){
 
             value =
-            numbers.substring(0,1)
-            .padStart(2,"0")
+            "0" +
+            numbers[0]
             +
             ":"
             +
@@ -200,6 +209,7 @@ function setupTimeMask(id){
         input.value = value;
 
 
+
         if(typeof updateHoursAutomatically === "function"){
 
             updateHoursAutomatically();
@@ -208,6 +218,7 @@ function setupTimeMask(id){
 
 
     });
+
 
 
 }
