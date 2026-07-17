@@ -205,23 +205,21 @@ body {
 /* page layout */
 main {
 
-    position: absolute;
+    position: relative;
 
     top: 90px;
 
-    left: 0;
+    width:100%;
 
-    width: 100%;
+    display:flex;
 
-    display: flex;
+    flex-direction:column;
 
-    flex-direction: column;
+    align-items:center;
 
-    align-items: center;
+    z-index:1;
 
-    z-index: 1;
-
-    padding-bottom: 40px;
+    padding-bottom:40px;
 
 }
 
