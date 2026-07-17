@@ -2530,35 +2530,48 @@ main:has(.dashboard-main){
 
     position:fixed;
 
-    top:-180px;
+    top:-220px;
 
     left:50%;
 
     transform:translateX(-50%);
 
-    width:min(500px,90vw);
+    width:min(520px,90vw);
 
-    background:var(--surface);
+    padding:22px 24px;
 
-    border:1px solid var(--accent2);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(30,35,80,.95),
+            rgba(15,18,45,.95)
+        );
 
-    border-radius:16px;
+    border:1px solid rgba(130,150,255,.45);
 
-    padding:20px;
+    border-radius:20px;
+
+    backdrop-filter:blur(14px);
 
     z-index:1000;
 
+    opacity:0;
+
     transition:
-        top .55s cubic-bezier(.22,1,.36,1);
+        top .55s cubic-bezier(.22,1,.36,1),
+        opacity .35s ease;
 
     box-shadow:
-        0 20px 60px rgba(0,0,0,.25);
+        0 25px 70px rgba(0,0,0,.45);
 
 }
+
 
 .auth-banner-show{
 
     top:95px;
+
+    opacity:1;
 
 }
 
@@ -2566,17 +2579,22 @@ main:has(.dashboard-main){
 
     margin:0;
 
-    font-size:1.25rem;
+    font-size:1.35rem;
 
-    color:#dfe6ff;
+    color:#ffffff;
+
+    letter-spacing:.3px;
 
 }
 
+
 .auth-banner p{
 
-    margin-top:10px;
+    margin:10px 0 0;
 
-    color:#bfc8ff;
+    color:#cbd4ff;
+
+    line-height:1.5;
 
 }
 
@@ -2584,18 +2602,35 @@ main:has(.dashboard-main){
 
     position:absolute;
 
-    right:15px;
+    right:14px;
 
     top:12px;
 
+    width:28px;
+
+    height:28px;
+
+    border-radius:50%;
+
     border:none;
 
-    background:none;
+    background:rgba(255,255,255,.08);
 
     color:white;
 
-    font-size:18px;
+    font-size:16px;
 
     cursor:pointer;
+
+    transition:.2s ease;
+
+}
+
+
+.auth-banner-close:hover{
+
+    background:rgba(255,255,255,.2);
+
+    transform:scale(1.1);
 
 }
