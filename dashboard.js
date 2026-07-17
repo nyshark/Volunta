@@ -245,11 +245,23 @@ renderActivities();
 
 function maskDate(input){
 
-    input.addEventListener("input", function(){
+    input.addEventListener("input",()=>{
 
         let value =
         input.value.replace(/\D/g,"");
 
+        if(value.length > 6){
+            value=value.slice(0,6);
+        }
+
+        if(value.length > 4){
+
+            value =
+            value.slice(0,4)
+            + "/"
+            + value.slice(4);
+
+        }
 
         if(value.length > 2){
 
@@ -260,17 +272,6 @@ function maskDate(input){
 
         }
 
-
-        if(value.length > 5){
-
-            value =
-            value.slice(0,5)
-            + "/"
-            + value.slice(5,7);
-
-        }
-
-
         input.value=value;
 
     });
@@ -278,14 +279,20 @@ function maskDate(input){
 }
 
 
+
 function maskTime(input){
 
-    input.addEventListener("input", function(){
+    input.addEventListener("input",()=>{
 
         let value =
         input.value
         .toUpperCase()
-        .replace(/[^0-9APM]/g,"");
+        .replace(/[^0-9]/g,"");
+
+
+        if(value.length > 4){
+            value=value.slice(0,4);
+        }
 
 
         if(value.length > 2){
@@ -303,7 +310,6 @@ function maskTime(input){
     });
 
 }
-
 
 maskDate(
     document.getElementById("actStart")
