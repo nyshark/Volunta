@@ -44,35 +44,43 @@ document.addEventListener("DOMContentLoaded", function () {
     
     // banner
 
-   function showBanner(title, message) {
+   let bannerTimeout;
 
-    if (!authNoticeBanner) return;
+function showBanner(title, message){
 
     authNoticeTitle.textContent = title;
+
     authNoticeDesc.textContent = message;
 
-    authNoticeBanner.classList.remove("banner-slide-show");
+    authNoticeBanner.classList.remove(
+        "auth-banner-show"
+    );
 
-    // Forces the browser to restart the animation
     void authNoticeBanner.offsetWidth;
 
-    authNoticeBanner.classList.add("banner-slide-show");
+    authNoticeBanner.classList.add(
+        "auth-banner-show"
+    );
 
-    setTimeout(function () {
+    clearTimeout(bannerTimeout);
 
-        authNoticeBanner.classList.remove("banner-slide-show");
+    bannerTimeout = setTimeout(function(){
 
-    }, 4000);
+        authNoticeBanner.classList.remove(
+            "auth-banner-show"
+        );
+
+    },4000);
 
 }
 
-    function hideBanner() {
+    function hideBanner(){
 
-        if (!authNoticeBanner) return;
-        authNoticeBanner.classList.remove(
-            "banner-slide-show"
-        );
-    }
+    authNoticeBanner.classList.remove(
+        "auth-banner-show"
+    );
+
+}
     
     // role selection
 
@@ -423,4 +431,15 @@ if (!isSchoolEmail) {
 
         }
     );
+    const bannerClose =
+    document.getElementById(
+        "authBannerClose"
+    );
+
+if(bannerClose){
+
+    bannerClose.onclick =
+        hideBanner;
+
+}
 }); 
