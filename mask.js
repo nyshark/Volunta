@@ -161,40 +161,6 @@ function setupTimeMask(id){
         numbers =
         numbers.slice(0,4);
 
-        // ======================================
-// TIME LIMIT CHECKS
-// ======================================
-
-if(numbers.length >= 2){
-
-    let hour =
-    Number(numbers.substring(0,2));
-
-
-    if(hour > 12){
-
-        numbers =
-        numbers.substring(1);
-
-    }
-
-}
-
-
-if(numbers.length === 4){
-
-    let minute =
-    Number(numbers.substring(2,4));
-
-
-    if(minute > 59){
-
-        numbers =
-        numbers.substring(0,3);
-
-    }
-
-}
 
         let value = "";
 
@@ -321,14 +287,40 @@ input.addEventListener("blur", function(){
 
     else if(numbers.length === 4){
 
-        input.value =
-        numbers.substring(0,2)
-        +
-        ":"
-        +
-        numbers.substring(2,4);
+    let hour =
+    Number(numbers.substring(0,2));
+
+
+    let minute =
+    Number(numbers.substring(2,4));
+
+
+    // Cap hour at 12
+
+    if(hour > 12){
+
+        hour = 12;
 
     }
+
+
+    // Cap minutes at 59
+
+    if(minute > 59){
+
+        minute = 59;
+
+    }
+
+
+    value =
+    String(hour).padStart(2,"0")
+    +
+    ":"
+    +
+    String(minute).padStart(2,"0");
+
+}
 
 
 
