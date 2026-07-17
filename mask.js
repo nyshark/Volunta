@@ -4,39 +4,80 @@
 
 function setupDateMask(id){
 
-    const input = document.getElementById(id);
+    const input =
+    document.getElementById(id);
 
     if(!input) return;
 
     input.placeholder = "MM/DD/YY";
     input.maxLength = 8;
 
+    input.addEventListener("keydown", function(e){
+
+        const key = e.key;
+
+        // Auto-pad month
+        if(key === "/"){
+
+            let parts =
+            input.value.split("/");
+
+            // Month
+            if(parts.length === 1 && parts[0].length === 1){
+
+                input.value =
+                "0" + parts[0] + "/";
+
+                e.preventDefault();
+                return;
+            }
+
+            // Day
+            if(parts.length === 2 && parts[1].length === 1){
+
+                input.value =
+                parts[0] +
+                "/0" +
+                parts[1] +
+                "/";
+
+                e.preventDefault();
+                return;
+            }
+
+        }
+
+    });
+
     input.addEventListener("input", function(){
 
-        let value =
+        let numbers =
         input.value.replace(/\D/g,"");
 
-        if(value.length > 6){
+        if(numbers.length > 6){
 
-            value = value.slice(0,6);
-
-        }
-
-        if(value.length >= 3){
-
-            value =
-            value.slice(0,2)
-            + "/"
-            + value.slice(2);
+            numbers =
+            numbers.slice(0,6);
 
         }
 
-        if(value.length >= 5){
+        let value = "";
 
-            value =
-            value.slice(0,5)
-            + "/"
-            + value.slice(5);
+        if(numbers.length >= 1){
+
+            value += numbers.substring(0,2);
+
+        }
+
+        if(numbers.length >= 3){
+
+            value += "/" + numbers.substring(2,4);
+
+        }
+
+        if(numbers.length >= 5){
+
+            value += "/" + numbers.substring(4,6);
 
         }
 
@@ -45,7 +86,6 @@ function setupDateMask(id){
     });
 
 }
-
 function setupTimeMask(id){
 
     const input =
