@@ -109,18 +109,6 @@ function setupTimeMask(id){
     input.value.toUpperCase();
 
 
-    // allow complete deletion
-
-    if(raw.trim() === ""){
-
-        input.value = "";
-
-        return;
-
-    }
-
-
-
     let meridiem = "";
 
 
@@ -137,13 +125,17 @@ function setupTimeMask(id){
     }
 
 
-
     let numbers =
     raw.replace(/\D/g,"");
 
 
-    numbers =
-    numbers.slice(0,4);
+
+    if(numbers.length > 4){
+
+        numbers =
+        numbers.slice(0,4);
+
+    }
 
 
 
@@ -151,8 +143,7 @@ function setupTimeMask(id){
 
 
 
-    // 1-2 digits stay untouched
-
+    // 1 or 2 digits
     if(numbers.length <= 2){
 
         value = numbers;
@@ -160,8 +151,9 @@ function setupTimeMask(id){
     }
 
 
-    // 530 -> 05:30
 
+    // 3 digits
+    // 530 -> 05:30
     else if(numbers.length === 3){
 
         value =
@@ -173,16 +165,43 @@ function setupTimeMask(id){
     }
 
 
+
+    // 4 digits
+    // 0530 -> 05:30
     // 1130 -> 11:30
 
     else if(numbers.length === 4){
 
-        value =
-        numbers.substring(0,2)
-        +
-        ":"
-        +
-        numbers.substring(2,4);
+
+        if(numbers[0] === "0"){
+
+            numbers =
+            numbers.substring(1);
+
+        }
+
+
+        if(numbers.length === 3){
+
+            value =
+            "0" +
+            numbers[0] +
+            ":" +
+            numbers.substring(1,3);
+
+        }
+
+        else{
+
+            value =
+            numbers.substring(0,2)
+            +
+            ":"
+            +
+            numbers.substring(2,4);
+
+        }
+
 
     }
 
