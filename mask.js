@@ -165,10 +165,19 @@ function setupTimeMask(id){
 
         if(hour.length === 1){
 
-            hour =
-            "0" + hour;
+    hour =
+    "0" + hour;
 
-        }
+}
+
+
+// Fix double digit hours
+if(hour.length === 3){
+
+    hour =
+    hour.substring(1);
+
+}
 
 
         let value = hour;
