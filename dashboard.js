@@ -194,6 +194,8 @@ activityForm.reset();
 
 updateActivityInputs();
 
+updateHoursAutomatically();
+
 renderActivities();
 
 updateDashboard();
@@ -251,6 +253,20 @@ document.getElementById("timeIn");
 
 const timeOutInput =
 document.getElementById("timeOut");
+
+[timeInInput, timeOutInput].forEach(function(input){
+
+    input.addEventListener("keydown", function(e){
+
+        if(e.key === "Enter"){
+
+            e.preventDefault();
+
+        }
+
+    });
+
+});
 
 const hoursInput =
 document.getElementById("actHours");
