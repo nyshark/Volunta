@@ -2332,7 +2332,7 @@ main:has(.dashboard-main){
 
 #ledgerSubmitBtn {
 
-    width:auto;
+    width:100%;
 
     min-width:140px;
 
