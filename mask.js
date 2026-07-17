@@ -201,15 +201,30 @@ function setupTimeMask(id){
 
         else if(numbers.length === 4){
 
-            value =
-            numbers.substring(0,2)
-            +
-            ":"
-            +
-            numbers.substring(2,4);
+    let hour =
+    Number(numbers.substring(0,2));
 
-        }
+    let minute =
+    Number(numbers.substring(2,4));
 
+    if(hour > 12){
+
+        hour = 12;
+
+    }
+
+    if(minute > 59){
+
+        minute = 59;
+
+    }
+
+    input.value =
+        String(hour).padStart(2,"0")
+        + ":"
+        + String(minute).padStart(2,"0");
+
+}
 
 
         if(meridiem){
