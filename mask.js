@@ -101,7 +101,6 @@ function setupTimeMask(id){
     input.placeholder = "HH:MM AM/PM";
 
 
-
     input.addEventListener("input", function(){
 
 
@@ -111,7 +110,6 @@ function setupTimeMask(id){
 
 
         let meridiem = "";
-
 
         if(raw.includes("A")){
 
@@ -132,7 +130,7 @@ function setupTimeMask(id){
 
 
 
-        // allow deleting everything
+        // completely empty
 
         if(numbers.length === 0){
 
@@ -144,14 +142,18 @@ function setupTimeMask(id){
 
 
 
+        // keep only HHMM
+
         numbers =
-        numbers.slice(0,4);
+        numbers.substring(0,4);
 
 
 
         let value = "";
 
 
+
+        // 1-4 numbers
 
         if(numbers.length <= 2){
 
@@ -163,12 +165,12 @@ function setupTimeMask(id){
         else if(numbers.length === 3){
 
             value =
-            "0" +
-            numbers[0]
+            numbers.substring(0,1)
+            .padStart(2,"0")
             +
             ":"
             +
-            numbers.substring(1);
+            numbers.substring(1,3);
 
         }
 
@@ -180,7 +182,7 @@ function setupTimeMask(id){
             +
             ":"
             +
-            numbers.substring(2);
+            numbers.substring(2,4);
 
         }
 
@@ -197,50 +199,11 @@ function setupTimeMask(id){
         input.value = value;
 
 
-
         if(typeof updateHoursAutomatically === "function"){
 
             updateHoursAutomatically();
 
         }
-
-
-    });
-
-
-
-    input.addEventListener("keydown", function(e){
-
-
-        if(e.key === ":"){
-
-
-            e.preventDefault();
-
-
-            let numbers =
-            input.value.replace(/\D/g,"");
-
-
-
-            if(numbers.length === 1){
-
-                input.value =
-                "0" + numbers + ":";
-
-            }
-
-
-            else if(numbers.length === 2){
-
-                input.value =
-                numbers + ":";
-
-            }
-
-
-        }
-
 
 
     });
