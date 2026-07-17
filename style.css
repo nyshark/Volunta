@@ -2695,3 +2695,53 @@ main:has(.dashboard-main){
     cursor:pointer;
 
 }
+
+/* ==============================
+   DAY MODE DASHBOARD BANNER
+============================== */
+
+body.day-mode .auth-banner{
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.96),
+            rgba(245,249,255,.96)
+        );
+
+    border:1px solid #72aacf;
+
+    box-shadow:
+        0 22px 60px rgba(76,120,180,.18);
+
+    backdrop-filter:blur(14px);
+
+}
+
+body.day-mode .auth-banner h4{
+
+    color:#123c82;
+
+}
+
+body.day-mode .auth-banner p{
+
+    color:#46638d;
+
+}
+
+body.day-mode .auth-banner-close{
+
+    background:
+        rgba(114,170,207,.15);
+
+    color:#123c82;
+
+}
+
+body.day-mode .auth-banner-close:hover{
+
+    background:
+        rgba(114,170,207,.3);
+
+}
