@@ -51,6 +51,7 @@ document.getElementById("authBannerClose");
 let bannerTimeout;
 
 function showBanner(title, message){
+    console.log("SHOWING BANNER");
 
     authNoticeTitle.textContent = title;
 
