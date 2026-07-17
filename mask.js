@@ -101,11 +101,8 @@ function setupTimeMask(id){
     input.placeholder = "HH:MM AM/PM";
 
 
-    input.addEventListener("input", function(e){
 
-
-        let cursor =
-        input.selectionStart;
+    input.addEventListener("input", function(){
 
 
         let raw =
@@ -135,7 +132,7 @@ function setupTimeMask(id){
 
 
 
-        // allow full deletion
+        // allow deleting everything
 
         if(numbers.length === 0){
 
@@ -156,8 +153,6 @@ function setupTimeMask(id){
 
 
 
-        // 1-2 numbers
-
         if(numbers.length <= 2){
 
             value = numbers;
@@ -165,24 +160,18 @@ function setupTimeMask(id){
         }
 
 
-
-        // 530 -> 05:30
-
         else if(numbers.length === 3){
 
             value =
             "0" +
-            numbers.substring(0,1)
+            numbers[0]
             +
             ":"
             +
-            numbers.substring(1,3);
+            numbers.substring(1);
 
         }
 
-
-
-        // 1030 -> 10:30
 
         else if(numbers.length === 4){
 
@@ -191,7 +180,7 @@ function setupTimeMask(id){
             +
             ":"
             +
-            numbers.substring(2,4);
+            numbers.substring(2);
 
         }
 
@@ -209,34 +198,6 @@ function setupTimeMask(id){
 
 
 
-        // restore cursor
-
-        let newCursor =
-        cursor;
-
-
-
-        if(value.includes(":") && cursor === 2){
-
-            newCursor = 3;
-
-        }
-
-
-        if(newCursor > value.length){
-
-            newCursor = value.length;
-
-        }
-
-
-        input.setSelectionRange(
-            newCursor,
-            newCursor
-        );
-
-
-
         if(typeof updateHoursAutomatically === "function"){
 
             updateHoursAutomatically();
@@ -248,43 +209,35 @@ function setupTimeMask(id){
 
 
 
-
-    // colon shortcut
-
     input.addEventListener("keydown", function(e){
 
 
-        if(e.key !== ":"){
-
-            return;
-
-        }
+        if(e.key === ":"){
 
 
-        e.preventDefault();
+            e.preventDefault();
 
 
-
-        let numbers =
-        input.value.replace(/\D/g,"");
+            let numbers =
+            input.value.replace(/\D/g,"");
 
 
 
-        if(numbers.length === 1){
+            if(numbers.length === 1){
 
-            input.value =
-            "0" +
-            numbers +
-            ":";
+                input.value =
+                "0" + numbers + ":";
 
-        }
+            }
 
 
-        else if(numbers.length === 2){
+            else if(numbers.length === 2){
 
-            input.value =
-            numbers +
-            ":";
+                input.value =
+                numbers + ":";
+
+            }
+
 
         }
 
