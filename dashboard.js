@@ -88,7 +88,10 @@ function hideBanner(){
 
 if(authBannerClose){
 
-    authBannerClose.onclick = hideBanner;
+    authBannerClose.addEventListener(
+        "click",
+        hideBanner
+    );
 
 }
 
