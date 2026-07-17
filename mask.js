@@ -174,13 +174,26 @@ function setupTimeMask(id){
 
         else if(numbers.length === 3){
 
-    value =
-    "0" +
-    numbers.substring(0,1)
-    +
-    ":"
-    +
-    numbers.substring(1,3);
+    if(
+        numbers[0] === "1"
+    ){
+
+        // wait for possible 10:00, 11:00, 12:00
+        value = numbers;
+
+    }
+
+    else{
+
+        value =
+        "0" +
+        numbers.substring(0,1)
+        +
+        ":"
+        +
+        numbers.substring(1,3);
+
+    }
 
 }
 
