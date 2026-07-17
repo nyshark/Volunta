@@ -99,58 +99,150 @@ function setupTimeMask(id){
 
     if(!input) return;
 
+
     input.placeholder="HH:MM AM/PM";
 
-    input.addEventListener("input",function(){
+
+    input.addEventListener("input", function(){
 
         let raw =
-        input.value.toUpperCase();
+        input.value
+        .toUpperCase();
 
-        let meridiem="";
+
+        let meridiem = "";
+
+
+        // Detect AM / PM typing
 
         if(raw.includes("A")){
 
-            meridiem="AM";
+            meridiem = "AM";
 
         }
 
         else if(raw.includes("P")){
 
-            meridiem="PM";
+            meridiem = "PM";
 
         }
+
+
+        // Keep only numbers
 
         let numbers =
         raw.replace(/\D/g,"");
 
-        if(numbers.length > 4){
 
-            numbers =
-            numbers.slice(0,4);
+        // Maximum HHMM
+
+        numbers =
+        numbers.slice(0,4);
+
+
+
+        let hour = "";
+        let minute = "";
+
+
+        if(numbers.length >= 1){
+
+            hour =
+            numbers.substring(0,2);
 
         }
 
-        let value=numbers;
 
         if(numbers.length >= 3){
 
-            value =
-            numbers.slice(0,2)
-            + ":"
-            + numbers.slice(2);
+            minute =
+            numbers.substring(2,4);
 
         }
 
+
+        // Auto format hour
+
+        if(hour.length === 1){
+
+            hour =
+            "0" + hour;
+
+        }
+
+
+        let value = hour;
+
+
+        // Add :
+
+        if(numbers.length >= 3){
+
+            value += ":" + minute;
+
+        }
+
+
+        // Add AM/PM
+
         if(meridiem){
+
+            if(numbers.length === 2){
+
+                value += ":00";
+
+            }
 
             value += " " + meridiem;
 
         }
 
+
         input.value=value;
+
+
+        if(typeof updateHoursAutomatically === "function"){
+
+            updateHoursAutomatically();
+
+        }
+
+
+    });
+
+
+
+    input.addEventListener("keydown",function(e){
+
+
+        // Allow colon shortcut
+
+        if(e.key === ":"){
+
+            e.preventDefault();
+
+
+            let numbers =
+            input.value.replace(/\D/g,"");
+
+
+            if(numbers.length === 1){
+
+                input.value =
+                "0" + numbers + ":";
+
+            }
+
+            else if(numbers.length === 2){
+
+                input.value =
+                numbers + ":";
+
+            }
+
+        }
+
 
     });
 
 }
-
-
