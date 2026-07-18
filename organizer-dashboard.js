@@ -508,26 +508,35 @@ if(
 
 
         if(
-            e.target.classList.contains("delete-btn")
-        ){
+    e.target.classList.contains("delete-btn")
+){
 
 
-            opportunities.splice(index,1);
+    const confirmDelete =
+    confirm(
+        "Are you sure you want to delete this opportunity?"
+    );
 
 
-
-            save();
-
+    if(confirmDelete){
 
 
-            render();
+        opportunities.splice(index,1);
 
 
+        save();
 
-            return;
+
+        render();
 
 
-        }
+    }
+
+
+    return;
+
+
+}
 
 
 
