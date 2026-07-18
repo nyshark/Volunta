@@ -125,21 +125,27 @@ function showBanner(title, message){
 
     organizerRoleBtn.onclick = function () {
 
-        alert("The button was clicked!");
-
-        showBanner(
-
-            "Sorry!!",
-            "Under maintenance at the moment ✦"
+        roleSelection.classList.add(
+            "fade-out"
         );
 
         setTimeout(function () {
 
-            hideBanner();
+            roleSelection.style.display = "none";
 
-        }, 4000);
+            if (welcomeIntro) {
+
+                welcomeIntro.style.display = "none";
+
+            }
+
+            window.location.href =
+                "organizer-dashboard.html";
+
+        }, 700);
 
     };
+
 }
 
     // beta login
