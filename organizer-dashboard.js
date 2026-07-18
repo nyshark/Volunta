@@ -489,253 +489,316 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
+// ==============================
+// DETAILS VIEW
+// ==============================
 
 
+function showDetails(index){
 
 
+    const opp =
+    opportunities[index];
 
 
 
-    // ==============================
-    // DETAILS VIEW
-    // ==============================
+    list.innerHTML = `
 
 
+    <div class="contact-form-wrap opportunity-details-card">
 
-    function showDetails(index){
 
-
-
-        const opp =
-        opportunities[index];
-
-
-
-        list.innerHTML = `
-
-
-
-        <div class="contact-form-wrap">
-
-
-
-        ${
-            opp.image
-            ?
-            `<img
-            src="${opp.image}"
-            style="
-            width:100%;
-            border-radius:4px;
-            ">`
-            :
-            ""
-        }
-
-
-
-        <h2>
-
-        ${opp.title}
-
-        </h2>
-
-
-
-
-        <p>
-
-        <b>Organization:</b>
-
-        ${opp.organization}
-
-        </p>
-
-
-
-
-        <p>
-
-        <b>Location:</b>
-
-        ${opp.address}
-
-        <br>
-
-        ${opp.city},
-        ${opp.state}
-        ${opp.zip}
-
-        </p>
-
-
-
-
-        <p>
-
-        <b>Date:</b>
-
-        ${opp.date}
-
-        </p>
-
-
-
-
-        <p>
-
-        <b>Time:</b>
-
-        ${opp.start}
-        -
-        ${opp.end}
-
-        </p>
-
-
-
-
-        <p>
-
-        <b>Volunteer Limit:</b>
-
-        ${opp.limit}
-
-        </p>
-
-
-
-
-        <p>
-
-        <b>Category:</b>
-
-        ${opp.category}
-
-        </p>
-
-
-
-
-        <p>
-
-        <b>Minimum Age:</b>
-
-        ${opp.age || "None"}
-
-        </p>
-
-
-
-
-        <hr>
-
-
-
-        <p>
-
-        ${opp.description}
-
-        </p>
-
-
-
-
-        <hr>
-
-
-
-        <h3>
-
-        Volunteers
-
-        </h3>
-
-
-        <p>
-
-        No students yet.
-
-        </p>
-
-
-
-
-        <h3>
-
-        Attendance
-
-        </h3>
-
-
-        <p>
-
-        Coming later.
-
-        </p>
-
-
-
-
-        <h3>
-
-        Pending Signatures
-
-        </h3>
-
-
-        <p>
-
-        None.
-
-        </p>
-
-
-
-        <br>
-
-
-
-
-        <button
-
-        id="backButton"
-
-        class="btn-send">
-
-        ← Back
-
-        </button>
-
-
-
-        </div>
-
-
-
-        `;
-
-
-
-
-        document
-        .getElementById("backButton")
-        .onclick = function(){
-
-
-            render();
-
-
-        };
-
-
-
+    ${
+        opp.image
+        ?
+        `<img
+        src="${opp.image}"
+        class="details-banner">
+        `
+        :
+        ""
     }
 
 
 
+    <h1>
+
+    ${opp.title}
+
+    </h1>
 
 
+
+
+    <div class="detail-section">
+
+
+    <h3>
+    Hosted By
+    </h3>
+
+
+    <p>
+
+    ${opp.organization}
+
+    </p>
+
+
+    </div>
+
+
+
+
+
+    <div class="detail-section">
+
+
+    <h3>
+    📍 Location
+    </h3>
+
+
+    <p>
+
+    ${opp.address}
+
+    <br>
+
+    ${opp.city},
+    ${opp.state}
+    ${opp.zip}
+
+    </p>
+
+
+    </div>
+
+
+
+
+
+    <div class="detail-grid">
+
+
+
+    <div>
+
+    <h3>
+    📅 Date
+    </h3>
+
+    <p>
+
+    ${opp.date}
+
+    </p>
+
+    </div>
+
+
+
+
+
+    <div>
+
+    <h3>
+    ⏰ Volunteer Window
+    </h3>
+
+    <p>
+
+    ${opp.start}
+    -
+    ${opp.end}
+
+    </p>
+
+    </div>
+
+
+
+
+
+    <div>
+
+    <h3>
+    👥 Capacity
+    </h3>
+
+
+    <p>
+
+    ${opp.limit}
+    volunteers
+
+    </p>
+
+
+    </div>
+
+
+
+
+
+    <div>
+
+    <h3>
+    🏷 Category
+    </h3>
+
+
+    <p>
+
+    ${opp.category}
+
+    </p>
+
+
+    </div>
+
+
+
+    </div>
+
+
+
+
+
+    <div class="detail-section">
+
+
+    <h3>
+    🎂 Minimum Age
+    </h3>
+
+
+    <p>
+
+    ${opp.age || "No minimum age"}
+
+    </p>
+
+
+    </div>
+
+
+
+
+
+
+    <div class="detail-section">
+
+
+    <h3>
+    About this Opportunity
+    </h3>
+
+
+    <p>
+
+    ${opp.description}
+
+    </p>
+
+
+    </div>
+
+
+
+
+
+    <hr>
+
+
+
+
+
+    <div class="detail-section">
+
+
+    <h3>
+    Volunteer Management
+    </h3>
+
+
+    <p>
+
+    👥 Volunteers
+
+    <br>
+
+    No students yet.
+
+    </p>
+
+
+
+    <p>
+
+    ✓ Attendance
+
+    <br>
+
+    Coming later.
+
+    </p>
+
+
+
+    <p>
+
+    ✎ Pending Signatures
+
+    <br>
+
+    None.
+
+    </p>
+
+
+    </div>
+
+
+
+
+
+    <button
+
+    id="backButton"
+
+    class="btn-send">
+
+    ← Back
+
+    </button>
+
+
+
+
+    </div>
+
+
+
+    `;
+
+
+
+
+
+    document
+    .getElementById("backButton")
+    .onclick = function(){
+
+
+        render();
+
+
+    };
+
+
+
+}
 
     // ==============================
     // INITIAL LOAD
