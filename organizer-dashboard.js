@@ -1,371 +1,749 @@
+// ======================================
+// VOLUNTA ORGANIZER DASHBOARD JS
+// VERSION 2
+// ======================================
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
-const tabs = document.querySelectorAll(".organizer-tab");
 
-window.showTab = function(tabId){
 
-tabs.forEach(tab=>{
+    // ==============================
+    // TAB SYSTEM
+    // ==============================
 
-tab.style.display="none";
 
-});
+    const tabs = document.querySelectorAll(".organizer-tab");
 
-document.getElementById(tabId).style.display="block";
 
-};
+    window.showTab = function(tabId){
 
-// ------------------------
-// LOAD OPPORTUNITIES
-// ------------------------
+        tabs.forEach(tab => {
 
-let opportunities =
-JSON.parse(
-localStorage.getItem("voluntaOpportunities")
-) || [];
+            tab.style.display = "none";
 
-const form =
-document.getElementById("opportunityForm");
+        });
 
-const list =
-document.getElementById("opportunityList");
 
-// ------------------------
-// SAVE
-// ------------------------
+        document.getElementById(tabId).style.display = "block";
 
-function save(){
+    };
 
-localStorage.setItem(
 
-"voluntaOpportunities",
 
-JSON.stringify(opportunities)
 
-);
+    // ==============================
+    // DATA
+    // ==============================
 
-}
 
-// ------------------------
-// RENDER
-// ------------------------
+    let opportunities =
+    JSON.parse(
+        localStorage.getItem("voluntaOpportunities")
+    ) || [];
 
-function render(){
 
-list.innerHTML="";
 
-if(opportunities.length===0){
+    const form =
+    document.getElementById("opportunityForm");
 
-list.innerHTML=`
 
-<div class="contact-form-wrap">
+    const list =
+    document.getElementById("opportunityList");
 
-<h3>No opportunities yet.</h3>
 
-<p>Create your first opportunity!</p>
 
-</div>
 
-`;
+    // ==============================
+    // SAVE DATA
+    // ==============================
 
-return;
 
-}
+    function save(){
 
-opportunities.forEach((opp,index)=>{
+        localStorage.setItem(
 
-const card =
-document.createElement("div");
+            "voluntaOpportunities",
 
-card.className="contact-form-wrap";
+            JSON.stringify(opportunities)
 
-card.innerHTML=`
+        );
 
-<h2>${opp.title}</h2>
+    }
 
-<p>
 
-📍 ${opp.city}, ${opp.state}
 
-</p>
 
-<p>
+    // ==============================
+    // RENDER OPPORTUNITIES
+    // ==============================
 
-${opp.date}
 
-</p>
+    function render(){
 
-<p>
 
-${opp.start}
+        list.innerHTML = "";
 
--
 
-${opp.end}
 
-</p>
+        if(opportunities.length === 0){
 
-<p>
 
-👥
+            list.innerHTML = `
 
-0 /
+            <div class="contact-form-wrap">
 
-${opp.limit}
+                <h3>No opportunities yet.</h3>
 
-Volunteers
+                <p>
+                Create your first volunteer event!
+                </p>
 
-</p>
+            </div>
 
-<button
-class="btn-send"
-data-index="${index}">
+            `;
 
-View Details
 
-</button>
+            return;
 
-`;
+        }
 
-list.appendChild(card);
 
-});
 
-}
 
-// ------------------------
-// CREATE OPPORTUNITY
-// ------------------------
 
-form.addEventListener("submit",(e)=>{
+        opportunities.forEach((opp,index)=>{
 
-e.preventDefault();
 
-const opportunity={
 
-title:
-document.getElementById("oppTitle").value,
+            const card =
+            document.createElement("div");
 
-organization:
-document.getElementById("oppOrganization").value,
 
-address:
-document.getElementById("oppAddress").value,
+            card.className =
+            "contact-form-wrap";
 
-city:
-document.getElementById("oppCity").value,
 
-state:
-document.getElementById("oppState").value,
 
-zip:
-document.getElementById("oppZip").value,
+            card.innerHTML = `
 
-date:
-document.getElementById("oppDate").value,
 
-start:
-document.getElementById("oppStart").value,
 
-end:
-document.getElementById("oppEnd").value,
+            ${
+                opp.image
+                ?
+                `<img 
+                src="${opp.image}"
+                style="
+                width:100%;
+                border-radius:4px;
+                margin-bottom:1rem;
+                ">`
+                :
+                ""
+            }
 
-limit:
-document.getElementById("oppLimit").value,
 
-category:
-document.getElementById("oppCategory").value,
 
-age:
-document.getElementById("oppAge").value,
+            <h2>
 
-description:
-document.getElementById("oppDescription").value,
+            ${opp.title}
 
-students:[],
+            </h2>
 
-attendance:[],
 
-pendingSignatures:[]
 
-};
+            <p>
+            📍 ${opp.city}, ${opp.state}
+            </p>
 
-opportunities.push(opportunity);
 
-save();
 
-render();
+            <p>
 
-form.reset();
+            📅 ${opp.date}
 
-showTab("opportunitiesTab");
+            </p>
 
-});
 
-// ------------------------
-// VIEW DETAILS
-// ------------------------
 
-list.addEventListener("click",(e)=>{
+            <p>
 
-if(!e.target.matches(".btn-send")) return;
+            ⏰ ${opp.start}
+            -
+            ${opp.end}
 
-const index =
-Number(e.target.dataset.index);
+            </p>
 
-const opp =
-opportunities[index];
 
-list.innerHTML=`
 
-<div class="contact-form-wrap">
+            <p>
 
-<h2>
+            👥
+            0 /
+            ${opp.limit}
+            Volunteers
 
-${opp.title}
+            </p>
 
-</h2>
 
-<p>
 
-<b>Organization:</b>
+            <button
 
-${opp.organization}
+            class="btn-send view-btn"
 
-</p>
+            data-index="${index}"
 
-<p>
+            >
 
-<b>Address:</b>
+            View Details
 
-${opp.address}
+            </button>
 
-<br>
 
-${opp.city},
 
-${opp.state}
 
-${opp.zip}
+            <button
 
-</p>
+            class="btn-send delete-btn"
 
-<p>
+            data-index="${index}"
 
-<b>Date:</b>
+            >
 
-${opp.date}
+            Delete
 
-</p>
+            </button>
 
-<p>
 
-<b>Hours:</b>
 
-${opp.start}
+            `;
 
--
 
-${opp.end}
 
-</p>
+            list.appendChild(card);
 
-<p>
 
-<b>Volunteer Limit:</b>
 
-${opp.limit}
+        });
 
-</p>
 
-<p>
 
-<b>Category:</b>
+    }
 
-${opp.category}
 
-</p>
 
-<p>
 
-<b>Minimum Age:</b>
 
-${opp.age}
 
-</p>
+    // ==============================
+    // CREATE OPPORTUNITY
+    // ==============================
 
-<hr>
 
-<p>
 
-${opp.description}
+    form.addEventListener(
+    "submit",
+    (e)=>{
 
-</p>
 
-<br>
+        e.preventDefault();
 
-<h3>
 
-Signed Up Students
 
-</h3>
+        const imageInput =
+        document.getElementById("oppImage");
 
-<p>
 
-None yet.
 
-</p>
+        const file =
+        imageInput.files[0];
 
-<br>
 
-<h3>
 
-Attendance
+        function createOpportunity(image=""){
 
-</h3>
 
-<p>
 
-Will appear once students begin signing up.
+            const opportunity = {
 
-</p>
 
-<br>
 
-<h3>
+                id:
+                Date.now(),
 
-Pending Signatures
 
-</h3>
 
-<p>
+                title:
+                document.getElementById("oppTitle").value,
 
-None.
 
-</p>
 
-<br>
+                organization:
+                document.getElementById("oppOrganization").value,
 
-<button
-id="backButton"
-class="btn-send">
 
-← Back
 
-</button>
+                address:
+                document.getElementById("oppAddress").value,
 
-</div>
 
-`;
 
-document.getElementById("backButton")
-.onclick=function(){
+                city:
+                document.getElementById("oppCity").value,
 
-render();
 
-};
 
-});
+                state:
+                document.getElementById("oppState").value,
 
-render();
+
+
+                zip:
+                document.getElementById("oppZip").value,
+
+
+
+                date:
+                document.getElementById("oppDate").value,
+
+
+
+                start:
+                document.getElementById("oppStart").value,
+
+
+
+                end:
+                document.getElementById("oppEnd").value,
+
+
+
+                limit:
+                document.getElementById("oppLimit").value,
+
+
+
+                category:
+                document.getElementById("oppCategory").value,
+
+
+
+                age:
+                document.getElementById("oppAge").value,
+
+
+
+                description:
+                document.getElementById("oppDescription").value,
+
+
+
+                image:image,
+
+
+
+                students:[],
+
+                attendance:[],
+
+                pendingSignatures:[]
+
+
+
+            };
+
+
+
+
+            opportunities.push(opportunity);
+
+
+
+            save();
+
+
+
+            render();
+
+
+
+            form.reset();
+
+
+
+            showTab("opportunitiesTab");
+
+
+
+        }
+
+
+
+
+
+        if(file){
+
+
+            const reader =
+            new FileReader();
+
+
+
+            reader.onload = function(){
+
+                createOpportunity(reader.result);
+
+            };
+
+
+
+            reader.readAsDataURL(file);
+
+
+
+        }
+
+
+        else{
+
+
+            createOpportunity();
+
+
+        }
+
+
+
+    });
+
+
+
+
+
+
+
+
+    // ==============================
+    // CARD BUTTONS
+    // ==============================
+
+
+
+    list.addEventListener(
+    "click",
+    (e)=>{
+
+
+
+        const index =
+        Number(
+            e.target.dataset.index
+        );
+
+
+
+        // DELETE
+
+
+        if(
+            e.target.classList.contains("delete-btn")
+        ){
+
+
+            opportunities.splice(index,1);
+
+
+
+            save();
+
+
+
+            render();
+
+
+
+            return;
+
+
+        }
+
+
+
+
+
+        // VIEW DETAILS
+
+
+        if(
+            e.target.classList.contains("view-btn")
+        ){
+
+
+            showDetails(index);
+
+
+        }
+
+
+
+    });
+
+
+
+
+
+
+
+
+    // ==============================
+    // DETAILS VIEW
+    // ==============================
+
+
+
+    function showDetails(index){
+
+
+
+        const opp =
+        opportunities[index];
+
+
+
+        list.innerHTML = `
+
+
+
+        <div class="contact-form-wrap">
+
+
+
+        ${
+            opp.image
+            ?
+            `<img
+            src="${opp.image}"
+            style="
+            width:100%;
+            border-radius:4px;
+            ">`
+            :
+            ""
+        }
+
+
+
+        <h2>
+
+        ${opp.title}
+
+        </h2>
+
+
+
+
+        <p>
+
+        <b>Organization:</b>
+
+        ${opp.organization}
+
+        </p>
+
+
+
+
+        <p>
+
+        <b>Location:</b>
+
+        ${opp.address}
+
+        <br>
+
+        ${opp.city},
+        ${opp.state}
+        ${opp.zip}
+
+        </p>
+
+
+
+
+        <p>
+
+        <b>Date:</b>
+
+        ${opp.date}
+
+        </p>
+
+
+
+
+        <p>
+
+        <b>Time:</b>
+
+        ${opp.start}
+        -
+        ${opp.end}
+
+        </p>
+
+
+
+
+        <p>
+
+        <b>Volunteer Limit:</b>
+
+        ${opp.limit}
+
+        </p>
+
+
+
+
+        <p>
+
+        <b>Category:</b>
+
+        ${opp.category}
+
+        </p>
+
+
+
+
+        <p>
+
+        <b>Minimum Age:</b>
+
+        ${opp.age || "None"}
+
+        </p>
+
+
+
+
+        <hr>
+
+
+
+        <p>
+
+        ${opp.description}
+
+        </p>
+
+
+
+
+        <hr>
+
+
+
+        <h3>
+
+        Volunteers
+
+        </h3>
+
+
+        <p>
+
+        No students yet.
+
+        </p>
+
+
+
+
+        <h3>
+
+        Attendance
+
+        </h3>
+
+
+        <p>
+
+        Coming later.
+
+        </p>
+
+
+
+
+        <h3>
+
+        Pending Signatures
+
+        </h3>
+
+
+        <p>
+
+        None.
+
+        </p>
+
+
+
+        <br>
+
+
+
+
+        <button
+
+        id="backButton"
+
+        class="btn-send">
+
+        ← Back
+
+        </button>
+
+
+
+        </div>
+
+
+
+        `;
+
+
+
+
+        document
+        .getElementById("backButton")
+        .onclick = function(){
+
+
+            render();
+
+
+        };
+
+
+
+    }
+
+
+
+
+
+
+    // ==============================
+    // INITIAL LOAD
+    // ==============================
+
+
+    render();
+
+
 
 });
