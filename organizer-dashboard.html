@@ -485,13 +485,20 @@ Students will see this information.
 
 
 <form
+<form
 id="organizationProfileForm"
-class="activities-logging-grid">
+class="profile-form">
 
 
 
-<div
-style="grid-column:1/-1;">
+<!-- ORGANIZATION IDENTITY -->
+
+<div class="profile-group">
+
+<h3>
+Organization Identity
+</h3>
+
 
 <label>
 Organization Name
@@ -501,12 +508,32 @@ Organization Name
 id="orgName"
 class="contact-input">
 
+
+<label>
+Organization Logo
+</label>
+
+<input
+id="orgLogo"
+type="file"
+accept="image/*"
+class="contact-input">
+
+
 </div>
 
 
 
-<div
-style="grid-column:1/-1;">
+
+
+<!-- MISSION -->
+
+<div class="profile-group">
+
+<h3>
+About Your Organization
+</h3>
+
 
 <label>
 Mission Statement
@@ -517,7 +544,25 @@ id="orgMission"
 class="contact-input"
 rows="5"></textarea>
 
+
 </div>
+
+
+
+
+
+
+<!-- LOCATION -->
+
+<div class="profile-group">
+
+<h3>
+Location
+</h3>
+
+
+<div class="profile-grid">
+
 
 <div>
 
@@ -530,6 +575,7 @@ id="orgAddress"
 class="contact-input">
 
 </div>
+
 
 
 <div>
@@ -545,6 +591,7 @@ class="contact-input">
 </div>
 
 
+
 <div>
 
 <label>
@@ -558,6 +605,7 @@ class="contact-input">
 </div>
 
 
+
 <div>
 
 <label>
@@ -569,6 +617,29 @@ id="orgZip"
 class="contact-input">
 
 </div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<!-- SOCIALS -->
+
+<div class="profile-group">
+
+<h3>
+Social Links
+</h3>
+
+
+<div class="profile-grid">
+
 
 <div>
 
@@ -611,23 +682,13 @@ class="contact-input">
 </div>
 
 
-
-<div
-style="grid-column:1/-1;">
-
-<label>
-Organization Logo
-</label>
-
-
-<input
-id="orgLogo"
-type="file"
-accept="image/*"
-class="contact-input">
+</div>
 
 
 </div>
+
+
+
 
 
 
@@ -635,15 +696,11 @@ class="contact-input">
 
 type="submit"
 
-class="btn-send"
-
-style="grid-column:1/-1;">
+class="btn-send">
 
 Save Organization Profile
 
 </button>
-
-
 </form>
 
 
