@@ -394,6 +394,9 @@ else{
 
             form.reset();
 
+            document.getElementById("publishButton").innerText =
+"Publish Opportunity";
+
 
 
             showTab("opportunitiesTab");
@@ -541,6 +544,9 @@ function editOpportunity(index){
 
 
     editingIndex = index;
+
+    document.getElementById("publishButton").innerText =
+"Save Changes";
 
 
 
