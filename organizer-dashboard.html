@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Volunta - Organizer Dashboard
+</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- Background -->
+
+<div id="starCanvas"></div>
+<div id="cloudCanvas"></div>
+
+<!-- Navbar -->
+
+<nav class="navbar">
+
+<div class="navbar-left">
+
+<button
+id="menuToggleBtn"
+class="filter-btn">
+☰
+</button>
+
+<a
+href="organizer-dashboard.html"
+class="navbar-brand">
+
+VOLUNTA
+
+</a>
+
+</div>
+
+<div class="navbar-action-wrap">
+
+<button
+id="themeToggleBtn"
+class="filter-btn">
+
+⏾
+
+</button>
+
+<a
+href="index.html"
+class="nav-link">
+
+Log Out
+
+</a>
+
+</div>
+
+</nav>
+
+<!-- Side Menu -->
+
+<div
+id="accountMenu"
+class="account-menu">
+
+<button
+id="menuCloseBtn">
+
+✕
+
+</button>
+
+<h3>
+
+Organization
+
+</h3>
+
+<button
+onclick="showTab('createTab')">
+
+Create Opportunity
+
+</button>
+
+<button
+onclick="showTab('opportunitiesTab')">
+
+My Opportunities
+
+</button>
+
+<button
+onclick="showTab('profileTab')">
+
+Organization Profile
+
+</button>
+
+</div>
+
+<main class="dashboard-main">
+
+<!-- Create Opportunity -->
+
+<section
+id="createTab"
+class="organizer-tab">
+
+<div class="panel-header-block">
+
+<h2 class="panel-heading">
+
+Create Opportunity
+
+</h2>
+
+<span class="eyebrow">
+
+Post a new volunteer opportunity.
+
+</span>
+
+</div>
+
+<form
+id="opportunityForm"
+class="activities-logging-grid">
+
+<div>
+
+<label>Opportunity Title</label>
+
+<input
+id="oppTitle"
+class="contact-input"
+required>
+
+</div>
+
+<div>
+
+<label>Organization</label>
+
+<input
+id="oppOrganization"
+class="contact-input"
+required>
+
+</div>
+
+<div>
+
+<label>Address</label>
+
+<input
+id="oppAddress"
+class="contact-input"
+required>
+
+</div>
+
+<div>
+
+<label>City</label>
+
+<input
+id="oppCity"
+class="contact-input"
+required>
+
+</div>
+
+<div>
+
+<label>State</label>
+
+<input
+id="oppState"
+class="contact-input"
+required>
+
+</div>
+
+<div>
+
+<label>Zip Code</label>
+
+<input
+id="oppZip"
+class="contact-input"
+required>
+
+</div>
+
+<div>
+
+<label>Date</label>
+
+<input
+id="oppDate"
+type="date"
+class="contact-input"
+required>
+
+</div>
+
+<div>
+
+<label>Start Time</label>
+
+<input
+id="oppStart"
+type="time"
+class="contact-input"
+required>
+
+</div>
+
+<div>
+
+<label>End Time</label>
+
+<input
+id="oppEnd"
+type="time"
+class="contact-input"
+required>
+
+</div>
+
+<div>
+
+<label>Volunteer Limit</label>
+
+<input
+id="oppLimit"
+type="number"
+class="contact-input"
+min="1"
+required>
+
+</div>
+
+<div>
+
+<label>Category</label>
+
+<select
+id="oppCategory"
+class="contact-input">
+
+<option>Environmental</option>
+
+<option>Community</option>
+
+<option>Animal Care</option>
+
+<option>Food Bank</option>
+
+<option>Education</option>
+
+<option>Healthcare</option>
+
+<option>Fundraising</option>
+
+<option>Other</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>Minimum Age</label>
+
+<input
+id="oppAge"
+type="number"
+class="contact-input">
+
+</div>
+
+<div
+style="grid-column:1/-1;">
+
+<label>Description</label>
+
+<textarea
+id="oppDescription"
+class="contact-input"
+rows="6"></textarea>
+
+</div>
+
+<div
+style="grid-column:1/-1;">
+
+<label>Opportunity Image</label>
+
+<input
+id="oppImage"
+type="file"
+accept="image/*"
+class="contact-input">
+
+</div>
+
+<button
+class="btn-send"
+style="grid-column:1/-1;">
+
+Publish Opportunity
+
+</button>
+
+</form>
+
+</section>
+
+<!-- My Opportunities -->
+
+<section
+id="opportunitiesTab"
+class="organizer-tab"
+style="display:none;">
+
+<div class="panel-header-block">
+
+<h2 class="panel-heading">
+
+My Opportunities
+
+</h2>
+
+<span class="eyebrow">
+
+Manage your volunteer events.
+
+</span>
+
+</div>
+
+<div id="opportunityList">
+
+<!-- Cards appear here -->
+
+</div>
+
+</section>
+
+<!-- Organization Profile -->
+
+<section
+id="profileTab"
+class="organizer-tab"
+style="display:none;">
+
+<div class="panel-header-block">
+
+<h2 class="panel-heading">
+
+Organization Profile
+
+</h2>
+
+<span class="eyebrow">
+
+Students will see this information.
+
+</span>
+
+</div>
+
+<div class="contact-form-wrap">
+
+<h3>
+
+Coming Next
+
+</h3>
+
+<p>
+
+Organization logo
+
+<br><br>
+
+Mission statement
+
+<br><br>
+
+TikTok
+
+<br><br>
+
+Gallery
+
+<br><br>
+
+Social links
+
+</p>
+
+</div>
+
+</section>
+
+</main>
+
+<footer class="site-footer footer-center">
+
+<p>
+
+-ˏ` ✶ ´ˎ-
+
+</p>
+
+</footer>
+
+<script src="stars.js"></script>
+<script src="menu.js"></script>
+<script src="organizer-dashboard.js"></script>
+
+</body>
+
+</html>
