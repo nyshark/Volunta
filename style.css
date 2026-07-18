@@ -2748,3 +2748,51 @@ body.day-mode .auth-banner-close:hover{
         rgba(114,170,207,.3);
 
 }
+
+/* ======================================
+   ORGANIZER DASHBOARD BACKDROP
+   ====================================== */
+
+.dashboard-main {
+
+    width: min(1200px, 90%);
+
+    margin: 3rem auto;
+
+    padding: 3rem;
+
+    background: var(--bg);
+
+    border: 1px solid var(--border);
+
+    border-radius: 4px;
+
+    position: relative;
+
+    z-index: 2;
+
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+
+}
+
+
+/* Dark mode adjustment */
+
+body.day-mode .dashboard-main {
+
+    background: rgba(255,255,255,0.75);
+
+    backdrop-filter: blur(10px);
+
+}
+
+
+/* Dark/night mode glass effect */
+
+body:not(.day-mode) .dashboard-main {
+
+    background: rgba(10,10,20,0.55);
+
+    backdrop-filter: blur(12px);
+
+}
