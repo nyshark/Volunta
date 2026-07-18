@@ -200,7 +200,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
             </button>
 
+            <button
 
+class="btn-send edit-btn"
+
+data-index="${index}"
+
+>
+
+Edit
+
+</button>
 
 
             <button
@@ -210,6 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
             data-index="${index}"
 
             >
+            
 
             Delete
 
@@ -440,7 +451,18 @@ document.addEventListener("DOMContentLoaded", () => {
         Number(
             e.target.dataset.index
         );
+        // EDIT
 
+
+if(
+    e.target.classList.contains("edit-btn")
+){
+
+    editOpportunity(index);
+
+    return;
+
+}
 
 
         // DELETE
@@ -488,6 +510,97 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     });
+
+    // ==============================
+// EDIT OPPORTUNITY
+// ==============================
+
+
+let editingIndex = null;
+
+
+
+function editOpportunity(index){
+
+
+    const opp =
+    opportunities[index];
+
+
+    editingIndex = index;
+
+
+
+    document.getElementById("oppTitle").value =
+    opp.title;
+
+
+
+    document.getElementById("oppOrganization").value =
+    opp.organization;
+
+
+
+    document.getElementById("oppAddress").value =
+    opp.address;
+
+
+
+    document.getElementById("oppCity").value =
+    opp.city;
+
+
+
+    document.getElementById("oppState").value =
+    opp.state;
+
+
+
+    document.getElementById("oppZip").value =
+    opp.zip;
+
+
+
+    document.getElementById("oppDate").value =
+    opp.date;
+
+
+
+    document.getElementById("oppStart").value =
+    opp.start;
+
+
+
+    document.getElementById("oppEnd").value =
+    opp.end;
+
+
+
+    document.getElementById("oppLimit").value =
+    opp.limit;
+
+
+
+    document.getElementById("oppCategory").value =
+    opp.category;
+
+
+
+    document.getElementById("oppAge").value =
+    opp.age;
+
+
+
+    document.getElementById("oppDescription").value =
+    opp.description;
+
+
+
+    showTab("createTab");
+
+
+
+}
 
 // ==============================
 // DETAILS VIEW
