@@ -175,14 +175,14 @@ document.getElementById("publishButton");
 
 
             <p>
-            📍 ${opp.city}, ${opp.state}
+            ⚲ ${opp.city}, ${opp.state}
             </p>
 
 
 
             <p>
 
-            📅 ${opp.date}
+            ⌛︎ ${opp.date}
 
             </p>
 
@@ -190,7 +190,7 @@ document.getElementById("publishButton");
 
             <p>
 
-            ⏰ ${opp.start}
+            ⏱︎ ${opp.start}
             -
             ${opp.end}
 
@@ -200,7 +200,7 @@ document.getElementById("publishButton");
 
             <p>
 
-            👥
+            𖠋𖠋
             0 /
             ${opp.limit}
             Volunteers
