@@ -3177,3 +3177,83 @@ body.day-mode .organizer-tabs button{
     0 12px 30px rgba(76,120,180,.18);
 
 }
+/* ======================================
+   ORGANIZATION PROFILE LAYOUT
+====================================== */
+
+
+.profile-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:2rem;
+
+}
+
+
+
+.profile-group{
+
+    padding:1.5rem;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.03);
+
+}
+
+
+
+.profile-group h3{
+
+    margin-bottom:1.2rem;
+
+    font-size:1.2rem;
+
+}
+
+
+
+.profile-group label{
+
+    display:block;
+
+    margin-bottom:.4rem;
+
+}
+
+
+
+.profile-group .contact-input{
+
+    margin-bottom:1rem;
+
+}
+
+
+
+.profile-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:1rem;
+
+}
+
+
+
+@media(max-width:700px){
+
+    .profile-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
