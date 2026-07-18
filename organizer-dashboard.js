@@ -293,7 +293,7 @@ Edit
 
 
 
-        function createOpportunity(image=""){
+        function createOpportunity(image){
 
 
 
@@ -371,7 +371,11 @@ Edit
 
 
 
-                image:image,
+                image:
+image || 
+(editingIndex !== null
+? opportunities[editingIndex].image
+: ""),
 
 
 
@@ -455,11 +459,10 @@ else{
         else{
 
 
-            createOpportunity();
+    createOpportunity(null);
 
 
-        }
-
+}
 
 
     });
