@@ -115,6 +115,25 @@ profileForm.addEventListener(
 
     e.preventDefault();
 
+    const opportunityDate =
+document.getElementById("oppDate").value;
+
+
+const year =
+new Date(opportunityDate).getFullYear();
+
+
+
+if(year < 1000 || year > 9999){
+
+    alert(
+        "Please enter a valid 4-digit year."
+    );
+
+    return;
+
+}
+
 
 
     const profile = {
