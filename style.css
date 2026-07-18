@@ -2869,3 +2869,42 @@ body:not(.day-mode) .dashboard-main {
     padding: 0.55rem 1.2rem;
 
 }
+
+/* ======================================
+   DASHBOARD TITLE ROW
+   ====================================== */
+
+
+.dashboard-title-row {
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:1rem;
+
+}
+
+
+
+.dashboard-title-row .btn-send {
+
+    white-space:nowrap;
+
+}
+
+
+
+@media(max-width:700px){
+
+    .dashboard-title-row{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+}
