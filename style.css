@@ -3034,3 +3034,32 @@ body:not(.day-mode) .dashboard-main {
 
 
 }
+
+/* ======================================
+   CENTER ORGANIZER SECTION HEADERS
+   ====================================== */
+
+
+.dashboard-title-row {
+
+    position:relative;
+
+    justify-content:center;
+
+}
+
+
+.dashboard-title-row > div:first-child {
+
+    text-align:center;
+
+}
+
+
+.dashboard-title-row .btn-send {
+
+    position:absolute;
+
+    right:0;
+
+}
