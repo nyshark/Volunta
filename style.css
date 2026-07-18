@@ -2796,3 +2796,76 @@ body:not(.day-mode) .dashboard-main {
     backdrop-filter: blur(12px);
 
 }
+
+/* ======================================
+   ORGANIZER DASHBOARD SCALE ADJUSTMENT
+   ====================================== */
+
+
+.dashboard-main {
+
+    width: min(1050px, 86%);
+
+    padding: 2rem;
+
+    margin: 2rem auto;
+
+}
+
+
+
+.dashboard-main .panel-heading {
+
+    font-size: 1.8rem;
+
+}
+
+
+
+.dashboard-main .eyebrow {
+
+    font-size: 0.9rem;
+
+}
+
+
+
+.dashboard-main .contact-input {
+
+    padding: 0.55rem 0.75rem;
+
+    font-size: 0.9rem;
+
+}
+
+
+
+.dashboard-main label {
+
+    font-size: 0.9rem;
+
+}
+
+
+
+.dashboard-main .activities-logging-grid {
+
+    gap: 1rem;
+
+}
+
+
+
+.dashboard-main textarea {
+
+    min-height: 120px;
+
+}
+
+
+
+.dashboard-main .btn-send {
+
+    padding: 0.55rem 1.2rem;
+
+}
