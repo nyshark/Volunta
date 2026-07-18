@@ -43,6 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
         "Publish Opportunity";
 
     }
+       if(tabId === "createTab"){
+
+    autofillOpportunityProfile();
+
+}
 
 
 };
@@ -139,28 +144,27 @@ if(year < 1000 || year > 9999){
     const profile = {
 
 
-        name:
-        document.getElementById("orgName").value,
+    name:
+    document.getElementById("orgName").value,
 
 
-        mission:
-        document.getElementById("orgMission").value,
+    mission:
+    document.getElementById("orgMission").value,
 
 
-        website:
-        document.getElementById("orgWebsite").value,
+    website:
+    document.getElementById("orgWebsite").value,
 
 
-        instagram:
-        document.getElementById("orgInstagram").value,
+    instagram:
+    document.getElementById("orgInstagram").value,
 
 
-        tiktok:
-        document.getElementById("orgTikTok").value
+    tiktok:
+    document.getElementById("orgTikTok").value
 
 
-
-    };
+};
 
 
 
@@ -727,6 +731,51 @@ function editOpportunity(index){
 
     showTab("createTab");
 
+
+
+}
+    // ==============================
+// AUTO FILL OPPORTUNITY FORM
+// ==============================
+
+
+function autofillOpportunityProfile(){
+
+
+    const profile =
+    JSON.parse(
+        localStorage.getItem(
+            "voluntaOrganizationProfile"
+        )
+    );
+
+
+    if(!profile) return;
+
+
+
+    document.getElementById("oppOrganization").value =
+    profile.name || "";
+
+
+
+    document.getElementById("oppAddress").value =
+    profile.address || "";
+
+
+
+    document.getElementById("oppCity").value =
+    profile.city || "";
+
+
+
+    document.getElementById("oppState").value =
+    profile.state || "";
+
+
+
+    document.getElementById("oppZip").value =
+    profile.zip || "";
 
 
 }
