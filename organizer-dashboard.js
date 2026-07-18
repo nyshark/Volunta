@@ -144,24 +144,41 @@ if(year < 1000 || year > 9999){
     const profile = {
 
 
-    name:
-    document.getElementById("orgName").value,
+name:
+document.getElementById("orgName").value,
 
 
-    mission:
-    document.getElementById("orgMission").value,
+mission:
+document.getElementById("orgMission").value,
 
 
-    website:
-    document.getElementById("orgWebsite").value,
+address:
+document.getElementById("orgAddress").value,
 
 
-    instagram:
-    document.getElementById("orgInstagram").value,
+city:
+document.getElementById("orgCity").value,
 
 
-    tiktok:
-    document.getElementById("orgTikTok").value
+state:
+document.getElementById("orgState").value,
+
+
+zip:
+document.getElementById("orgZip").value,
+
+
+website:
+document.getElementById("orgWebsite").value,
+
+
+instagram:
+document.getElementById("orgInstagram").value,
+
+
+tiktok:
+document.getElementById("orgTikTok").value
+
 
 
 };
@@ -808,6 +825,22 @@ function loadProfile(){
     profile.mission || "";
 
 
+    document.getElementById("orgAddress").value =
+    profile.address || "";
+
+
+    document.getElementById("orgCity").value =
+    profile.city || "";
+
+
+    document.getElementById("orgState").value =
+    profile.state || "";
+
+
+    document.getElementById("orgZip").value =
+    profile.zip || "";
+
+
     document.getElementById("orgWebsite").value =
     profile.website || "";
 
@@ -821,7 +854,42 @@ function loadProfile(){
 
 
 }
+function autofillOrganizationData(){
 
+
+    const profile =
+    JSON.parse(
+        localStorage.getItem(
+            "voluntaOrganizationProfile"
+        )
+    );
+
+
+    if(!profile) return;
+
+
+
+    document.getElementById("oppOrganization").value =
+    profile.name || "";
+
+
+    document.getElementById("oppAddress").value =
+    profile.address || "";
+
+
+    document.getElementById("oppCity").value =
+    profile.city || "";
+
+
+    document.getElementById("oppState").value =
+    profile.state || "";
+
+
+    document.getElementById("oppZip").value =
+    profile.zip || "";
+
+
+}
 // ==============================
 // DETAILS VIEW
 // ==============================
@@ -1010,5 +1078,6 @@ function showDetails(index){
     // initial load
 
     loadProfile();
+    autofillOrganizationData();
     render();
 });
