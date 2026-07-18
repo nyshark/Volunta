@@ -3063,3 +3063,43 @@ body:not(.day-mode) .dashboard-main {
     right:0;
 
 }
+
+.organizer-tabs{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:1rem;
+
+    margin:2rem auto;
+
+}
+
+
+.organizer-tabs button{
+
+    background:var(--panel);
+
+    border:1px solid var(--border);
+
+    color:var(--text);
+
+    padding:0.7rem 1.5rem;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-family:var(--font-body);
+
+    transition:0.2s;
+
+}
+
+
+.organizer-tabs button:hover{
+
+    transform:translateY(-2px);
+
+}
