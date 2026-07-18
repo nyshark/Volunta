@@ -246,7 +246,7 @@ profileForm.addEventListener(
 
             <p>
 
-            ⌛︎ ${opp.date}
+            ⏱︎ ${opp.date}
 
             </p>
 
@@ -832,7 +832,7 @@ function showDetails(index){
 
     <div>
     <h3>
-    ◴ Volunteer Window
+    ⴵ Volunteer Window
     </h3>
 
     <p>
@@ -872,7 +872,7 @@ function showDetails(index){
     <div class="detail-section">
 
     <h3>
-    ⴵ Minimum Age
+    Minimum Age
     </h3>
 
     <p>
