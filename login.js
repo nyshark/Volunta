@@ -293,25 +293,6 @@ const name =
 const picture =
     payload.picture;
 
-// Allow common school email domains
-const isSchoolEmail =
-    email.endsWith(".edu") ||
-    email.includes(".k12.") ||
-    email.includes("school") ||
-    email.includes("district");
-
-if (!isSchoolEmail) {
-
-    showBanner(
-
-        "School Email Required",
-        "Please sign in with your school email account."
-
-    );
-
-    return;
-}
-
             // load users
 
             let users =
