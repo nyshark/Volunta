@@ -305,7 +305,15 @@ rows="6"></textarea>
 <div
 style="grid-column:1/-1;">
 
-<label>Opportunity Image</label>
+<label>
+Banner Image
+</label>
+
+<p class="image-help">
+Your image will be cropped into a banner.
+<br>
+Recommended ratio - 3:1
+</p>
 
 <input
 id="oppImage"
@@ -313,9 +321,31 @@ type="file"
 accept="image/*"
 class="contact-input">
 
+
+<div 
+id="cropContainer"
+class="crop-container"
+style="display:none;">
+
+<img 
+id="imagePreview">
+
+</div>
+
+
+<button
+type="button"
+id="cropSaveBtn"
+class="btn-send"
+style="display:none;">
+
+Save Banner Crop
+
+</button>
 </div>
 
 <button
+id="publishButton"
 class="btn-send"
 style="grid-column:1/-1;">
 
@@ -429,8 +459,10 @@ Social links
 
 <script src="stars.js"></script>
 <script src="menu.js"></script>
-<script src="organizer-dashboard.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
+
+<script src="organizer-dashboard.js"></script>
 </body>
 
 </html>
