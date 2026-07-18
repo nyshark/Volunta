@@ -688,7 +688,7 @@ function showDetails(index){
     <div class="detail-section">
 
     <h3>
-    📍 Location
+    ⚲ Location
     </h3>
 
     <p>
@@ -706,7 +706,7 @@ function showDetails(index){
     <div>
 
     <h3>
-    📅 Date
+    ⏱ Date
     </h3>
     
     <p>
@@ -717,7 +717,7 @@ function showDetails(index){
 
     <div>
     <h3>
-    ⏰ Volunteer Window
+    ◴ Volunteer Window
     </h3>
 
     <p>
@@ -731,7 +731,7 @@ function showDetails(index){
     <div>
 
     <h3>
-    👥 Capacity
+    𖠋𖠋 Capacity
     </h3>
     
     <p>
@@ -743,7 +743,7 @@ function showDetails(index){
 
     <div>
     <h3>
-    🏷 Category
+    ➜ Category
     </h3>
 
     <p>
@@ -757,7 +757,7 @@ function showDetails(index){
     <div class="detail-section">
 
     <h3>
-    🎂 Minimum Age
+    ⴵ Minimum Age
     </h3>
 
     <p>
@@ -787,7 +787,7 @@ function showDetails(index){
     </h3>
 
     <p>
-    👥 Volunteers
+    𖠋𖠋 Volunteers
     <br>
     No students yet.
     </p>
