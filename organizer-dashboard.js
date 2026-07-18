@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.getItem("voluntaOpportunities")
     ) || [];
 
+    let editingIndex = null;
 
 
     const form =
@@ -367,7 +368,19 @@ Edit
 
 
 
-            opportunities.push(opportunity);
+            if(editingIndex !== null){
+
+    opportunities[editingIndex] = opportunity;
+
+    editingIndex = null;
+
+}
+
+else{
+
+    opportunities.push(opportunity);
+
+}
 
 
 
