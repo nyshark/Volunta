@@ -16,19 +16,36 @@ document.addEventListener("DOMContentLoaded", () => {
     const tabs = document.querySelectorAll(".organizer-tab");
 
 
-    window.showTab = function(tabId){
-
-        tabs.forEach(tab => {
-
-            tab.style.display = "none";
-
-        });
+   window.showTab = function(tabId){
 
 
-        document.getElementById(tabId).style.display = "block";
+    tabs.forEach(tab => {
 
-    };
+        tab.style.display = "none";
 
+    });
+
+
+
+    document
+    .getElementById(tabId)
+    .style.display = "block";
+
+
+
+    if(tabId === "opportunitiesTab"){
+
+        editingIndex = null;
+
+        form.reset();
+
+        publishButton.innerText =
+        "Publish Opportunity";
+
+    }
+
+
+};
 
 
 
@@ -51,6 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const list =
     document.getElementById("opportunityList");
+
+    const publishButton =
+document.getElementById("publishButton");
 
 
 
@@ -531,11 +551,6 @@ if(
 // EDIT OPPORTUNITY
 // ==============================
 
-
-let editingIndex = null;
-
-
-
 function editOpportunity(index){
 
 
@@ -545,7 +560,7 @@ function editOpportunity(index){
 
     editingIndex = index;
 
-    document.getElementById("publishButton").innerText =
+    publishButton.innerText =
 "Save Changes";
 
 
