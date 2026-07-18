@@ -69,6 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const list =
     document.getElementById("opportunityList");
 
+    const profileForm =
+document.getElementById("organizationProfileForm");
+
     const publishButton =
 document.getElementById("publishButton");
 
@@ -91,6 +94,67 @@ document.getElementById("publishButton");
         );
 
     }
+
+    function saveProfile(profile){
+
+    localStorage.setItem(
+        "voluntaOrganizationProfile",
+        JSON.stringify(profile)
+    );
+
+}
+    // ==============================
+// SAVE ORGANIZATION PROFILE
+// ==============================
+
+
+profileForm.addEventListener(
+"submit",
+(e)=>{
+
+
+    e.preventDefault();
+
+
+
+    const profile = {
+
+
+        name:
+        document.getElementById("orgName").value,
+
+
+        mission:
+        document.getElementById("orgMission").value,
+
+
+        website:
+        document.getElementById("orgWebsite").value,
+
+
+        instagram:
+        document.getElementById("orgInstagram").value,
+
+
+        tiktok:
+        document.getElementById("orgTikTok").value
+
+
+
+    };
+
+
+
+    saveProfile(profile);
+
+
+
+    alert(
+        "Organization profile saved!"
+    );
+
+
+});
 
 
 
@@ -648,6 +712,48 @@ function editOpportunity(index){
 
 }
 
+    // ==============================
+// LOAD ORGANIZATION PROFILE
+// ==============================
+
+
+function loadProfile(){
+
+
+    const profile =
+    JSON.parse(
+        localStorage.getItem(
+            "voluntaOrganizationProfile"
+        )
+    );
+
+
+    if(!profile) return;
+
+
+
+    document.getElementById("orgName").value =
+    profile.name || "";
+
+
+    document.getElementById("orgMission").value =
+    profile.mission || "";
+
+
+    document.getElementById("orgWebsite").value =
+    profile.website || "";
+
+
+    document.getElementById("orgInstagram").value =
+    profile.instagram || "";
+
+
+    document.getElementById("orgTikTok").value =
+    profile.tiktok || "";
+
+
+}
+
 // ==============================
 // DETAILS VIEW
 // ==============================
@@ -835,5 +941,6 @@ function showDetails(index){
 
     // initial load
 
+    loadProfile();
     render();
 });
