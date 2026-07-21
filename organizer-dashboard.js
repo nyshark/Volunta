@@ -957,7 +957,7 @@ opp.organizationWebsite
 
         <div class="detail-section">
 
-        <h3>Mission</h3>
+        <h3>Mission Statement</h3>
 
         <p>
 
@@ -969,7 +969,7 @@ opp.organizationWebsite
 
         <div class="detail-section">
 
-        <h3>Location</h3>
+        <h3>Organization Address</h3>
 
         <p>
 
@@ -982,7 +982,7 @@ opp.organizationWebsite
 
         <div class="detail-section">
 
-        <h3>Website</h3>
+        <h3>Official Website</h3>
 
         <p>
 
