@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Publish Opportunity";
 
     }
-       if(tabId === "createTab"){
+       if(tabId === "createTab" && editingIndex === null){
 
     autofillOpportunityProfile();
 
@@ -113,114 +113,73 @@ document.getElementById("publishButton");
 // ==============================
 
 
-profileForm.addEventListener(
-"submit",
-(e)=>{
-
+profileForm.addEventListener("submit", (e)=>{
 
     e.preventDefault();
 
-    const opportunityDate =
-document.getElementById("oppDate").value;
-
-
-const year =
-new Date(opportunityDate).getFullYear();
-
-
-
-if(year < 1000 || year > 9999){
-
-    alert(
-        "Please enter a valid 4-digit year."
-    );
-
-    return;
-
-}
-
-
-
     const logoInput =
-document.getElementById("orgLogo");
+    document.getElementById("orgLogo");
 
-function saveProfileData(logo){
+    function saveProfileData(logo){
 
-    const profile = {
+        const profile = {
 
-        name:
-        document.getElementById("orgName").value,
+            name: document.getElementById("orgName").value,
 
-        mission:
-        document.getElementById("orgMission").value,
+            mission: document.getElementById("orgMission").value,
 
-        address:
-        document.getElementById("orgAddress").value,
+            address: document.getElementById("orgAddress").value,
 
-        city:
-        document.getElementById("orgCity").value,
+            city: document.getElementById("orgCity").value,
 
-        state:
-        document.getElementById("orgState").value,
+            state: document.getElementById("orgState").value,
 
-        zip:
-        document.getElementById("orgZip").value,
+            zip: document.getElementById("orgZip").value,
 
-        website:
-        document.getElementById("orgWebsite").value,
+            website: document.getElementById("orgWebsite").value,
 
-        instagram:
-        document.getElementById("orgInstagram").value,
+            instagram: document.getElementById("orgInstagram").value,
 
-        tiktok:
-        document.getElementById("orgTikTok").value,
+            tiktok: document.getElementById("orgTikTok").value,
 
-        logo:
-        logo
+            logo: logo
 
-    };
+        };
+
+        saveProfile(profile);
+
+        alert("Organization profile saved!");
+
+    }
 
     const logoFile = logoInput.files[0];
 
-if(logoFile){
+    if(logoFile){
 
-    const reader = new FileReader();
+        const reader = new FileReader();
 
-    reader.onload = function(){
+        reader.onload = function(){
 
-        saveProfileData(reader.result);
+            saveProfileData(reader.result);
 
-    };
+        };
 
-    reader.readAsDataURL(logoFile);
+        reader.readAsDataURL(logoFile);
 
-}
-else{
+    }
 
-    const existingProfile =
-    JSON.parse(
-        localStorage.getItem("voluntaOrganizationProfile")
-    ) || {};
+    else{
 
-    saveProfileData(existingProfile.logo || "");
+        const existingProfile =
+        JSON.parse(
+            localStorage.getItem("voluntaOrganizationProfile")
+        ) || {};
 
-}
+        saveProfileData(existingProfile.logo || "");
 
-
-    saveProfile(profile);
-
-
-
-    alert(
-        "Organization profile saved!"
-    );
-
+    }
 
 });
-
-
-
-
     // ==============================
     // RENDER OPPORTUNITIES
     // ==============================
@@ -526,8 +485,12 @@ image ||
 : ""),
 
                 organizationLogo:
-window.organizationLogo || "",
-
+window.organizationLogo ||
+(
+editingIndex !== null
+? opportunities[editingIndex].organizationLogo
+: ""
+),
 
 
                 students:[],
@@ -904,42 +867,7 @@ function loadProfile(){
 
 
 }
-function autofillOrganizationData(){
 
-
-    const profile =
-    JSON.parse(
-        localStorage.getItem(
-            "voluntaOrganizationProfile"
-        )
-    );
-
-
-    if(!profile) return;
-
-
-
-    document.getElementById("oppOrganization").value =
-    profile.name || "";
-
-
-    document.getElementById("oppAddress").value =
-    profile.address || "";
-
-
-    document.getElementById("oppCity").value =
-    profile.city || "";
-
-
-    document.getElementById("oppState").value =
-    profile.state || "";
-
-
-    document.getElementById("oppZip").value =
-    profile.zip || "";
-
-
-}
 // ==============================
 // DETAILS VIEW
 // ==============================
@@ -1152,6 +1080,6 @@ ${opp.organization}
     // initial load
 
     loadProfile();
-    autofillOrganizationData();
+    autofillOrganizationProfile();
     render();
 });
