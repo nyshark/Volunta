@@ -275,7 +275,14 @@ ${opp.title}
 
 <p>
 
+<a
+href="#"
+class="organization-link"
+data-index="${index}">
+
 ${opp.organization}
+
+</a>
 
 </p>
 
@@ -669,7 +676,19 @@ if(
 
 
 
+// VIEW ORGANIZATION
 
+if(
+    e.target.classList.contains("organization-link")
+){
+
+    e.preventDefault();
+
+    showOrganization(index);
+
+    return;
+
+}
 
         // VIEW DETAILS
 
@@ -880,6 +899,100 @@ function loadProfile(){
     window.organizationLogo =
     profile.logo || "";
 
+    window.organizationMission =
+profile.mission || "";
+
+window.organizationWebsite =
+profile.website || "";
+
+
+}
+
+    function showOrganization(index){
+
+    const opp = opportunities[index];
+
+    list.innerHTML = `
+
+    <div class="contact-form-wrap organization-profile-card">
+
+        ${
+        opp.organizationLogo
+        ?
+        `<img
+        src="${opp.organizationLogo}"
+        class="organization-logo-large">`
+        :
+        ""
+        }
+
+        <h1>
+
+        ${opp.organization}
+
+        </h1>
+
+        <div class="detail-section">
+
+        <h3>Mission</h3>
+
+        <p>
+
+        ${opp.organizationMission || "No mission statement provided."}
+
+        </p>
+
+        </div>
+
+        <div class="detail-section">
+
+        <h3>Location</h3>
+
+        <p>
+
+        ${opp.address}<br>
+        ${opp.city}, ${opp.state} ${opp.zip}
+
+        </p>
+
+        </div>
+
+        <div class="detail-section">
+
+        <h3>Website</h3>
+
+        <p>
+
+        ${
+        opp.organizationWebsite
+        ?
+        `<a href="${opp.organizationWebsite}" target="_blank">${opp.organizationWebsite}</a>`
+        :
+        "None"
+        }
+
+        </p>
+
+        </div>
+
+        <button
+        id="backButton"
+        class="btn-send">
+
+        ← Back
+
+        </button>
+
+    </div>
+    `;
+
+    document
+    .getElementById("backButton")
+    .onclick = function(){
+
+        render();
+
+    };
 
 }
 
@@ -933,7 +1046,14 @@ ${opp.title}
 
 <p>
 
+<a
+href="#"
+class="organization-link"
+data-index="${index}">
+
 ${opp.organization}
+
+</a>
 
 </p>
 
