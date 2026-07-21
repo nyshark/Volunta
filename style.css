@@ -3494,3 +3494,46 @@ body.day-mode .organizer-tabs button{
     flex:1;
 
 }
+/* ======================================
+   STUDENT DASHBOARD TABS
+====================================== */
+
+.organizer-tabs{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:1.5rem;
+
+    width:100%;
+
+    margin:2rem auto;
+
+    flex-wrap:wrap;
+
+}
+
+.student-tab{
+
+    flex:1;
+
+    max-width:300px;
+
+    min-width:220px;
+
+    padding:1rem;
+
+    border-radius:14px;
+
+    text-align:center;
+
+}
+
+.student-tab.active{
+
+    transform:translateY(-2px);
+
+}
