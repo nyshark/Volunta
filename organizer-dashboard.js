@@ -141,48 +141,70 @@ if(year < 1000 || year > 9999){
 
 
 
+    const logoInput =
+document.getElementById("orgLogo");
+
+function saveProfileData(logo){
+
     const profile = {
 
+        name:
+        document.getElementById("orgName").value,
 
-name:
-document.getElementById("orgName").value,
+        mission:
+        document.getElementById("orgMission").value,
 
+        address:
+        document.getElementById("orgAddress").value,
 
-mission:
-document.getElementById("orgMission").value,
+        city:
+        document.getElementById("orgCity").value,
 
+        state:
+        document.getElementById("orgState").value,
 
-address:
-document.getElementById("orgAddress").value,
+        zip:
+        document.getElementById("orgZip").value,
 
+        website:
+        document.getElementById("orgWebsite").value,
 
-city:
-document.getElementById("orgCity").value,
+        instagram:
+        document.getElementById("orgInstagram").value,
 
+        tiktok:
+        document.getElementById("orgTikTok").value,
 
-state:
-document.getElementById("orgState").value,
+        logo:
+        logo
 
+    };
 
-zip:
-document.getElementById("orgZip").value,
+    const logoFile = logoInput.files[0];
 
+if(logoFile){
 
-website:
-document.getElementById("orgWebsite").value,
+    const reader = new FileReader();
 
+    reader.onload = function(){
 
-instagram:
-document.getElementById("orgInstagram").value,
+        saveProfileData(reader.result);
 
+    };
 
-tiktok:
-document.getElementById("orgTikTok").value
+    reader.readAsDataURL(logoFile);
 
+}
+else{
 
+    const existingProfile =
+    JSON.parse(
+        localStorage.getItem("voluntaOrganizationProfile")
+    ) || {};
 
-};
+    saveProfileData(existingProfile.logo || "");
 
+}
 
 
     saveProfile(profile);
@@ -270,11 +292,33 @@ document.getElementById("orgTikTok").value
 
 
 
-            <h2>
+            <div class="service-card-header">
 
-            ${opp.title}
+${opp.organizationLogo ?
 
-            </h2>
+`<img
+src="${opp.organizationLogo}"
+class="organization-logo">`
+
+: ""}
+
+<div>
+
+<h2>
+
+${opp.title}
+
+</h2>
+
+<p>
+
+${opp.organization}
+
+</p>
+
+</div>
+
+</div>
 
 
 
@@ -480,6 +524,9 @@ image ||
 (editingIndex !== null
 ? opportunities[editingIndex].image
 : ""),
+
+                organizationLogo:
+window.organizationLogo || "",
 
 
 
@@ -852,6 +899,9 @@ function loadProfile(){
     document.getElementById("orgTikTok").value =
     profile.tiktok || "";
 
+    window.organizationLogo =
+    profile.logo || "";
+
 
 }
 function autofillOrganizationData(){
@@ -920,9 +970,33 @@ function showDetails(index){
         ""
     }
     
-    <h1>
-    ${opp.title}
-    </h1>
+    <div class="service-detail-header">
+
+${opp.organizationLogo ?
+
+`<img
+src="${opp.organizationLogo}"
+class="organization-logo-large">`
+
+: ""}
+
+<div>
+
+<h1>
+
+${opp.title}
+
+</h1>
+
+<p>
+
+${opp.organization}
+
+</p>
+
+</div>
+
+</div>
 
     <div class="detail-section">
 
