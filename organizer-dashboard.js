@@ -514,6 +514,21 @@ editingIndex !== null
 : ""
 ),
 
+organizationMission:
+window.organizationMission ||
+(
+editingIndex !== null
+? opportunities[editingIndex].organizationMission
+: ""
+),
+
+organizationWebsite:
+window.organizationWebsite ||
+(
+editingIndex !== null
+? opportunities[editingIndex].organizationWebsite
+: ""
+),
 
                 students:[],
 
@@ -912,6 +927,14 @@ profile.website || "";
 
     const opp = opportunities[index];
 
+    const website =
+opp.organizationWebsite &&
+opp.organizationWebsite.startsWith("http")
+?
+opp.organizationWebsite
+:
+"https://" + (opp.organizationWebsite || "");
+
     list.innerHTML = `
 
     <div class="contact-form-wrap organization-profile-card">
@@ -964,12 +987,18 @@ profile.website || "";
         <p>
 
         ${
-        opp.organizationWebsite
-        ?
-        `<a href="${opp.organizationWebsite}" target="_blank">${opp.organizationWebsite}</a>`
-        :
-        "None"
-        }
+opp.organizationWebsite
+?
+`<a
+href="${website}"
+target="_blank">
+
+${opp.organizationWebsite}
+
+</a>`
+:
+"None"
+}
 
         </p>
 
