@@ -3309,3 +3309,105 @@ body.day-mode .organizer-tabs button{
     border:2px solid var(--border);
 
 }
+/* ======================================
+   STUDENT OPPORTUNITY FEED
+====================================== */
+
+.opportunity-feed{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(320px, 1fr));
+
+    gap:2rem;
+
+    width:100%;
+
+    max-width:1200px;
+
+    margin:2rem auto;
+
+    justify-items:center;
+
+    align-items:start;
+
+}
+
+.opportunity-card{
+
+    width:100%;
+
+    max-width:340px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+
+}
+
+.opportunity-card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:var(--accent2);
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,.28);
+
+}
+
+.opportunity-card img{
+
+    width:100%;
+
+    height:190px;
+
+    object-fit:cover;
+
+}
+
+.opportunity-content{
+
+    padding:1.2rem;
+
+}
+
+.opportunity-content h3{
+
+    margin-bottom:.5rem;
+
+}
+
+.opportunity-meta{
+
+    color:var(--muted);
+
+    font-size:.9rem;
+
+    margin-bottom:.8rem;
+
+}
+
+.opportunity-description{
+
+    line-height:1.5;
+
+    margin-bottom:1rem;
+
+}
+
+.signup-btn{
+
+    width:100%;
+
+}
