@@ -717,3 +717,33 @@ setupTimeMask("timeIn");
 
 setupTimeMask("timeOut");
 });
+
+// ==============================
+// STUDENT TABS
+// ==============================
+
+function showStudentTab(id, button){
+
+    document
+    .querySelectorAll(".student-page-tab")
+    .forEach(tab=>{
+
+        tab.style.display="none";
+
+    });
+
+    document
+    .getElementById(id)
+    .style.display="block";
+
+    document
+    .querySelectorAll(".student-tab")
+    .forEach(btn=>{
+
+        btn.classList.remove("active");
+
+    });
+
+    button.classList.add("active");
+
+}
