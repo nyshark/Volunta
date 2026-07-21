@@ -312,9 +312,9 @@ ${opp.organization}
 ${
 volunteerCount >= Number(opp.limit)
 ?
-"ㄨ Full"
+"🔴 Full"
 :
-"○ Open"
+"🟢 Open"
 }
 
 </p>
@@ -1006,9 +1006,9 @@ ${opp.organization}
 ${
 volunteerCount >= Number(opp.limit)
 ?
-"ㄨ Full"
+"🔴 Full"
 :
-"○ Open"
+"🟢 Open"
 }
 
 </p>
