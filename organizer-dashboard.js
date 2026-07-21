@@ -219,11 +219,15 @@ profileForm.addEventListener("submit", (e)=>{
 
 
         opportunities.forEach((opp,index)=>{
+            if(!opp.students){
+    opp.students = [];
+}
 
+    const volunteerCount =
+    opp.students?.length || 0;
 
-
-            const card =
-            document.createElement("div");
+    const card =
+    document.createElement("div");
 
 
             card.className =
@@ -303,17 +307,27 @@ ${opp.organization}
 
             </p>
 
+<p class="service-status">
 
-
-            const volunteerCount = opp.students.length;
-
-let status = "○ Open";
-
-if (volunteerCount >= Number(opp.limit)) {
-
-    status = "ㄨ Full";
-
+${
+volunteerCount >= Number(opp.limit)
+?
+"ㄨ Full"
+:
+"○ Open"
 }
+
+</p>
+
+<p>
+
+${volunteerCount} /
+${opp.limit}
+Volunteers
+
+</p>
+
+            
 
 
 
@@ -876,11 +890,11 @@ function loadProfile(){
 
 function showDetails(index){
 
-
     const opp =
     opportunities[index];
 
-
+    const volunteerCount =
+    opp.students?.length || 0;
 
     list.innerHTML = `
 
@@ -990,7 +1004,7 @@ ${opp.organization}
     <p class="service-status">
 
 ${
-opp.students.length >= Number(opp.limit)
+volunteerCount >= Number(opp.limit)
 ?
 "ㄨ Full"
 :
@@ -998,14 +1012,14 @@ opp.students.length >= Number(opp.limit)
 }
 
 </p>
-    <p>
 
-${opp.students.length} /
+<p>
+
+${volunteerCount} /
 ${opp.limit}
 Volunteers
 
 </p>
-
     </div>
 
     <div>
@@ -1094,6 +1108,6 @@ Volunteers
     // initial load
 
     loadProfile();
-    autofillOrganizationProfile();
+    autofillOpportunityProfile();
     render();
 });
