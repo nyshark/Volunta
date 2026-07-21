@@ -3073,20 +3073,17 @@ body:not(.day-mode) .dashboard-main {
 
     display:flex;
 
-    justify-content:center;
+    justify-content:space-evenly;
 
     align-items:center;
 
+    width:100%;
+
     gap:1rem;
 
-    margin:1.5rem auto;
-
-    position:relative;
-
-    z-index:5;
+    margin:2rem auto;
 
 }
-
 
 
 .organizer-tabs button{
@@ -3409,5 +3406,91 @@ body.day-mode .organizer-tabs button{
 .signup-btn{
 
     width:100%;
+
+}
+/* ======================================
+   STUDENT OPPORTUNITY GRID
+====================================== */
+
+#studentOpportunityList,
+#studentActivityList{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+    gap:1.5rem;
+
+    width:100%;
+
+    margin-top:2rem;
+
+    align-items:start;
+
+}
+.student-opportunity-card{
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+    transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+
+}
+
+.student-opportunity-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.25);
+
+}
+.student-opportunity-card img{
+
+    width:100%;
+
+    height:190px;
+
+    object-fit:cover;
+
+}
+.student-opportunity-content{
+
+    padding:1.4rem;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:.7rem;
+
+}
+.student-opportunity-actions{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    margin-top:1rem;
+
+}
+
+.student-opportunity-actions button{
+
+    flex:1;
 
 }
