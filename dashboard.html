@@ -154,12 +154,99 @@ Save Goal
 
 </div>
 
+<!-- student dashboard tabs -->
+
+<div class="organizer-tabs">
+
+<button
+class="student-tab active"
+onclick="showStudentTab('opportunitiesSection',this)">
+
+Browse Opportunities
+
+</button>
+
+<button
+class="student-tab"
+onclick="showStudentTab('myActivitiesSection',this)">
+
+My Volunteer Activities
+
+</button>
+
+<button
+class="student-tab"
+onclick="showStudentTab('ledgerSection',this)">
+
+Service Spreadsheet
+
+</button>
+
+</div>
+
 </section>
+
+<section
+id="opportunitiesSection"
+class="contact-form-wrap panel-section-wrap student-page-tab">
+
+<div class="panel-header-block">
+
+<h2 class="panel-heading">
+
+Browse Opportunities
+
+</h2>
+
+<span class="eyebrow">
+
+find volunteer opportunities near you
+
+</span>
+
+</div>
+
+<div
+id="studentOpportunityList">
+
+</div>
+
+</section>
+
+<section
+id="myActivitiesSection"
+class="contact-form-wrap panel-section-wrap student-page-tab"
+style="display:none;">
+
+<div class="panel-header-block">
+
+<h2 class="panel-heading">
+
+My Volunteer Activities
+
+</h2>
+
+<span class="eyebrow">
+
+activities you've signed up for
+
+</span>
+
+</div>
+
+<div
+id="studentActivityList">
+
+</div>
+
+</section>
+  
 <!-- activity spreadsheet-->
 
 <section
 id="ledgerSection"
-class="contact-form-wrap panel-section-wrap">
+class="contact-form-wrap panel-section-wrap student-page-tab"
+style="display:none;">
 <div class="panel-header-block">
 
 <h2 class="panel-heading">
