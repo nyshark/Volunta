@@ -305,14 +305,15 @@ ${opp.organization}
 
 
 
-            <p>
+            const volunteerCount = opp.students.length;
 
-            𖠋𖠋
-            0 /
-            ${opp.limit}
-            Volunteers
+let status = "○ Open";
 
-            </p>
+if (volunteerCount >= Number(opp.limit)) {
+
+    status = "ㄨ Full";
+
+}
 
 
 
@@ -986,11 +987,24 @@ ${opp.organization}
     <h3>
     𖠋𖠋 Capacity
     </h3>
-    
+    <p class="service-status">
+
+${
+opp.students.length >= Number(opp.limit)
+?
+"ㄨ Full"
+:
+"○ Open"
+}
+
+</p>
     <p>
-    ${opp.limit}
-    volunteers
-    </p>
+
+${opp.students.length} /
+${opp.limit}
+Volunteers
+
+</p>
 
     </div>
 
