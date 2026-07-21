@@ -3257,3 +3257,55 @@ body.day-mode .organizer-tabs button{
     }
 
 }
+
+.service-card-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:1rem;
+
+    margin-bottom:1rem;
+
+}
+
+.organization-logo{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:2px solid var(--border);
+
+}
+
+.service-detail-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:1.5rem;
+
+    margin-bottom:1.5rem;
+
+}
+
+.organization-logo-large{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:2px solid var(--border);
+
+}
