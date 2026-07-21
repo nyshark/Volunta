@@ -33,6 +33,16 @@ document.getElementById("activitiesForm");
 const ledgerList =
 document.getElementById("ledgerList");
 
+    // ======================================
+// STUDENT OPPORTUNITIES
+// ======================================
+
+const studentOpportunityList =
+document.getElementById("studentOpportunityList");
+
+const studentActivityList =
+document.getElementById("studentActivityList");
+
 const activityType =
 document.getElementById("actType");
 
@@ -716,6 +726,150 @@ setupDateMask("actStart");
 setupTimeMask("timeIn");
 
 setupTimeMask("timeOut");
+
+    // ======================================
+// LOAD OPPORTUNITIES
+// ======================================
+
+function renderStudentOpportunities(){
+
+    if(!studentOpportunityList) return;
+
+    const opportunities =
+    JSON.parse(
+        localStorage.getItem("voluntaOpportunities")
+    ) || [];
+
+    studentOpportunityList.innerHTML = "";
+
+    if(opportunities.length === 0){
+
+        studentOpportunityList.innerHTML =
+
+        `
+        <div class="contact-form-wrap">
+
+            <h3>No Opportunities Yet</h3>
+
+            <p>
+            Check back later for new volunteer opportunities!
+            </p>
+
+        </div>
+        `;
+
+        return;
+
+    }
+
+    opportunities.forEach(function(opportunity,index){
+
+        const card =
+        document.createElement("div");
+
+        card.className =
+        "student-opportunity-card";
+
+        card.innerHTML =
+
+        `
+        ${
+            opportunity.image ?
+
+            `<img src="${opportunity.image}">`
+
+            :
+
+            ""
+        }
+
+        <div class="student-opportunity-content">
+
+            <h2>${opportunity.title}</h2>
+
+            <p>
+
+            <strong>Hosted By:</strong>
+
+            ${opportunity.organization}
+
+            </p>
+
+            <p>
+
+            📍
+
+            ${opportunity.city},
+            ${opportunity.state}
+
+            </p>
+
+            <p>
+
+            📅
+
+            ${opportunity.date}
+
+            </p>
+
+            <p>
+
+            ⏰
+
+            ${opportunity.start}
+
+            -
+            ${opportunity.end}
+
+            </p>
+
+            <p>
+
+            👥
+
+            ${opportunity.limit}
+            Volunteers
+
+            </p>
+
+            <p>
+
+            ${opportunity.description}
+
+            </p>
+
+            <div class="student-opportunity-actions">
+
+                <button
+                class="btn-send view-opportunity"
+
+                data-index="${index}">
+
+                View Details
+
+                </button>
+
+                <button
+                class="btn-send signup-opportunity"
+
+                data-index="${index}">
+
+                Sign Up
+
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+        studentOpportunityList.appendChild(card);
+
+    });
+
+}
+renderStudentOpportunities();
 });
 
 // ==============================
