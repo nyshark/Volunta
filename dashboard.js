@@ -867,6 +867,210 @@ function renderStudentOpportunities(){
         studentOpportunityList.appendChild(card);
 
     });
+// ======================================
+// OPPORTUNITY BUTTONS
+// ======================================
+
+studentOpportunityList.querySelectorAll(".view-opportunity")
+.forEach(function(button){
+
+    button.addEventListener("click",function(){
+
+        const index =
+        Number(button.dataset.index);
+
+        viewOpportunity(index);
+
+    });
+
+});
+
+studentOpportunityList.querySelectorAll(".signup-opportunity")
+.forEach(function(button){
+
+    button.addEventListener("click",function(){
+
+        const index =
+        Number(button.dataset.index);
+
+        signupOpportunity(index);
+
+    });
+
+});
+    
+}
+    function viewOpportunity(index){
+
+    const opportunities =
+    JSON.parse(
+        localStorage.getItem("voluntaOpportunities")
+    ) || [];
+
+    const opportunity =
+    opportunities[index];
+
+    studentOpportunityList.innerHTML =
+
+    `
+    <div class="details-card">
+
+        ${
+        opportunity.image ?
+
+        `<img
+        class="details-banner"
+        src="${opportunity.image}">
+        `
+
+        :
+
+        ""
+        }
+
+        <h2>${opportunity.title}</h2>
+
+        <p>
+
+        <strong>Hosted By:</strong>
+
+        ${opportunity.organization}
+
+        </p>
+
+        <p>
+
+        <strong>Location:</strong><br>
+
+${opportunity.address || ""}
+
+<br>
+
+${opportunity.city},
+${opportunity.state}
+${opportunity.zip ? " " + opportunity.zip : ""}
+        </p>
+
+        <p>
+
+        <strong>Date:</strong>
+
+        ${opportunity.date}
+
+        </p>
+
+        <p>
+
+        <strong>Time:</strong>
+
+        ${opportunity.start}
+
+        -
+
+        ${opportunity.end}
+
+        </p>
+
+        <p>
+
+        <strong>Category:</strong>
+
+        ${opportunity.category}
+
+        </p>
+
+        <p>
+
+        <strong>Minimum Age:</strong>
+
+        ${opportunity.age}
+
+        </p>
+
+        <p>
+
+        ${opportunity.description}
+
+        </p>
+
+        <button
+id="backToBrowseBtn"
+class="btn-send">
+
+← Back
+
+</button>
+
+    </div>
+    `;
+document
+.getElementById("backToBrowseBtn")
+.addEventListener("click",function(){
+
+    renderStudentOpportunities();
+
+});
+}
+    function signupOpportunity(index){
+
+    const opportunities =
+    JSON.parse(
+        localStorage.getItem("voluntaOpportunities")
+    ) || [];
+
+    opportunities[index].students =
+    opportunities[index].students || [];
+
+    const alreadyJoined =
+    opportunities[index].students.find(function(student){
+
+        return student.email === user.email;
+
+    });
+
+    if(alreadyJoined){
+
+        showBanner(
+
+            "Already Signed Up",
+
+            "You have already joined this opportunity."
+
+        );
+
+        return;
+
+    }
+
+    opportunities[index].students.push({
+
+        name:user.name,
+
+        email:user.email,
+
+        verified:false,
+
+        completed:false
+
+    });
+
+    localStorage.setItem(
+
+        "voluntaOpportunities",
+
+        JSON.stringify(opportunities)
+
+    );
+
+    showBanner(
+
+        "Success!",
+
+        "You successfully signed up."
+
+    );
+
+    renderStudentOpportunities();
 
 }
 renderStudentOpportunities();
