@@ -999,9 +999,14 @@ document
 
 });
 
-document
-.getElementById("confirmSignupBtn")
-.addEventListener("click",function(){
+const signupBtn =
+document.getElementById("confirmSignupBtn");
+
+console.log(signupBtn);
+
+signupBtn.addEventListener("click",function(){
+
+    console.log("Signup button clicked");
 
     showSignupPopup(opportunity,index);
 
@@ -1267,13 +1272,13 @@ function finishSignup(opportunity,index,modal){
 
     if(!confirm(
 
-        `Volunteer from ${chosenStart} to ${chosenEnd}?`
+`Volunteer from ${chosenStart} to ${chosenEnd}?`
 
-    )){
+)){
 
-        return;
+    return;
 
-    }
+}
 
     const opportunities =
     JSON.parse(
