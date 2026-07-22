@@ -1002,11 +1002,7 @@ document
 const signupBtn =
 document.getElementById("confirmSignupBtn");
 
-console.log(signupBtn);
-
 signupBtn.addEventListener("click",function(){
-
-    console.log("Signup button clicked");
 
     showSignupPopup(opportunity,index);
 
@@ -1080,8 +1076,6 @@ signupBtn.addEventListener("click",function(){
     
   function showSignupPopup(opportunity,index){
 
-    alert("showSignupPopup is running!");
-
     const existing =
     document.getElementById("signupModal");
 
@@ -1093,7 +1087,6 @@ signupBtn.addEventListener("click",function(){
 
     const modal =
     document.createElement("div");
-    console.log("Modal created");
 
     modal.id="signupModal";
 
@@ -1156,7 +1149,6 @@ Confirm Signup
 `;
 
     document.body.appendChild(modal);
-    console.log("Modal added to page");
 
     document
     .getElementById("cancelSignup")
@@ -1333,9 +1325,6 @@ function finishSignup(opportunity,index,modal){
         JSON.stringify(opportunities)
 
     );
-    console.log("Students signed up:");
-console.log(opportunities[index].students);
-
     modal.remove();
 
     showBanner(
