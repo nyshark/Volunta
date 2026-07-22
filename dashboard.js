@@ -993,7 +993,17 @@ ${opportunity.zip ? " " + opportunity.zip : ""}
 
         </p>
 
-        <button
+        <div class="student-opportunity-actions">
+
+<button
+id="confirmSignupBtn"
+class="btn-send">
+
+Sign Up
+
+</button>
+
+<button
 id="backToBrowseBtn"
 class="btn-send">
 
@@ -1001,6 +1011,7 @@ class="btn-send">
 
 </button>
 
+</div>
     </div>
     `;
 document
@@ -1010,6 +1021,15 @@ document
     renderStudentOpportunities();
 
 });
+
+document
+.getElementById("confirmSignupBtn")
+.addEventListener("click",function(){
+
+    showSignupPopup(opportunity,index);
+
+});
+        
 }
     function signupOpportunity(index){
 
@@ -1071,6 +1091,103 @@ document
     );
 
     renderStudentOpportunities();
+
+}
+    function showSignupPopup(opportunity,index){
+
+    const existing =
+    document.getElementById("signupModal");
+
+    if(existing){
+
+        existing.remove();
+
+    }
+
+    const modal =
+    document.createElement("div");
+
+    modal.id="signupModal";
+
+    modal.className="signup-modal";
+
+    modal.innerHTML=`
+
+<div class="signup-box">
+
+<h2>Volunteer Signup</h2>
+
+<p>
+
+Choose the hours you would like to volunteer.
+
+</p>
+
+<label>
+
+Start Time
+
+</label>
+
+<input
+type="time"
+id="signupStart">
+
+<label>
+
+End Time
+
+</label>
+
+<input
+type="time"
+id="signupEnd">
+
+<div class="signup-buttons">
+
+<button
+id="cancelSignup"
+class="btn-send">
+
+Cancel
+
+</button>
+
+<button
+id="finishSignup"
+class="btn-send">
+
+Confirm Signup
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+    document.body.appendChild(modal);
+
+    document
+    .getElementById("cancelSignup")
+    .onclick=function(){
+
+        modal.remove();
+
+    };
+
+    document
+    .getElementById("finishSignup")
+    .onclick=function(){
+
+        finishSignup(
+            opportunity,
+            index,
+            modal
+        );
+
+    };
 
 }
 renderStudentOpportunities();
