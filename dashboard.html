@@ -408,7 +408,86 @@ class="ledger-list-track">
     <p id="authNoticeDesc"></p>
 
 </div>
+<!-- SIGN UP MODAL -->
 
+<div id="signupModal" class="signup-modal">
+
+    <div class="signup-modal-card">
+
+        <h2 id="signupTitle"></h2>
+
+        <p id="signupOrganization"></p>
+
+        <p id="signupDate"></p>
+
+        <hr>
+
+        <h4>Official Volunteer Hours</h4>
+
+        <p id="officialHours"></p>
+
+        <hr>
+
+        <h4>Select Your Volunteer Shift</h4>
+
+        <label>Start Time</label>
+
+        <input
+            id="studentStartTime"
+            class="contact-input"
+            type="text"
+            placeholder="09:00 AM"
+            maxlength="8">
+
+        <label>End Time</label>
+
+        <input
+            id="studentEndTime"
+            class="contact-input"
+            type="text"
+            placeholder="12:00 PM"
+            maxlength="8">
+
+        <label>Your Hours</label>
+
+        <input
+            id="studentHours"
+            class="contact-input"
+            readonly>
+
+        <label class="signup-checkbox">
+
+            <input
+                id="signupAgree"
+                type="checkbox">
+
+            I understand I am committing to attend this event.
+
+        </label>
+
+        <div class="signup-buttons">
+
+            <button
+                id="cancelSignupBtn"
+                class="filter-btn">
+
+                Cancel
+
+            </button>
+
+            <button
+                id="confirmSignupBtn"
+                class="btn-send">
+
+                Confirm Sign Up
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 <script src="stars.js"></script>
 <script src="menu.js"></script>
 <script src="mask.js"></script>
