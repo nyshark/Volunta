@@ -148,7 +148,13 @@ profileForm.addEventListener("submit", (e)=>{
 
         saveProfile(profile);
 
-        alert("Organization profile saved!");
+        showBanner(
+
+"Profile Saved",
+
+"Your organization profile has been updated."
+
+);
 
     }
 
@@ -410,7 +416,9 @@ Edit
 
         e.preventDefault();
 
-
+publishButton.disabled = true;
+publishButton.innerText =
+"Publishing...";
 
         const imageInput =
         document.getElementById("oppImage");
@@ -575,7 +583,10 @@ else{
 
 
             showTab("opportunitiesTab");
+publishButton.disabled = false;
 
+publishButton.innerText =
+"Publish Opportunity";
 
 
         }
