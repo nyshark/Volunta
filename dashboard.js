@@ -1078,7 +1078,12 @@ signupBtn.addEventListener("click",function(){
 
     // SIGNUP POPUP
     
-    function showSignupPopup(opportunity,index){
+  function showSignupPopup(opportunity,index){
+
+    alert("showSignupPopup is running!");
+
+    const existing =
+    document.getElementById("signupModal");
 
     const existing =
     document.getElementById("signupModal");
