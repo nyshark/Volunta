@@ -1093,6 +1093,9 @@ document
     renderStudentOpportunities();
 
 }
+
+    // SIGNUP POPUP
+    
     function showSignupPopup(opportunity,index){
 
     const existing =
@@ -1188,6 +1191,171 @@ Confirm Signup
         );
 
     };
+
+}
+    function convertToMinutes(time){
+
+    if(!time) return 0;
+
+    time = time.trim().toUpperCase();
+
+    let period = "AM";
+
+    if(time.includes("PM")) period = "PM";
+
+    if(time.includes("AM")) period = "AM";
+
+    time = time
+        .replace("AM","")
+        .replace("PM","")
+        .trim();
+
+    const parts = time.split(":");
+
+    let hour = Number(parts[0]);
+    let minute = Number(parts[1]);
+
+    if(period==="PM" && hour!==12){
+
+        hour += 12;
+
+    }
+
+    if(period==="AM" && hour===12){
+
+        hour = 0;
+
+    }
+
+    return hour*60 + minute;
+
+}
+
+function finishSignup(opportunity,index,modal){
+
+    const chosenStart =
+    document.getElementById("signupStart").value;
+
+    const chosenEnd =
+    document.getElementById("signupEnd").value;
+
+    if(!chosenStart || !chosenEnd){
+
+        showBanner(
+            "Missing Time",
+            "Please choose your volunteer hours."
+        );
+
+        return;
+
+    }
+
+    const studentStart =
+    convertToMinutes(chosenStart);
+
+    const studentEnd =
+    convertToMinutes(chosenEnd);
+
+    const eventStart =
+    convertToMinutes(opportunity.start);
+
+    const eventEnd =
+    convertToMinutes(opportunity.end);
+
+    if(studentStart >= studentEnd){
+
+        showBanner(
+            "Invalid Hours",
+            "Your end time must be after your start time."
+        );
+
+        return;
+
+    }
+
+    if(studentStart < eventStart ||
+       studentEnd > eventEnd){
+
+        showBanner(
+            "Outside Event Hours",
+            "Choose hours within the organizer's event time."
+        );
+
+        return;
+
+    }
+
+    if(!confirm(
+
+        `Volunteer from ${chosenStart} to ${chosenEnd}?`
+
+    )){
+
+        return;
+
+    }
+
+    const opportunities =
+    JSON.parse(
+        localStorage.getItem("voluntaOpportunities")
+    ) || [];
+
+    opportunities[index].students =
+    opportunities[index].students || [];
+
+    const alreadyJoined =
+    opportunities[index].students.find(student=>{
+
+        return student.email===user.email;
+
+    });
+
+    if(alreadyJoined){
+
+        showBanner(
+            "Already Signed Up",
+            "You already joined this opportunity."
+        );
+
+        return;
+
+    }
+
+    opportunities[index].students.push({
+
+        name:user.name,
+
+        email:user.email,
+
+        volunteerStart:chosenStart,
+
+        volunteerEnd:chosenEnd,
+
+        verified:false,
+
+        completed:false
+
+    });
+
+    localStorage.setItem(
+
+        "voluntaOpportunities",
+
+        JSON.stringify(opportunities)
+
+    );
+
+    modal.remove();
+
+    showBanner(
+
+        "Signup Complete!",
+
+        "You have successfully joined this opportunity."
+
+    );
+
+    renderStudentOpportunities();
 
 }
 renderStudentOpportunities();
