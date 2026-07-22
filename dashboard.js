@@ -1329,6 +1329,8 @@ function finishSignup(opportunity,index,modal){
         JSON.stringify(opportunities)
 
     );
+    console.log("Students signed up:");
+console.log(opportunities[index].students);
 
     modal.remove();
 
