@@ -1091,6 +1091,7 @@ signupBtn.addEventListener("click",function(){
 
     const modal =
     document.createElement("div");
+    console.log("Modal created");
 
     modal.id="signupModal";
 
@@ -1153,6 +1154,7 @@ Confirm Signup
 `;
 
     document.body.appendChild(modal);
+    console.log("Modal added to page");
 
     document
     .getElementById("cancelSignup")
