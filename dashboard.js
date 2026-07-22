@@ -849,18 +849,6 @@ function renderStudentOpportunities(){
 
                 </button>
 
-               <div class="student-opportunity-actions">
-
-    <button
-    class="btn-send view-opportunity"
-    data-index="${index}">
-
-    View Details
-
-    </button>
-
-</div>
-
             </div>
 
         </div>
@@ -1186,13 +1174,23 @@ Confirm Signup
 
     if(!time) return 0;
 
+    // HTML time input (13:30)
+    if(!time.includes("AM") && !time.includes("PM")){
+
+        const parts = time.split(":");
+
+        return Number(parts[0]) * 60 +
+               Number(parts[1]);
+
+    }
+
+    // Organizer time (9:30 AM)
+
     time = time.trim().toUpperCase();
 
     let period = "AM";
 
     if(time.includes("PM")) period = "PM";
-
-    if(time.includes("AM")) period = "AM";
 
     time = time
         .replace("AM","")
@@ -1204,22 +1202,15 @@ Confirm Signup
     let hour = Number(parts[0]);
     let minute = Number(parts[1]);
 
-    if(period==="PM" && hour!==12){
-
+    if(period==="PM" && hour!==12)
         hour += 12;
 
-    }
-
-    if(period==="AM" && hour===12){
-
+    if(period==="AM" && hour===12)
         hour = 0;
-
-    }
 
     return hour*60 + minute;
 
 }
-
 function finishSignup(opportunity,index,modal){
 
     const chosenStart =
