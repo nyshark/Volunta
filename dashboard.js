@@ -1085,9 +1085,6 @@ signupBtn.addEventListener("click",function(){
     const existing =
     document.getElementById("signupModal");
 
-    const existing =
-    document.getElementById("signupModal");
-
     if(existing){
 
         existing.remove();
@@ -1359,7 +1356,7 @@ renderStudentOpportunities();
 // STUDENT TABS
 // ==============================
 
-function showStudentTab(id, button){
+window.showStudentTab = function(id, button){
 
     document
     .querySelectorAll(".student-page-tab")
@@ -1383,4 +1380,4 @@ function showStudentTab(id, button){
 
     button.classList.add("active");
 
-}
+};
