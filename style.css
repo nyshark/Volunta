@@ -3580,3 +3580,83 @@ body.day-mode .organizer-tabs button{
     transform:translateY(-2px);
 
 }
+
+/* ======================================
+   SIGNUP MODAL
+====================================== */
+
+.signup-modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.65);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+}
+
+.signup-modal.show{
+
+    display:flex;
+
+}
+
+.signup-modal-card{
+
+    width:min(520px,92%);
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:2rem;
+
+}
+
+.signup-modal-card hr{
+
+    margin:1.4rem 0;
+
+    border:none;
+
+    border-top:1px solid var(--border);
+
+}
+
+.signup-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:1.8rem;
+
+}
+
+.signup-buttons button{
+
+    flex:1;
+
+}
+
+.signup-checkbox{
+
+    display:flex;
+
+    gap:10px;
+
+    align-items:flex-start;
+
+    margin-top:1rem;
+
+}
