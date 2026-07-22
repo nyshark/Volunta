@@ -849,14 +849,17 @@ function renderStudentOpportunities(){
 
                 </button>
 
-                <button
-                class="btn-send signup-opportunity"
+               <div class="student-opportunity-actions">
 
-                data-index="${index}">
+    <button
+    class="btn-send view-opportunity"
+    data-index="${index}">
 
-                Sign Up
+    View Details
 
-                </button>
+    </button>
+
+</div>
 
             </div>
 
@@ -885,20 +888,6 @@ studentOpportunityList.querySelectorAll(".view-opportunity")
 
 });
 
-studentOpportunityList.querySelectorAll(".signup-opportunity")
-.forEach(function(button){
-
-    button.addEventListener("click",function(){
-
-        const index =
-        Number(button.dataset.index);
-
-        signupOpportunity(index);
-
-    });
-
-});
-    
 }
     function viewOpportunity(index){
 
